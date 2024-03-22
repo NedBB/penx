@@ -1,0 +1,21 @@
+.bg-menu-theme {
+    background-color: #242745 !important;
+    color: #c9c8ce;
+}
+
+.bg-menu-theme .menu-link, .app-brand-text{
+    color: #c9c8ce !important;
+}
+.app-brand-text{
+    color: #fff !important;
+    font-weight: 700;
+}
+
+.bg-menu-theme .menu-link:hover, .bg-menu-theme .menu-inner .menu-item.open > .menu-link.menu-toggle{
+    background: #2d3253 !important;
+    color: #c9c8ce;
+}
+.app-brand-logo.demo {
+    width: 38px !important;
+    height: 43px !important;
+  }
