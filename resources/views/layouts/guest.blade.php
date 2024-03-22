@@ -32,14 +32,6 @@
 <link rel="stylesheet" href="{{asset('css/rtl/core.css')}}" class="template-customizer-core-css" />
 <link rel="stylesheet" href="{{asset('css/rtl/theme-default.css')}}" class="template-customizer-theme-css" />
 <!-- <link rel="stylesheet" href="../../assets/css/demo.css" /> -->
-
-<!-- Vendors CSS -->
-<link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
-<!-- Vendor -->
-<link rel="stylesheet" href="../../assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
-
 <!-- Page CSS -->
 <!-- Page -->
 <link rel="stylesheet" href="{{asset('css/pages/page-auth.css')}}" />
@@ -50,7 +42,7 @@
 <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
 <script src="{{asset('js/template-customizer.js')}}"></script>
 <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-<script src="../../assets/js/config.js"></script>
+<!-- <script src="../../assets/js/config.js"></script> -->
         <!-- Scripts -->
         @vite(['resources/js/app.js'])
     </head>
