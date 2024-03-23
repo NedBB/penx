@@ -49,7 +49,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="pages-profile-user.html">
+                      <a class="dropdown-item" href="#">
                         <i class="ti ti-user-check me-2 ti-sm"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
@@ -90,10 +90,11 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                      <a class="dropdown-item" href="/logout" class="nav_link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="ti ti-logout me-2 ti-sm"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
+                      <form id="logout-form" action="{{ url('logout') }}" method="post" class="d-none">@csrf</form>
                     </li>
                   </ul>
                 </li>

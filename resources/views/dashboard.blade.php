@@ -14,8 +14,8 @@
                   <i class="ti ti-device-laptop ti-xl"></i>
                 </span>
                 <div class="content-right">
-                  <p class="mb-0">Hours Spent</p>
-                  <h4 class="text-primary mb-0">34h</h4>
+                  <p class="mb-0">Staff</p>
+                  <h4 class="text-primary mb-0">50</h4>
                 </div>
               </div>
               <div class="d-flex align-items-center gap-3">
@@ -23,8 +23,8 @@
                   <i class="ti ti-bulb ti-xl"></i>
                 </span>
                 <div class="content-right">
-                  <p class="mb-0">Test Results</p>
-                  <h4 class="text-info mb-0">82%</h4>
+                  <p class="mb-0">National Officers</p>
+                  <h4 class="text-info mb-0">20</h4>
                 </div>
               </div>
               <div class="d-flex align-items-center gap-3">

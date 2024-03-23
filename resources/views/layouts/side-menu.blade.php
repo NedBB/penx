@@ -94,42 +94,42 @@
 
         <ul class="menu-sub">
         <li class="menu-item">
-            <a href="layouts-collapsed-menu.html" class="menu-link">
+            <a href="#" class="menu-link">
             <div data-i18n="Omnibus">Omnibus</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="layouts-content-navbar.html" class="menu-link">
+            <a href="#" class="menu-link">
             <div data-i18n="Staff">Staff</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="layouts-content-navbar-with-sidebar.html" class="menu-link">
+            <a href="#" class="menu-link">
             <div data-i18n="National Officers">National Officers</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="../horizontal-menu-template" class="menu-link" target="_blank">
+            <a href="#" class="menu-link" target="_blank">
             <div data-i18n="T & T">T & T</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="layouts-without-menu.html" class="menu-link">
+            <a href="#" class="menu-link">
             <div data-i18n="Allocation">Allocation</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="layouts-without-navbar.html" class="menu-link">
+            <a href="#" class="menu-link">
             <div data-i18n="Income">Income</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="layouts-fluid.html" class="menu-link">
+            <a href="#" class="menu-link">
             <div data-i18n="Loan">Loan</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="layouts-container.html" class="menu-link">
+            <a href="#" class="menu-link">
             <div data-i18n="Contract">Contract</div>
             </a>
         </li>
@@ -144,17 +144,17 @@
         </a>
         <ul class="menu-sub">
         <li class="menu-item">
-            <a href="../front-pages/landing-page.html" class="menu-link" target="_blank">
+            <a href="#" class="menu-link" target="_blank">
             <div data-i18n="Deductions">Deductions</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="../front-pages/pricing-page.html" class="menu-link" target="_blank">
+            <a href="#" class="menu-link" target="_blank">
             <div data-i18n="Contributionary Pension">Contributionary Pension</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="../front-pages/payment-page.html" class="menu-link" target="_blank">
+            <a href="#" class="menu-link" target="_blank">
             <div data-i18n="Payment Schedule">Payment Schedule</div>
             </a>
         </li>
@@ -162,7 +162,7 @@
     </li>
 
     <li class="menu-item">
-        <a href="app-email.html" class="menu-link">
+        <a href="#" class="menu-link">
         <i class="menu-icon tf-icons ti ti-mail"></i>
         <div data-i18n="Payroll">Payroll</div>
         </a>
@@ -175,12 +175,12 @@
         </a>
         <ul class="menu-sub">
         <li class="menu-item">
-            <a href="../front-pages/landing-page.html" class="menu-link" target="_blank">
+            <a href=".#" class="menu-link" target="_blank">
             <div data-i18n="Income">Income</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="../front-pages/pricing-page.html" class="menu-link" target="_blank">
+            <a href="#" class="menu-link" target="_blank">
             <div data-i18n="Expenditure">Expenditure</div>
             </a>
         </li>
