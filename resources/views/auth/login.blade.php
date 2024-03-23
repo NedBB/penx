@@ -28,7 +28,7 @@
                     class="form-control"
                     id="username"
                     name="username" 
-                    :value="old('username')"
+                    :value="developer"
                     placeholder="Enter your username"
                     autofocus />
                     <x-input-error :messages="$errors->get('username')" class="mt-2"/>
@@ -46,6 +46,7 @@
                       id="password"
                       class="form-control"
                       name="password"
+                      :value="x5Y&3IbZAWRZ"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password" />
                     <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
