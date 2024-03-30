@@ -43,6 +43,11 @@
             </a>
         </li>
         <li class="menu-item">
+            <a href="{{route('sub-head')}}" class="menu-link">
+            <div data-i18n="Sub Head">Sub Head</div>
+            </a>
+        </li>
+        <li class="menu-item">
             <a href="{{route('loan')}}" class="menu-link">
             <div data-i18n="Loan">Loan</div>
             </a>
@@ -94,42 +99,42 @@
 
         <ul class="menu-sub">
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{ route('omnibus')}}" class="menu-link">
             <div data-i18n="Omnibus">Omnibus</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{route('staff')}}" class="menu-link">
             <div data-i18n="Staff">Staff</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{route('national.officer')}}" class="menu-link">
             <div data-i18n="National Officers">National Officers</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link" target="_blank">
+            <a href="{{route('t.t')}}" class="menu-link">
             <div data-i18n="T & T">T & T</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{route('allocation')}}" class="menu-link">
             <div data-i18n="Allocation">Allocation</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{route('income')}}" class="menu-link">
             <div data-i18n="Income">Income</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
-            <div data-i18n="Loan">Loan</div>
+            <a href="{{route('loans')}}" class="menu-link">
+            <div data-i18n="Loan">Loans</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{route('contract')}}" class="menu-link">
             <div data-i18n="Contract">Contract</div>
             </a>
         </li>
@@ -144,17 +149,17 @@
         </a>
         <ul class="menu-sub">
         <li class="menu-item">
-            <a href="#" class="menu-link" target="_blank">
+            <a href="{{route('deductions')}}" class="menu-link">
             <div data-i18n="Deductions">Deductions</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link" target="_blank">
+            <a href="{{route('contributory-pension')}}" class="menu-link">
             <div data-i18n="Contributionary Pension">Contributionary Pension</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link" target="_blank">
+            <a href="route('payment-schedule')" class="menu-link">
             <div data-i18n="Payment Schedule">Payment Schedule</div>
             </a>
         </li>

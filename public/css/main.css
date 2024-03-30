@@ -19,3 +19,7 @@
     width: 38px !important;
     height: 43px !important;
   }
+
+table.table > thead{
+    border-bottom: 1px solid #282828 !important;
+  }

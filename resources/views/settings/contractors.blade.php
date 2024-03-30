@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <div class="container-xxl flex-grow-1 container-p-y">
-          <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Contractors</h4>
+          <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Contractors <livewire:Counters/></h4>
 
           <!-- DataTable with Buttons -->
           <div class="card">
@@ -64,7 +64,7 @@
                     <div class="modal-body">
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       <div class="text-center mb-4">
-                        <h3 class="mb-2">Add Contractor</h3>
+                        <h3 class="mb-2">Add Contractor </h3>
                       </div>
                       <form id="editUserForm" class="row g-3" onsubmit="return false">
                       <div class="col-12 col-md-6">

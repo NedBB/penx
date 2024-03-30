@@ -46,7 +46,6 @@
     <link rel="stylesheet" href="{{ asset('css/fonts/flag-icons.css')}}" />
 
     <!-- Core CSS -->
-   <link rel="stylesheet" href="{{asset('css/demo.css')}}" />
 
     <link rel="stylesheet" href="{{asset('libs/node-waves/node-waves.css')}}" />
     <link rel="stylesheet" href="{{asset('libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
@@ -64,15 +63,17 @@
     <link rel="stylesheet" href="{{asset('css/pages/cards-advance.css')}}" />
     <script src="{{asset('js/helpers.js')}}"></script>
 
-    <script src="{{asset('js/template-customizer.js')}}"></script>
+    {{-- <script src="{{asset('js/template-customizer.js')}}"></script> --}}
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('js/config.js')}}"></script>
 
     <link rel="stylesheet" href="{{asset('css/rtl/core.css')}}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{asset('css/rtl/theme-default.css')}}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{asset('libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/demo.css')}}" />
 
+    <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+    @livewireStyles
         <!-- Scripts -->
         <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
     </head>
@@ -124,15 +125,17 @@
         <script src="{{asset('libs/apex-charts/apexcharts.js')}}"></script>
         <script src="{{asset('libs/flatpickr/flatpickr.js')}}"></script>
         <!-- Form Validation -->
-        <script src="{{asset('libs/@form-validation/umd/bundle/popular.min.js')}}"></script>
-        <script src="{{asset('libs/@form-validation/umd/plugin-bootstrap5/index.min.js')}}"></script>
+        {{-- <script src="{{asset('libs/@form-validation/umd/bundle/popular.min.js')}}"></script> --}}
+        {{-- <script src="{{asset('libs/@form-validation/umd/plugin-bootstrap5/index.min.js')}}"></script>
         <script src="{{asset('libs/@form-validation/umd/plugin-auto-focus/index.min.js')}}"></script>
-        <!-- Page JS -->
+        <!-- Page JS --> --}}
         <script src="{{asset('js/app-academy-dashboard.js')}}"></script>
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}"></script>
 
-        
-        <script src="{{asset('js/tables-datatables-basic.js')}}"></script>
+{{--         
+        <script src="{{asset('js/tables-datatables-basic.js')}}"></script> --}}
+
+        @livewireScripts
     </body>
 </html>
