@@ -41,4 +41,8 @@ class Subhead extends Basemodel
         return $this->hasMany(Omnibus::class);
     }
 
+    public function scopeSearch($query,$value){
+        $query->where('name','like',"%{$value}%");
+    }
+
 }

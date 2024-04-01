@@ -49,9 +49,8 @@
                           <td class="text-center">
 
                             <livewire:edit-anchor :record="$department" :eventoption="$editevent" wire:key='{{time().$department->id}}' > 
-
-
-                              <a href="#" onclick="confirm('Are you sure you want to delete {{$department->name}} Department ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$department->id}})'>
+                             &nbsp;
+                            <a href="#" onclick="confirm('Are you sure you want to delete {{$department->name}} Department ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$department->id}})'>
                                 <i class="fa-solid fa-trash text-danger"></i>
                               </a>
 

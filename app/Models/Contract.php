@@ -43,4 +43,8 @@ class Contract extends Basemodel
         return format_money($value);
     }
 
+    public function scopeSearch($query,$value){
+        $query->where('name','like',"%{$value}%");
+    }
+
 }

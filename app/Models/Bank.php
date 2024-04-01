@@ -27,4 +27,8 @@ class Bank extends Basemodel
     {
         return $this->hasMany(Account::class);
     }
+
+    public function scopeSearch($query,$value){
+        $query->where('name','like',"%{$value}%");
+    }
 }

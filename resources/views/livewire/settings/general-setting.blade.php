@@ -5,74 +5,81 @@
           <!-- DataTable with Buttons -->
           <div class="card">
                 <div class="card-body">
-                    <form id="editUserForm" class="row g-3" onsubmit="return false">
-                    <div class="col-12 col-md-6">
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">{{session('success')}}</div>
+                    @endif
+
+                    @if (session('failed'))
+                        <div class="alert alert-danger" role="alert">{{session('failed')}}</div>
+                    @endif
+                    <form id="editUserForm" wire:submit='save' class="row g-3" onsubmit="return false">
+                        <input type="hidden" wire:model='id'/>
+                        <div class="col-12 col-md-6">
                         <label class="form-label" for="modalEditUserFirstName">Rent</label>
                         <input
-                            type="text"
-                            id="modalEditUserFirstName"
-                            name="modalEditUserFirstName"
+                            wire:model='rent'
+                            type="number"
+                            name="rent"
                             class="form-control"
-                            placeholder="rent" 
-                            value="{{$settings->rent}}"
+                            required
                             />
                     </div>
                     
                     <div class="col-12 col-md-6">
                         <label class="form-label">Transport</label>
                         <input
-                        type="text"
+                        wire:model='transport'
+                        type="number"
                         name="transport"
                         class="form-control"
-                        placeholder="Doe" 
-                        value="{{$settings->transport}}"
+                        required
                         />
                     </div>
 
                     <div class="col-12 col-md-6">
                         <label class="form-label">Meal</label>
                         <input
-                            type="text"
+                            wire:model='meal'
+                            type="number"
                             name="meal"
                             class="form-control"
                             placeholder="Doe" 
-                            value="{{$settings->meal}}"
+                            required
                             />
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label">Employee %</label>
                         <input
-                            type="text"
+                            wire:model='employee'
+                            type="number"
                             name="employee"
                             class="form-control"
-                            placeholder="Doe"  
-                            value="{{$settings->employee_contrib}}"
+                            required
                             />
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label">Employer %</label>
                         <input
-                            type="text"
+                            wire:model='employer'
+                            type="number"
                             name="employer"
                             class="form-control"
-                            placeholder="Doe"
-                            value="{{$settings->employer_contrib}}"
+                            required
                             />
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label">NGF</label>
                         <input
-                            type="text"
-                            name="ngf"
+                            wire:model='nhf'
+                            type="number"
+                            name="nhf"
                             class="form-control"
-                            placeholder="Doe" 
-                            value="{{$settings->nhf}}"
+                            required
                             />
                     </div>
                 
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                    
                     </div>
                 </form>
                     

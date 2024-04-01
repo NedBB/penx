@@ -1,81 +1,78 @@
-
-    <div class="container-xxl flex-grow-1 container-p-y">
-          <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Banks</h4>
-
-          <!-- DataTable with Buttons -->
-          <div class="card">
-                <div class="card-header">
-                <button type="button" class="btn btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#editUser">
-                        + Add Record
-                </button>
-                </div>
-                <div class="table-responsive text-nowrap">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Account Name</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0">
-                        @forelse ($banks as $bank)
-                            <tr wire:key="{{$bank->id}}">
-                                <td class="text-capitalize">{{$bank->name}}</td>
-                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
-                            </tr>
-                        @empty
-                            <tr><td colspan="2" class="text-center text-danger">No data exist at the moment</td></tr>
-                        @endforelse
-                      
-                    </tbody>
-                  </table>
-                </div>
-                <div class="card-footer">
-                    {{$banks->links()}}
-
-                </div>
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Bank </h4>
+  <div class="card">
+    <div class="card-datatable table-responsive pt-0">
+      <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+        <div class="card-header">
+          <livewire:add-anchor :eventoption="$addevent">
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-12 col-md-6">
+            <div class="dataTables_length">
+              <label>
+                Show
+              <select wire:model.live='perpage' name="perpage" class="form-select">
+                <option value="5">5</option>
+                <option value="7">7</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                </select> 
+                Entries</label>
+            </div>
           </div>
-
-          <!-- Edit User Modal -->
-              <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-md modal-simple modal-edit-user">
-                  <div class="modal-content p-3 p-md-5">
-                    <div class="modal-body">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      <div class="text-center mb-4">
-                        <h3 class="mb-2">Add Bank</h3>
-                      </div>
-                      <form id="editUserForm" class="row g-3" onsubmit="return false">
-                        <div class="col-12 col-md-12">
-                          <label class="form-label" for="modalEditUserFirstName">Bank Name</label>
-                          <input
-                            type="text"
-                            id="modalEditUserFirstName"
-                            name="modalEditUserFirstName"
-                            class="form-control"
-                            placeholder="John" />
-                        </div>
-                      
-                        
-                       
-                          
-                        </div>
-                        <div class="col-12 text-center">
-                          <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                          <button
-                            type="reset"
-                            class="btn btn-label-secondary"
-                            data-bs-dismiss="modal"
-                            aria-label="Close">
-                            Cancel
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+          <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+            <div class="dataTables_filter">
+              <div class="dt-search">
+                <label for="dt-search-0">Search:</label>
+                <input type="text" wire:model.live.debounce.300ms='search' class="form-control form-control-sm" id="dt-search-0" placeholder="" aria-controls="example">
               </div>
-              <!--/ Edit User Modal -->
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive text-nowrap">
+          
+          <table class="table">
+                <thead>
+                  <tr role="row">
+                    <th>Banks</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @forelse ($banks as $bank)
+                    <tr wire:key='{{$bank->id}}'>
+                        <td class="text-capitalize" style="width: 80%">
+                              {{$bank->name}}
+                        </td>
+                        <td class="text-center">
 
-
+                          <livewire:edit-anchor :record="$bank" :eventoption="$editevent" wire:key='{{time().$bank->id}}' > 
+                            <a href="#" onclick="confirm('Are you sure you want to delete {{$bank->name}} Bank ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$bank->id}})'>
+                              <i class="fa-solid fa-trash text-danger"></i>
+                            </a>
+                        </td>
+                    </tr>
+                  @empty
+                      <tr><td colspan="2">No data exist at the moment</td></tr>
+                  @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+          {{$banks->links()}}
+      </div>
+      </div>
     </div>
+  </div>
+  
+  <x-add-bank :title="$title" :edit=$edit/>
+
+</div>
+
+
+
+
+
+

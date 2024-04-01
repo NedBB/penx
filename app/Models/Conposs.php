@@ -16,5 +16,9 @@ class Conposs extends Basemodel
         return $this->hasMany(Staffprofile::class);
     }
 
+    public function scopeSearch($query,$value){
+        $query->where('name','like',"%{$value}%");
+    }
+
 
 }

@@ -11,4 +11,8 @@ class Loantype extends Basemodel
     {
         return $this->hasMany(Fixeddeduction::class);
     }
+
+    public function scopeSearch($query,$value){
+        $query->where('name','like',"%{$value}%");
+    }
 }
