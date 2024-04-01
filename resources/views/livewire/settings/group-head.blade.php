@@ -59,7 +59,7 @@
                                 <i class="fa-solid fa-trash text-danger"></i>
                               </a>
                            @else
-                              <span class="btn btn-sm btn-primary">Can't delete</span>
+                              <span class="btn btn-sm btn-gray text-black">Can't delete</span>
                            @endif
                         </td>
                     </tr>
