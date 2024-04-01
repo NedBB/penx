@@ -56,7 +56,8 @@
     <link rel="stylesheet" href="{{asset('libs/datatables-buttons-bs5/buttons.bootstrap5.css')}}" />    
     <link rel="stylesheet" href="{{asset('libs/apex-charts/apex-charts.css')}}" />
     <link rel="stylesheet" href="{{asset('libs/swiper/swiper.css')}}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
     <link rel="stylesheet" href="{{asset('libs/flatpickr/flatpickr.css')}}" />
 
     <!-- Page CSS -->
@@ -109,6 +110,8 @@
         </div>
         <script src="{{asset('libs/jquery/jquery.js')}}"></script>
         <script src="{{asset('libs/popper/popper.js')}}"></script>
+        {{-- <script src="{{asset('libs/datatables-bs5/datatables-bootstrap5.js')}}"></script> --}}
+
         <script src="{{asset('js/bootstrap.js')}}"></script>
         <script src="{{asset('libs/node-waves/node-waves.js')}}"></script>
         <script src="{{asset('libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
@@ -121,7 +124,6 @@
 
         <!-- Vendors JS -->
         <script src="{{asset('libs/moment/moment.js')}}"></script>
-        <script src="{{asset('libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
         <script src="{{asset('libs/apex-charts/apexcharts.js')}}"></script>
         <script src="{{asset('libs/flatpickr/flatpickr.js')}}"></script>
         <!-- Form Validation -->
@@ -132,7 +134,6 @@
         <script src="{{asset('js/app-academy-dashboard.js')}}"></script>
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}"></script>
-
 {{--         
         <script src="{{asset('js/tables-datatables-basic.js')}}"></script> --}}
 

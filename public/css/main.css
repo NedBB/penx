@@ -28,3 +28,24 @@ table.table > thead{
     border-bottom: 1px solid #282828;
     text-transform: uppercase;
   }
+
+.text-underline-dotted{
+  text-decoration:underline !important;
+  text-decoration-style: dotted !important;
+}
+
+.card-datatable [class*="col-md-"] {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+
+.dataTables_length label{
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dataTables_length select {
+    width: auto;
+    display: inline-block;
+}

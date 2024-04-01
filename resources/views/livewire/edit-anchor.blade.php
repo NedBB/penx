@@ -1,0 +1,1 @@
+<a href="#" @click="$dispatch('{{$eventoption}}',{id:{{$record->id}} })" class="text-underline-dotted" data-bs-toggle="modal" data-bs-target="#editUser"> <i class="fa-solid fa-pencil text-primary"></i></a>

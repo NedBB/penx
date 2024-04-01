@@ -9,7 +9,8 @@
       @if (session('failed'))
         <div class="alert alert-danger" role="alert">{{session('failed')}}</div>
       @endif
-      <form id="addDepartment" class="row g-3"wire:submit="@if($edit == false)save @else update @endif">
+
+      <form id="editDepartment" class="row g-3"wire:submit="edit">
         <div class="col-12 col-md-12">
           <label class="form-label">Name</label>
           <input type="text" name="name"  wire:model="name" class="form-control"/>
@@ -18,7 +19,7 @@
           </div>
         </div>
         <div class="col-12 text-center">
-          <button type="submit" class="btn btn-primary me-sm-3 me-1">@if($edit == false)Submit @else Update @endif</button>
+          <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
         </div>
       </form>
 </x-my-modal>
