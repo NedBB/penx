@@ -19,4 +19,8 @@ class Location extends Basemodel
     {
         return $this->hasMany(Income::class);
     }
+
+    public function scopeSearch($query,$value){
+        $query->where('name','like',"%{$value}%");
+    }
 }
