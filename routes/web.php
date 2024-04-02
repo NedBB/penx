@@ -8,6 +8,7 @@ use App\Livewire\Conposs;
 use App\Livewire\Contract;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Contractor;
+use App\Livewire\Deduction;
 use App\Livewire\Department;
 use App\Livewire\GeneralSetting;
 use App\Livewire\GroupHead;
@@ -75,9 +76,7 @@ Route::get('/income', Income::class)->middleware(['auth', 'verified'])->name('in
 Route::get('/transport/travel', TandT::class)->middleware(['auth', 'verified'])->name('t.t');
 
 
-Route::get('/deductions', function () {
-    return view('queries.deductions');
-})->middleware(['auth', 'verified'])->name('deductions');
+Route::get('/deductions', Deduction::class)->middleware(['auth', 'verified'])->name('deductions');
 
 Route::get('/payment/schedule', function () {
     return view('queries.payment-schedule');

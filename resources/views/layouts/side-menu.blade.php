@@ -90,8 +90,8 @@
         </ul>
     </li>
 
-    <!-- Layouts -->
-    <li class="menu-item">
+   
+    {{-- <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-layout-sidebar"></i>
         <div data-i18n="Make Entries">Make Entries</div>
@@ -141,7 +141,7 @@
         </ul>
     </li>
 
-    <!-- Front Pages -->
+
     <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-files"></i>
@@ -172,7 +172,7 @@
         <div data-i18n="Payroll">Payroll</div>
         </a>
     </li>
-    <!-- e-commerce-app menu start -->
+   
     <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
@@ -190,8 +190,8 @@
             </a>
         </li>
         </ul>
-    </li>
-    <!-- e-commerce-app menu end -->
+    </li> --}}
+   
 
     </ul>
 </aside>

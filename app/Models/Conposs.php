@@ -17,7 +17,7 @@ class Conposs extends Basemodel
     }
 
     public function scopeSearch($query,$value){
-        $query->where('name','like',"%{$value}%");
+        $query->where('gradelevel_id','like',"%{$value}%");
     }
 
 

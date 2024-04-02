@@ -28,4 +28,8 @@ class Contractor extends Basemodel
     {
         return $this->title->name.' '.$this->firstname.' '.$this->surname;
     }
+
+    public function scopeSearch($query,$value){
+        $query->where('firstname','like',"%{$value}%");
+    }
 }
