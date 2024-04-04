@@ -78,7 +78,7 @@ class StateParastatal extends Component
 
     public function render(LocationService $service)
     {
-        $states = $service->listState($this->perpage, $this->search);
+        $states = $service->list($this->perpage, $this->search);
         return view('livewire.settings.state-parastatal', compact('states'))->layout('layouts.app');
     }
 }
