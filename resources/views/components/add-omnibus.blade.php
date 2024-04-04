@@ -11,16 +11,19 @@
         <div class="alert alert-danger" role="alert">{{session('failed')}}</div>
     @endif
 
-    <form id="editUserForm" class="row g-3" onsubmit="return false">
+    <form id="editUserForm" class="row g-3" wire:submit='save'>
             <div class="col-12 col-md-6">
                 <label class="form-label">Name</label>
                 <input
                 wire:model='name'
                 type="text"
                 name="name"
-                class="form-control" />
+                class="form-control" /> 
+                <div>
+                    @error('name') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
-            
+           
             <div class="col-12 col-md-6">
                 <label class="form-label">Date</label>
                 <input
@@ -28,23 +31,25 @@
                     type="date"
                     name="date"
                     class="form-control" />
+                    <div>
+                        @error('date') <span class="error">{{ $message }}</span> @enderror 
+                    </div>
             </div>
         
             <div class="col-12 col-md-6">
                 <label class="form-label" for="modalEditUserFirstName">Head</label>
-                <select class="form-control"  name="head_id" wire:model='head_id'>
-                    <option>Select Option</option>
-                    @foreach ($heads as $head)
-                        <option @click="$dispatch('selectionChanged', '{{$head->id}}')" value="{{$head->id}}">{{$head->name}}</option>
-                    @endforeach
-                </select>
+                <livewire:selection-change :heads='$heads'>
+                    <div>
+                        @error('head_id') <span class="error">{{ $message }}</span> @enderror 
+                    </div>
             </div>
 
             <div class="col-12 col-md-6">
                 <label class="form-label" for="modalEditUserFirstName">Subhead</label>
-                <select class="form-control" name="subhead_id" wire:model='subhead_id'>
-                    <option>Select Option</option>
-                </select>
+                <livewire:selection-update :subheads='$subheads'>
+                    <div>
+                        @error('subhead_id') <span class="error">{{ $message }}</span> @enderror 
+                    </div>
             </div>
         
             <div class="col-12 col-md-6">
@@ -53,6 +58,9 @@
                     type="text"
                     name="pvno"
                     class="form-control" />
+                    <div>
+                        @error('pvno') <span class="error">{{ $message }}</span> @enderror 
+                    </div>
             </div>
 
             <div class="col-12 col-md-6">
@@ -62,6 +70,9 @@
                     name="amount"
                     class="form-control"
                     placeholder="amount" />
+                <div>
+                    @error('amount') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
             <div class="col-12 col-md-12">
                 <label class="form-label">Description</label>
@@ -70,17 +81,13 @@
                 name="description"
                 class="form-control"
                 placeholder="description" />
+                <div>
+                    @error('description') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
             
             <div class="col-12 text-center">
                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                <button
-                    type="reset"
-                    class="btn btn-label-secondary"
-                    data-bs-dismiss="modal"
-                    aria-label="Close">
-                    Cancel
-                </button>
             </div>
     </form>
 

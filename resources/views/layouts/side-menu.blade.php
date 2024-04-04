@@ -98,7 +98,7 @@
         </a>
 
         <ul class="menu-sub">
-        {{-- <li class="menu-item">
+        <li class="menu-item">
             <a href="{{ route('omnibus')}}" class="menu-link">
             <div data-i18n="Omnibus">Omnibus</div>
             </a>
@@ -142,7 +142,7 @@
     </li>
 
 
-    {{-- <li class="menu-item">
+    <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-files"></i>
         <div data-i18n="Queries">Queries</div>
@@ -164,7 +164,7 @@
             </a>
         </li>
         </ul>
-    </li> --}}
+    </li>
 
     {{-- <li class="menu-item">
         <a href="#" class="menu-link">

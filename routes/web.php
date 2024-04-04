@@ -60,7 +60,7 @@ Route::get('/omnibus', Ominbus::class)->middleware(['auth', 'verified'])->name('
 Route::get('/allocation', Allocation::class)->middleware(['auth', 'verified'])->name('allocation');
 Route::get('/loans', Loans::class)->middleware(['auth', 'verified'])->name('loans');
 Route::get('/contract', Contract::class)->middleware(['auth', 'verified'])->name('contract');
-Route::get('/national/officers', NationalStaff::class)->middleware(['auth', 'verified'])->name('national.officer');
+Route::get('/officers', NationalStaff::class)->middleware(['auth', 'verified'])->name('national.officer');
 Route::get('/staff', Staff::class)->middleware(['auth', 'verified'])->name('staff');
 Route::get('/income', Income::class)->middleware(['auth', 'verified'])->name('income');
 Route::get('/transport/travel', TandT::class)->middleware(['auth', 'verified'])->name('t.t');

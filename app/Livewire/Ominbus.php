@@ -12,11 +12,15 @@ class Ominbus extends Component
 {
     use WithPagination;
 
-    public $profile;
+    public $name;
     public $omnibus;
+    public $page = 5;
     public $description;
+    public $subheads = [];
     public $pvno;
     public $subhead_id;
+    public $head_id;
+    public $date;
     public $amount;
     public $title = "Add Omnibus";
     public $edittitle = "Edit Omnibus";
@@ -30,9 +34,17 @@ class Ominbus extends Component
     }
 
     #[On('selectionChanged')]
-    public function getSubheads($value,OmnibusService $service){
-        dd($value);
+    public function getSubheads($value,GroupheadService $service){
+        $records = $service->getSubHeadByHeadid($value);
+     
+        $this->dispatch('messageSent', data:$records);
     }
+
+    #[On('selectionSubhead')]
+    public function updateSubhead($value){
+        $this->subhead_id = $value;
+    }
+
 
     public function save(OmnibusService $service)
     {
@@ -41,14 +53,12 @@ class Ominbus extends Component
             "amount"    => ['required'],
             "description"       => ['required'],
             "pvno"          => ['required'],
-            "profile"            => ['nullable'],
-            'account_id'      =>  ['required']
+            "name"            => ['nullable']
         ]);
-       
-        
+
         $response = $service->create($validate);
 
-        $this->reset(['subhead_id','head_id','amount','description','profile','description','date_from','date_to','total']);
+        $this->reset(['amount','head_id','pvno','description','name','description','date']);
 
         if($response){
             request()->session()->flash('success','Record has successfully been created',array('timeout' => 3000));
@@ -61,7 +71,7 @@ class Ominbus extends Component
     public function render(GroupheadService $headService, OmnibusService $omnibusService)
     {
         $heads = $headService->headList();
-        $omnibusses = $omnibusService->list($this->search);
+        $omnibusses = $omnibusService->list($this->page,$this->search);
         return view('livewire.entries.ominbus',compact('omnibusses','heads'))->layout('layouts.app');
     }
 }

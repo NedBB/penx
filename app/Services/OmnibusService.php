@@ -8,14 +8,13 @@ use Carbon\Carbon as carbon;
 
 class OmnibusService {
 
-    public function list($search){
+    public function list($page,$search){
         $start = date('Y').'-'.date('m').'-'.'01';
         $end = carbon::parse($start)->endOfMonth();
         return Omnibus::search($search)
                 ->with('subhead.head')
-                ->whereBetween('created_at', [$start, $end])
                 ->orderby('created_at','ASC')
-                ->paginate(10);
+                ->paginate($page);
     }
 
     public function create($data){

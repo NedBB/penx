@@ -32,7 +32,7 @@ class Deduction extends Component
 
         $data = $service->searchRecords($validated);
 
-        dd($data);
+        
     }
 
     public function render()

@@ -49,31 +49,31 @@
               <tbody class="table-border-bottom-0">
               
                   @forelse ($officers as $list)
-                      <tr wire:key='{{$list->id}}' >
-                        <td @if($list->active == false) class="text-danger" @endif>
+                      <tr wire:key='{{$list->id}}' @if($list->active) class="text-danger" @endif>
+                        <td>
                             {{$list->uniqueid}} &nbsp;
                             <livewire:edit-anchor :record="$list" :eventoption="$editevent" wire:key='{{time().$list->id}}' /> 
                             
                         </td>
-                         <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                         <td class="text-capitalize">
                             {{$list->surname}}
                             </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                          <td class="text-capitalize">
                             {{$list->firstname}}
                           </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                          <td class="text-capitalize">
                             {{$list->middlename}}
                           </td>
-                          <td @if($list->active == false) class="text-danger" @endif>
+                          <td>
                             {{($list->active) ? "Active" : "Disabled"}}
                           </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif >
+                          <td class="text-capitalize">
                             {{$list->dutystation->name}}
                           </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                          <td class="text-capitalize">
                             {{$list->accountno}}
                           </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                          <td class="text-capitalize">
                             {{$list->basicsalary}}
                           </td>
                       </tr>
