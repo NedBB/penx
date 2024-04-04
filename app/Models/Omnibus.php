@@ -23,4 +23,8 @@ class Omnibus extends Basemodel
     {
         return 'omnibus';
     }
+
+    public function scopeSearch($query,$value){
+        $query->where('pvno','like',"%{$value}%");
+    }
 }

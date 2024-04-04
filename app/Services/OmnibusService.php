@@ -2,20 +2,44 @@
 
 namespace App\Services;
 
+use App\Livewire\Ominbus;
 use App\Models\Omnibus;
+use Carbon\Carbon as carbon;
 
 class OmnibusService {
 
-    public function list(){
-        return Omnibus::with('subhead.head')->orderby('updated_at','ASC')->paginate(7);
+    public function list($search){
+        $start = date('Y').'-'.date('m').'-'.'01';
+        $end = carbon::parse($start)->endOfMonth();
+        return Omnibus::search($search)
+                ->with('subhead.head')
+                ->whereBetween('created_at', [$start, $end])
+                ->orderby('created_at','ASC')
+                ->paginate(10);
     }
 
-    public function update(){
-
+    public function create($data){
+        return Omnibus::create($data);
     }
 
-    public function delete(){
-        
+    public function getById($id){
+        return Ominbus::find($id);
+    }
+
+    public function update($id,$data){
+
+        $ominbus = Ominbus::find($id);
+        $ominbus->subhead_id = $data['subhead_id'];
+        $ominbus->pvno = $data['pvno'];
+        $ominbus->amount = $data['amount'];
+        $ominbus->description = $data['description'];
+        $ominbus->profile = $data['profile'];
+
+        return $ominbus->save();
+    }
+
+    public function delete($id){
+        return Ominbus::where('id',$id)->delete();
     }
 
 

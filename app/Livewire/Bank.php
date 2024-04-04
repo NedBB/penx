@@ -77,7 +77,7 @@ class Bank extends Component
 
     public function render(BankService $service)
     {
-        $banks = $service->bankList($this->perpage, $this->search);
+        $banks = $service->list($this->perpage, $this->search);
         return view('livewire.settings.bank',compact('banks'))->layout('layouts.app');
     }
 }

@@ -91,14 +91,14 @@
     </li>
 
    
-    {{-- <li class="menu-item">
+    <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-layout-sidebar"></i>
         <div data-i18n="Make Entries">Make Entries</div>
         </a>
 
         <ul class="menu-sub">
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="{{ route('omnibus')}}" class="menu-link">
             <div data-i18n="Omnibus">Omnibus</div>
             </a>
@@ -122,13 +122,13 @@
             <a href="{{route('allocation')}}" class="menu-link">
             <div data-i18n="Allocation">Allocation</div>
             </a>
-        </li>
+        </li> --}}
         <li class="menu-item">
             <a href="{{route('income')}}" class="menu-link">
             <div data-i18n="Income">Income</div>
             </a>
         </li>
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="{{route('loans')}}" class="menu-link">
             <div data-i18n="Loan">Loans</div>
             </a>
@@ -137,12 +137,12 @@
             <a href="{{route('contract')}}" class="menu-link">
             <div data-i18n="Contract">Contract</div>
             </a>
-        </li>
+        </li> --}}
         </ul>
     </li>
 
 
-    <li class="menu-item">
+    {{-- <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-files"></i>
         <div data-i18n="Queries">Queries</div>
@@ -164,9 +164,9 @@
             </a>
         </li>
         </ul>
-    </li>
+    </li> --}}
 
-    <li class="menu-item">
+    {{-- <li class="menu-item">
         <a href="#" class="menu-link">
         <i class="menu-icon tf-icons ti ti-mail"></i>
         <div data-i18n="Payroll">Payroll</div>

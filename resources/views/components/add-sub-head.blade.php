@@ -31,7 +31,8 @@
               @endforeach
             </select>
           </div>
-        <div class="col-12 text-center">
+        
+          <div class="col-12 text-center">
           <button type="submit" class="btn btn-primary me-sm-3 me-1">@if($edit == false)Submit @else Update @endif</button>
         </div>
       </form>
