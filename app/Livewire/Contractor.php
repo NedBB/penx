@@ -124,7 +124,7 @@ class Contractor extends Component
     public function render(ContractorService $service)
     {
         $contractors = $service->list($this->perpage, $this->search);
-        dd($contractors);
+   
         return view('livewire.settings.contractor', compact('contractors'))->layout('layouts.app');
     }
 }
