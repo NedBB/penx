@@ -12,8 +12,12 @@ class Deduction extends Component
     public $month_1;
     public $year_1;
     public $option;
+    public $data = "";
+    public $records = [];
+   
+    public $hide = true;
 
-    public $options = ["tax","pension","loan","salary advance"];
+    public $options = ["tax" => "tax","pension" => "pension","salaryadvance"=>"salary advance"];
     public $monthrange = [
         '01'=>'January', '02'=>'February','03'=>'March','04'=>'April',
         '05'=>'May','06'=>'June','07'=>'July','08'=>'August',
@@ -30,8 +34,9 @@ class Deduction extends Component
             'month_2' => 'required'
         ]);
 
-        $data = $service->searchRecords($validated);
-        dd($data);
+        $this->records = $service->searchRecords($validated);
+        $this->data = $validated['option'];
+        $this->hide = false;
         
     }
 

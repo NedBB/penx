@@ -10,20 +10,23 @@ use Illuminate\Support\Facades\DB;
 class PayrollService {
 
     public function searchRecords($data){
-
         
-
         $collect = Payroll::whereBetween('month', [$data['month_1'], $data['month_2']])
                 ->whereBetween('year', [$data['year_1'], $data['year_2']])
                 ->where($data['option'], '>', 0)
-                ->with(['profile' => function ($query) {
-                    $query->select('id', 'surname', 'firstname', 'middlename'); // Add other common columns you need
-                }])
+                ->with([
+                        'profile'=>function($p){
+                            $p->select('id','uniqueid','firstname','surname','taxpin','pensionpin');
+                        }
+                    ])
+                ->select('profile_id','profile_type','basicsalary',$data['option'].' as amount')
                 ->get();
 
-                return $collect;
-
-        
+        if($data['option'] != 'tax' && $data['option']!= 'pension'){
+            return $collect->sortBy('profile.uniqueid');
+        }else{
+            return $collect;
+        }
     }
 
     public function insertPayroll($month, $year, $profile, array $data)

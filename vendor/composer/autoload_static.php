@@ -635,6 +635,7 @@ class ComposerStaticInit5c23e0135e65bb1e19466367403efef9
         'App\\Services\\BankService' => __DIR__ . '/../..' . '/app/Services/BankService.php',
         'App\\Services\\ConpossService' => __DIR__ . '/../..' . '/app/Services/ConpossService.php',
         'App\\Services\\ContractorService' => __DIR__ . '/../..' . '/app/Services/ContractorService.php',
+        'App\\Services\\ContributorypensionService' => __DIR__ . '/../..' . '/app/Services/ContributorypensionService.php',
         'App\\Services\\DepartmentService' => __DIR__ . '/../..' . '/app/Services/DepartmentService.php',
         'App\\Services\\DutystationService' => __DIR__ . '/../..' . '/app/Services/DutystationService.php',
         'App\\Services\\GeneralsettingService' => __DIR__ . '/../..' . '/app/Services/GeneralsettingService.php',

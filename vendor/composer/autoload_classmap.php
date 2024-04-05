@@ -100,6 +100,7 @@ return array(
     'App\\Services\\BankService' => $baseDir . '/app/Services/BankService.php',
     'App\\Services\\ConpossService' => $baseDir . '/app/Services/ConpossService.php',
     'App\\Services\\ContractorService' => $baseDir . '/app/Services/ContractorService.php',
+    'App\\Services\\ContributorypensionService' => $baseDir . '/app/Services/ContributorypensionService.php',
     'App\\Services\\DepartmentService' => $baseDir . '/app/Services/DepartmentService.php',
     'App\\Services\\DutystationService' => $baseDir . '/app/Services/DutystationService.php',
     'App\\Services\\GeneralsettingService' => $baseDir . '/app/Services/GeneralsettingService.php',

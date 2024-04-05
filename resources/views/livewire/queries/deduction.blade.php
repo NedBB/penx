@@ -19,8 +19,8 @@
                     class="select2 form-select"
                     >
                     <option value="">Option</option>
-                       @foreach($options as $value)
-                            <option value="{{$value}}">{{$value}}</option>
+                       @foreach($options as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
                         @endforeach
                 </select>
               </div>
@@ -87,7 +87,7 @@
               </div>
             </form>
          
-            <div class="row mt-5">
+            {{-- <div class="row mt-5">
             
               <div class="col-sm-12 col-md-6">
               <div class="dataTables_length">
@@ -102,16 +102,16 @@
                   <option value="100">100</option>
                   </select> 
                   Entries</label>
-              </div>
+              </div> --}}
           </div>
             
           </div>
-          {{-- <div class="table-responsive text-nowrap"> 
-              <x-deduction-table :records="$records" :data="$data">
-          </div> --}}
+          <div class="table-responsive text-nowrap"> 
+              <x-deduction-table :records="$records" :data="$data" :hide="$hide" />
+          </div> 
 
-          {{-- <div class="card-footer">
-              {{$departments->links()}}
+         {{-- <div class="card-footer">
+              {{$records->links()}}
           </div> --}}
         </div>
       </div>
@@ -119,4 +119,4 @@
     
     
 
-</div>
+</div> 
