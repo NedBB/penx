@@ -25,6 +25,15 @@ class OmnibusService {
         return Ominbus::find($id);
     }
 
+    public function getOmnibusSchedule($first, $end)
+    {
+        return Omnibus::with('subhead')
+                    ->whereBetween('created_at', [$first, $end])
+                    ->oldest('pvno')
+                    ->get(['subhead_id','description','pvno','amount'])
+                    ->groupBy('pvno');
+    }
+
     public function update($id,$data){
 
         $ominbus = Ominbus::find($id);

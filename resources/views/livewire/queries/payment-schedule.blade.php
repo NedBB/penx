@@ -26,9 +26,9 @@
           </div>
             
           </div>
-          {{-- <div class="table-responsive text-nowrap"> 
-              <x-pension-table :records="$records" :data="$data" :hide="$hide" />
-          </div>  --}}
+          <div class="table-responsive text-nowrap"> 
+              <x-payment-schedule-table  :sort="$sort" :nationpayroll="$nationpayroll" :staffpayroll="$staffpayroll" :pension="$pension" />
+          </div> 
 
 
         </div>

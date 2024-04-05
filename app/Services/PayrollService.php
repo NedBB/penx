@@ -53,4 +53,13 @@ class PayrollService {
         ])->delete();
     }
 
+    public function getPayrollSchedule($profiletype,$first, $end)
+    {
+        return Payroll::
+             where('profile_type',$profiletype)
+            ->whereBetween('created_at', [$first, $end])
+            ->get(['netpay'])
+            ->sum('netpay');
+    }
+
 }

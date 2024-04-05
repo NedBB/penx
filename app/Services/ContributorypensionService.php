@@ -21,11 +21,18 @@ class ContributorypensionService {
     }
 
     public function listContributions($data){
-        
+
+    }
+
+    public function getPensionSchedule($first, $end)
+    {
+        return Contributorypensionfund:: whereBetween('created_at', [$first, $end])
+            ->get(['contribution'])
+            ->sum('contribution');
     }
 
     public function insertPension($month, $year,array $generated){
-        dd($generated);
+        
         $check = Contributorypensionfund::where([
             ['month',$month],
             ['year',$year]
