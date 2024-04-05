@@ -142,7 +142,7 @@ class NationalStaff extends Component
     }
 
 
-    public function render(StaffprofileService $service)
+    public function render(NationalofficeService $service)
     {
         $officers = $service->list($this->perpage, $this->search);
         return view('livewire.entries.national-office', compact('officers'))->layout('layouts.app');
