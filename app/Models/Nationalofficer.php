@@ -31,6 +31,11 @@ class Nationalofficer extends Basemodel
         return $this->surname.' '.$this->firstname.' '.$this->middlename;
     }
 
+    public function getMorphClass()
+    {
+        return static::class; // This will use the fully qualified class name as is.
+    }
+
     public function scopeSearch($query,$value){
         $query->where('surname','like',"%{$value}%")->orwhere('firstname','like',"%{$value}%");
     }

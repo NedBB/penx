@@ -6,6 +6,7 @@ use App\Services\BankService;
 use App\Services\DutystationService;
 use App\Services\NationalofficeService;
 use App\Services\PaymentmethodService;
+use App\Services\StaffprofileService;
 use App\Services\TitleService;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -141,7 +142,7 @@ class NationalStaff extends Component
     }
 
 
-    public function render(NationalofficeService $service)
+    public function render(StaffprofileService $service)
     {
         $officers = $service->list($this->perpage, $this->search);
         return view('livewire.entries.national-office', compact('officers'))->layout('layouts.app');

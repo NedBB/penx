@@ -39,18 +39,6 @@
         </div>
 
         <div class="col-12 col-md-6">
-          <label class="form-label">Honours</label>
-          <input
-              wire:model='honours'
-              type="text"
-              name="honours"
-              class="form-control" /> 
-              <div>
-                  @error('honour') <span class="error">{{ $message }}</span> @enderror 
-              </div> 
-        </div>
-
-        <div class="col-12 col-md-6">
           <label class="form-label">Surname</label>
           <input
               wire:model='surname'
@@ -82,7 +70,42 @@
               name="middlename"
               class="form-control" /> 
               <div>
-                  @error('firstname') <span class="error">{{ $message }}</span> @enderror 
+                  @error('middlename') <span class="error">{{ $message }}</span> @enderror 
+              </div> 
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Pension Pin</label>
+          <input
+              wire:model='pensionpin'
+              type="text"
+              name="pensionpin"
+              class="form-control" /> 
+              <div>
+                  @error('pensionpin') <span class="error">{{ $message }}</span> @enderror 
+              </div> 
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Tax Pin</label>
+          <input
+              wire:model='taxpin'
+              type="text"
+              name="taxpin"
+              class="form-control" /> 
+              <div>
+                  @error('taxpin') <span class="error">{{ $message }}</span> @enderror 
+              </div> 
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="form-label">NHF Pin</label>
+          <input
+              wire:model='nhfpin'
+              type="text"
+              name="nhfpin"
+              class="form-control" /> 
+              <div>
+                  @error('nhfpin') <span class="error">{{ $message }}</span> @enderror 
               </div> 
         </div>
 
@@ -111,6 +134,57 @@
         </div>
 
         <div class="col-12 col-md-6">
+          <label class="form-label">Department</label>
+          <select class="form-control" wire:model='department_id' name="department_id">
+            <option value="">-- Select Department--</option>
+            @foreach($departments as $list)
+                <option value="{{$list->id}}">{{$list->name}}</option>
+            @endforeach
+          </select> 
+          <div>
+              @error('department_id') <span class="error">{{ $message }}</span> @enderror 
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Grade Level</label>
+          <select class="form-control" wire:model='dutystation_id' name="dutystation_id">
+            <option value="">-- Select Grade Level--</option>
+            @foreach($gradelevels as $list)
+                <option value="{{$list->id}}">Level {{$list->level}}</option>
+            @endforeach
+          </select> 
+          <div>
+              @error('gradelevel_id') <span class="error">{{ $message }}</span> @enderror 
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Salary</label>
+          <input
+              wire:model='baseamount'
+              type="text"
+              name="baseamount"
+              class="form-control" readonly /> 
+              <div>
+                  @error('baseamount') <span class="error">{{ $message }}</span> @enderror 
+              </div> 
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Step</label>
+          <select class="form-control" wire:model='step_id' name="step_id">
+            <option value="">-- Select Grade--</option>
+            @foreach($steps as $list)
+                <option value="{{$list->id}}">{{$list->name}}</option>
+            @endforeach
+          </select> 
+          <div>
+              @error('step_id') <span class="error">{{ $message }}</span> @enderror 
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
           <label class="form-label">Position</label>
           <select class="form-control" wire:model='dutystation_id' name="dutystation_id">
             <option value="">-- Select Position--</option>
@@ -123,15 +197,20 @@
           </div>
         </div>
 
+        
+
+        
+
+
         <div class="col-12 col-md-6">
-          <label class="form-label">Salary</label>
+          <label class="form-label">Contribution</label>
           <input
-              wire:model='basicsalary'
+              wire:model='contribution'
               type="number"
-              name="basicsalary"
+              name="contribution"
               class="form-control" /> 
               <div>
-                  @error('basicsalary') <span class="error">{{ $message }}</span> @enderror 
+                  @error('contribution') <span class="error">{{ $message }}</span> @enderror 
               </div> 
         </div>
 
@@ -171,6 +250,30 @@
           <div>
               @error('bank_id') <span class="error">{{ $message }}</span> @enderror 
           </div>
+        </div>
+        <div iv class="col-12 col-md-6"></div>
+        <div class="col-12 col-md-6">
+          <label class="form-label">Part of Pension</label>
+          <input
+              wire:model='partofpension'
+              type="checkbox"
+              name="partofpension"
+              class="form-check-input" /> 
+              <div>
+                  @error('partofpension') <span class="error">{{ $message }}</span> @enderror 
+              </div> 
+        </div>
+        
+        <div class="col-12 col-md-6">
+          <label class="form-label">Part of NHF</label>
+          <input
+              wire:model='partofnhf'
+              type="checkbox"
+              name="partofnhf"
+              class="form-check-input" /> 
+              <div>
+                  @error('partofnhf') <span class="error">{{ $message }}</span> @enderror 
+              </div> 
         </div>
         
         <div class="col-12 text-center">

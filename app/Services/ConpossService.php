@@ -32,6 +32,10 @@ class ConpossService{
         return Conposs::where('id',$id)->delete();
     }
 
+    public function getList(){
+        return Conposs::get();
+    }
+
     public function list($page,$search){
         return Conposs::search($search)->orderby('id','DESC')->with('gradelevel.gradelevelname')->paginate($page);
     }

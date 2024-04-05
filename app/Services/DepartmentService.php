@@ -11,6 +11,10 @@ class DepartmentService {
         return Department::search($search)->paginate($page);
     }
 
+    public function getList(){
+        return Department::get();
+    }
+
     public function create($data){
         return Department::create($data);
     }

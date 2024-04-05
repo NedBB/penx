@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> National  Office </h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Entries /</span> Staff </h4>
     <div class="card">
       <div class="card-datatable table-responsive pt-0">
         <div class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -48,33 +48,33 @@
               </thead>
               <tbody class="table-border-bottom-0">
               
-                  @forelse ($officers as $list)
+                  @forelse ($staff as $list)
                       <tr wire:key='{{$list->id}}' >
                         <td @if($list->active == false) class="text-danger" @endif>
                             {{$list->uniqueid}} &nbsp;
                             <livewire:edit-anchor :record="$list" :eventoption="$editevent" wire:key='{{time().$list->id}}' /> 
                             
                         </td>
-                         <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                         <td class="text-capitalize">
                             {{$list->surname}}
                             </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                          <td class="text-capitalize ">
                             {{$list->firstname}}
                           </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                          <td class="text-capitalize">
                             {{$list->middlename}}
                           </td>
-                          <td @if($list->active == false) class="text-danger" @endif>
+                          <td>
                             {{($list->active) ? "Active" : "Disabled"}}
                           </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif >
+                          <td class="text-capitalize">
                             {{$list->dutystation->name}}
                           </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif>
+                          <td class="text-capitalize">
                             {{$list->accountno}}
                           </td>
-                          <td class="text-capitalize @if($list->active == false) text-danger" @endif>
-                            {{$list->basicsalary}}
+                          <td class="text-capitalize">
+                            {{round(($list->conposs->baseamount)/12,2)}}
                           </td>
                       </tr>
                   @empty
@@ -84,13 +84,14 @@
             </table>
           </div>
           <div class="card-footer">
-            {{$officers->links()}}
+            {{$staff->links()}}
         </div>
         </div>
       </div>
     </div>
     
-    <x-add-national-officer :title="$title" :edit="$edit" :titles="$titles" :dutystations="$dutystations" :payments="$payments" :banks="$banks"/>
+    <x-add-staff-profile :title="$title" :edit="$edit" :titles="$titles" :dutystations="$dutystations"
+     :payments="$payments" :banks="$banks" :steps="$steps" :departments="$departments" :gradelevels="$gradelevels"/>
 
 
 

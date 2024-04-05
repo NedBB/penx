@@ -113,6 +113,7 @@ return array(
     'App\\Services\\PaymentmethodService' => $baseDir . '/app/Services/PaymentmethodService.php',
     'App\\Services\\PayrollService' => $baseDir . '/app/Services/PayrollService.php',
     'App\\Services\\RankService' => $baseDir . '/app/Services/RankService.php',
+    'App\\Services\\StaffprofileService' => $baseDir . '/app/Services/StaffprofileService.php',
     'App\\Services\\SystemuserService' => $baseDir . '/app/Services/SystemuserService.php',
     'App\\Services\\TitleService' => $baseDir . '/app/Services/TitleService.php',
     'App\\View\\Components\\AppLayout' => $baseDir . '/app/View/Components/AppLayout.php',

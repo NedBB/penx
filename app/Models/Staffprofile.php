@@ -32,6 +32,11 @@ class Staffprofile extends Basemodel
         return $this->belongsTo(Department::class);
     }
 
+    public function getMorphClass()
+    {
+        return static::class; // This will use the fully qualified class name as is.
+    }
+
     public function dutystation()
     {
         return $this->belongsTo(Dutystation::class);
@@ -115,6 +120,10 @@ class Staffprofile extends Basemodel
     public function setContributionAttribute($value)
     {
         $this->attributes['contribution'] = ($value) ?: 0.00;
+    }
+
+    public function scopeSearch($query,$value){
+        $query->where('surname','like',"%{$value}%");
     }
 
 }
