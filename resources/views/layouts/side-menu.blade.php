@@ -159,7 +159,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="route('payment-schedule')" class="menu-link">
+            <a href="{{route('payment-schedule')}}" class="menu-link">
             <div data-i18n="Payment Schedule">Payment Schedule</div>
             </a>
         </li>

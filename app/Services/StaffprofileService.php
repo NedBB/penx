@@ -41,7 +41,7 @@ class StaffprofileService {
             $employerContri = ($staff->conposs->baseamount/12) * ($staff->general->employer_contrib/100);
             $contribution = $staffcontri + $employerContri;
             $pensionpin = $staff->pensionpin;
-           // number_format($number, 2, '.', '')
+         
             $data[] = [
                 'staffprofile_id'=>$staff->id,
                 'pensionpin'=>$pensionpin,
