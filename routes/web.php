@@ -17,10 +17,12 @@ use App\Livewire\Income;
 use App\Livewire\Loan;
 use App\Livewire\Loans;
 use App\Livewire\NationalStaff;
+use App\Livewire\OfficerPayroll;
 use App\Livewire\Ominbus;
 use App\Livewire\PaymentSchedule;
 use App\Livewire\Rank;
 use App\Livewire\Staff;
+use App\Livewire\StaffPayroll;
 use App\Livewire\StateParastatal;
 use App\Livewire\Subhead;
 use App\Livewire\SystemUser;
@@ -70,7 +72,9 @@ Route::get('/deductions', Deduction::class)->middleware(['auth', 'verified'])->n
 Route::get('/payment/schedule', PaymentSchedule::class)->middleware(['auth', 'verified'])->name('payment-schedule');
 Route::get('/contributory/pension', ContributoryPension::class)->middleware(['auth', 'verified'])->name('contributory-pension');
 
-
+//Payroll
+Route::get('/payroll/statff', StaffPayroll::class)->middleware(['auth', 'verified'])->name('payroll-staff');
+Route::get('/payroll/national/officers', OfficerPayroll::class)->middleware(['auth', 'verified'])->name('payroll-officer');
 
 
 

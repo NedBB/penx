@@ -29,7 +29,7 @@ class PayrollService {
         }
     }
 
-    public function insertPayroll($month, $year, $profile, array $data)
+    public function insertPayroll($month, $year, $profile,$data)
     {
         $checkpayroll = Payroll::where([
                 ['month',$month],
@@ -60,6 +60,16 @@ class PayrollService {
             ->whereBetween('created_at', [$first, $end])
             ->get(['netpay'])
             ->sum('netpay');
+    }
+
+    public function getProfilePayroll($month, $year,$profiletype){
+        return Payroll::with('profile')
+                    ->where('profile_type',$profiletype)
+                    ->where([
+                        ['month', (int)$month],
+                        ['year', $year]
+                    ])
+                    ->get()->sortByDesc('profile.gradelevel_id');
     }
 
 }

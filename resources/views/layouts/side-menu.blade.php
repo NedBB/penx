@@ -166,14 +166,26 @@
         </ul>
     </li>
 
-    {{-- <li class="menu-item">
-        <a href="#" class="menu-link">
-        <i class="menu-icon tf-icons ti ti-mail"></i>
-        <div data-i18n="Payroll">Payroll</div>
+    <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
+            <div data-i18n="Payroll">Payroll</div>
         </a>
+        <ul class="menu-sub">
+        <li class="menu-item">
+            <a href="{{route('payroll-staff')}}" class="menu-link">
+            <div data-i18n="Staff Payroll">Staff Payroll</div>
+            </a>
+        </li>
+        {{-- <li class="menu-item">
+            <a href="{{route('payroll-officer')}}" class="menu-link">
+            <div data-i18n="National Payroll">National Payroll</div>
+            </a>
+        </li> --}}
+        </ul>
     </li>
    
-    <li class="menu-item">
+    {{-- <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
         <div data-i18n="Ledgers">Ledgers</div>

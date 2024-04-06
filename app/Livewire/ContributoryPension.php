@@ -9,7 +9,6 @@ use App\Services\ContributorypensionService;
 
 class ContributoryPension extends Component
 {
-
     
     public $month;
     public $data;

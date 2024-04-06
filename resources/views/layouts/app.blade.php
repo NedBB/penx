@@ -73,7 +73,7 @@
     <link rel="stylesheet" href="{{asset('libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css')}}" />
     <link rel="stylesheet" href="{{asset('css/demo.css')}}" />
 
-    <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/main.css?v=').time()}}" />
     @livewireStyles
         <!-- Scripts -->
         <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->

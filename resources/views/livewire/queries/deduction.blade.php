@@ -86,23 +86,6 @@
                 </div>
               </div>
             </form>
-         
-            {{-- <div class="row mt-5">
-            
-              <div class="col-sm-12 col-md-6">
-              <div class="dataTables_length">
-                <label>
-                  Show
-                <select wire:model.live='perpage' name="perpage" class="form-select">
-                  <option value="5">5</option>
-                  <option value="7">7</option>
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                  </select> 
-                  Entries</label>
-              </div> --}}
           </div>
             
           </div>

@@ -49,3 +49,16 @@ table.table > thead{
     width: auto;
     display: inline-block;
 }
+div.card-datatable [class*="col-md-"] {
+  padding-right: 4px !important;
+  padding-left: 5px !important;
+}
+
+.table th, .table td {
+  text-transform: uppercase;
+  font-size: 12px !important;
+  letter-spacing: 1px !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  padding-left: 5px !important;
+}
