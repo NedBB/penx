@@ -6,6 +6,7 @@ use App\Services\PayrollService;
 use App\Services\StaffprofileService;
 use Faker\Provider\at_AT\Payment;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class StaffPayroll extends Component{
     
@@ -15,6 +16,24 @@ class StaffPayroll extends Component{
     public $option;
     public $records = [];
     public $count = 0;
+    public $salary = 0;
+    public $rent = 0;
+    public $utility = 0;
+    public $entertainment = 0;
+    public $contribution = 0;
+    public $transport = 0;
+    public $meal = 0;
+    public $grosspay = 0;
+    public $salaryadvance = 0;
+    public $pension = 0;
+    public $tax = 0;
+    public $nhf = 0;
+    public $deduction = 0;
+    public $netpay = 0;
+    public $loan = 0;
+    public $editevent = "staff-payroll";
+    public $detail;
+    public $selectRow;
    
     public $hide = true;
 
@@ -25,6 +44,12 @@ class StaffPayroll extends Component{
         '05'=>'May','06'=>'June','07'=>'July','08'=>'August',
         '09'=>'September','10'=>'October','11'=>'November','12'=>'December'
     ];
+
+    #[On('staff-payroll')]
+    public function edit($id, PayrollService $payrollService){     
+       $this->detail = $payrollService->getPersonPayroll($id,'staffprofile',$this->month, $this->year);
+        dd($this->detail);
+    }
  
     public function search(PayrollService $payrollService, StaffprofileService $staffprofileService){
 

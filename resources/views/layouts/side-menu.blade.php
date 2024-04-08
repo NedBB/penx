@@ -177,11 +177,11 @@
             <div data-i18n="Staff Payroll">Staff Payroll</div>
             </a>
         </li>
-        {{-- <li class="menu-item">
+        <li class="menu-item">
             <a href="{{route('payroll-officer')}}" class="menu-link">
             <div data-i18n="National Payroll">National Payroll</div>
             </a>
-        </li> --}}
+        </li>
         </ul>
     </li>
    

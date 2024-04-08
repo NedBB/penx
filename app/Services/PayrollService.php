@@ -63,13 +63,37 @@ class PayrollService {
     }
 
     public function getProfilePayroll($month, $year,$profiletype){
+
+        if($profiletype == 'staffprofile'){
+            return Payroll::with('profile')
+                        ->where('profile_type',$profiletype)
+                        ->where([
+                            ['month', (int)$month],
+                            ['year', $year]
+                        ])
+                        ->get()->sortByDesc('profile.gradelevel_id');
+        }else{
+            return Payroll::orderby('id','asc')
+                            ->where('profile_type',$profiletype)
+                            ->where([
+                                ['month', (int)$month],
+                                ['year',$year]
+                            ])
+                            ->select('payrolls.*')
+                            ->get()->sortByDesc('profile.dutystation_id');
+        }
+
+    }
+
+    public function getPersonPayroll($id,$profiletype, $month, $year){
         return Payroll::with('profile')
-                    ->where('profile_type',$profiletype)
-                    ->where([
-                        ['month', (int)$month],
-                        ['year', $year]
-                    ])
-                    ->get()->sortByDesc('profile.gradelevel_id');
+                        ->where([
+                            ['id',$id],
+                            ['profile_type',$profiletype],
+                            ['month',$month],
+                            ['year',$year]
+                        ])
+                        ->first();
     }
 
 }
