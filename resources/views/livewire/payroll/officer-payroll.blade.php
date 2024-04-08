@@ -149,7 +149,7 @@
                                 <td>{{format_currency($record->netpay)}}</td>
                             </tr>
                         @empty
-                            <tr><td colspan="6" class="text-center text-danger"> No record exist at the moment</td></tr>
+                            <tr><td colspan="21" class="text-center text-danger"> No record exist at the moment</td></tr>
                         @endforelse
                     </tbody>
                     <tfoot>

@@ -126,8 +126,8 @@
                                 <td>
                                     {{$record->profile->fullname()}}
 
-                                    <livewire:edit-anchor :record="$record" :eventoption="$editevent" wire:key='{{time().$record->id}}' > 
-                                         &nbsp;
+                                    {{-- <livewire:edit-anchor :record="$record" :eventoption="$editevent" wire:key='{{time().$record->id}}' > 
+                                         &nbsp; --}}
                                     
                                 </td>
                                 <td>{{$record->profile->gradelevel->gradelevelname->name.' '.$record->profile->gradelevel->level}}</td>
