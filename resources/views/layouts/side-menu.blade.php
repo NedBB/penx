@@ -185,24 +185,24 @@
         </ul>
     </li>
    
-    {{-- <li class="menu-item">
+    <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
+        <i class="menu-icon tf-icons ti ti-receipt"></i>
         <div data-i18n="Ledgers">Ledgers</div>
         </a>
         <ul class="menu-sub">
         <li class="menu-item">
-            <a href=".#" class="menu-link" target="_blank">
+            <a href="{{ route('ledger-income')}}" class="menu-link">
             <div data-i18n="Income">Income</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link" target="_blank">
+            <a href="{{route('ledger-expenditure')}}" class="menu-link">
             <div data-i18n="Expenditure">Expenditure</div>
             </a>
         </li>
         </ul>
-    </li> --}}
+    </li>
    
 
     </ul>

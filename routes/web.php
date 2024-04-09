@@ -11,9 +11,11 @@ use App\Livewire\Contractor;
 use App\Livewire\ContributoryPension;
 use App\Livewire\Deduction;
 use App\Livewire\Department;
+use App\Livewire\Expenditure;
 use App\Livewire\GeneralSetting;
 use App\Livewire\GroupHead;
 use App\Livewire\Income;
+use App\Livewire\LedgeIncome;
 use App\Livewire\Loan;
 use App\Livewire\Loans;
 use App\Livewire\NationalStaff;
@@ -73,9 +75,12 @@ Route::get('/payment/schedule', PaymentSchedule::class)->middleware(['auth', 've
 Route::get('/contributory/pension', ContributoryPension::class)->middleware(['auth', 'verified'])->name('contributory-pension');
 
 //Payroll
-Route::get('/payroll/statff', StaffPayroll::class)->middleware(['auth', 'verified'])->name('payroll-staff');
+Route::get('/payroll/staff', StaffPayroll::class)->middleware(['auth', 'verified'])->name('payroll-staff');
 Route::get('/payroll/national/officers', OfficerPayroll::class)->middleware(['auth', 'verified'])->name('payroll-officer');
 
+//Ledger
+Route::get('/legder/income', LedgeIncome::class)->middleware(['auth', 'verified'])->name('ledger-income');
+Route::get('/ladger/expenditure', Expenditure::class)->middleware(['auth', 'verified'])->name('ledger-expenditure');
 
 
 

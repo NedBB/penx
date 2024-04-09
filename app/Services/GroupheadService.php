@@ -19,6 +19,39 @@ class GroupheadService {
         return Head::get();
     }
 
+    public function getExpenditure($id,$from, $to){
+        return  Head::where('id',$id)
+        ->with([
+        'subheads'=>function($h) use($from, $to){
+            $h->with([
+                'omnibuses'=>function($m) use($from, $to){
+                    $m->whereBetween('created_at', [$from, $to])
+                        ->select('id','pvno','subhead_id','description','amount');
+                },
+                'allocations'=>function($a) use($from, $to){
+                    $a->with([
+                        'location'=>function($l){
+                            $l->select('id','name');
+                        }
+                    ])->whereBetween('created_at', [$from, $to])
+                        ->select('id','pvno','subhead_id','netpay as amount','location_id');
+                },
+                'transportandtravels'=>function($a) use($from, $to){
+                    $a->whereBetween('created_at', [$from, $to])
+                        ->select('id','pvno','subhead_id','description','totalamount as amount');
+                }/*,
+                'payrolls'  =>  function($pr) use ($from, $to) {
+                    $p->whereBetween('created_at', [$from, $to])
+                    ->select('id', 'subhead_id', 'utility');
+                }*/
+            ])->select('id','head_id','name');
+       }
+    ])
+
+    ->first();
+
+    }
+
     public function create($data, $value){
         if($value == 'head'){
             return Head::create($data);
