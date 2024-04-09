@@ -1,58 +1,83 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <!-- Hour chart  -->
-    <div class="card bg-transparent shadow-none my-4 border-0">
-      <div class="card-body row p-0 pb-3">
-        <div class="col-12 col-md-8 card-separator">
-          <h3>Welcome back, <span class="text-capitalize">{{auth()->user()->username}}</span> 👋🏻</h3>
-          {{-- <div class="col-12 col-lg-7">
-            <p>Your progress this week is Awesome. let's keep it up and get a lot of points reward !</p>
-          </div> --}}
-          <div class="d-flex justify-content-between flex-wrap gap-3 me-5">
-            <div class="d-flex align-items-center gap-3 me-4 me-sm-0">
-              <span class="bg-label-primary p-2 rounded">
-                <i class="ti ti-user ti-xl"></i>
-              </span>
-              <div class="content-right">
-                <p class="mb-0">Staff</p>
-                <h4 class="text-primary mb-0">{{$staff}}</h4>
-              </div>
+  <div class="row">
+    <div class="col-xl-4 mb-4 col-lg-5 col-12">
+      <div class="card">
+        <div class="d-flex align-items-end row">
+          <div class="col-7">
+            <div class="card-body text-nowrap">
+              <h5 class="card-title mb-0">Hello <span class="text-capitalize bold">{{auth()->user()->username}}</span>! 🎉</h5>
+              <p class="mb-2">Welcome to Nigeria Union of Pensioners </p>
+              {{-- <h4 class="text-primary mb-1">$48.9k</h4>
+              <a href="javascript:;" class="btn btn-primary waves-effect waves-light">View Sales</a>
+             --}}
             </div>
-            <div class="d-flex align-items-center gap-3">
-              <span class="bg-label-info p-2 rounded">
-                <i class="ti ti-user ti-xl"></i>
-              </span>
-              <div class="content-right">
-                <p class="mb-0">National Officers</p>
-                <h4 class="text-info mb-0">{{$national}}</h4>
-              </div>
-            </div>
-            <div class="d-flex align-items-center gap-3">
-              {{-- <span class="bg-label-warning p-2 rounded">
-                <i class="ti ti-discount-check ti-xl"></i>
-              </span> --}}
-              {{-- <div class="content-right">
-                <p class="mb-0">Course Completed</p>
-                <h4 class="text-warning mb-0">14</h4>
-              </div> --}}
+          </div>
+          <div class="col-5 text-center text-sm-left">
+            <div class="card-body pb-0 px-0 px-md-4">
+              
             </div>
           </div>
         </div>
-        {{-- <div class="col-12 col-md-4 ps-md-3 ps-lg-4 pt-3 pt-md-0">
-          {{-- <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <div>
-                <h5 class="mb-2">Time Spendings</h5>
-                <p class="mb-5">Weekly report</p>
-              </div>
-              <div class="time-spending-chart">
-                <h3 class="mb-2">231<span class="text-muted">h</span> 14<span class="text-muted">m</span></h3>
-                <span class="badge bg-label-success">+18.4%</span>
-              </div>
-            </div>
-            <div id="leadsReportChart"></div>
-          </div> --}}
-        </div> 
       </div>
     </div>
-  
+
+    <div class="col-xl-8 mb-4 col-lg-7 col-12">
+      <div class="card h-100">
+        <div class="card-header">
+          <div class="d-flex justify-content-between mb-3">
+            <h5 class="card-title mb-0">Statistics</h5>
+            <small class="text-muted">Today</small>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row gy-3">
+            <div class="col-md-3 col-6">
+              <div class="d-flex align-items-center">
+                <div class="badge rounded-pill bg-label-primary me-3 p-2">
+                  <i class="ti ti-chart-pie-2 ti-sm"></i>
+                </div>
+                <div class="card-info">
+                  <h5 class="mb-0">{{$staff}}</h5>
+                  <small>Staff</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="d-flex align-items-center">
+                <div class="badge rounded-pill bg-label-info me-3 p-2">
+                  <i class="ti ti-users ti-sm"></i>
+                </div>
+                <div class="card-info">
+                  <h5 class="mb-0">{{$national}}</h5>
+                  <small>National</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="d-flex align-items-center">
+                <div class="badge rounded-pill bg-label-danger me-3 p-2">
+                  <i class="ti ti-shopping-cart ti-sm"></i>
+                </div>
+                <div class="card-info">
+                  <h5 class="mb-0">{{$account}}</h5>
+                  <small>Accounts</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="d-flex align-items-center">
+                <div class="badge rounded-pill bg-label-success me-3 p-2">
+                  <i class="ti ti-wallet ti-sm"></i>
+                </div>
+                <div class="card-info">
+                  <h5 class="mb-0">{{$bank}}</h5>
+                  <small>Bank</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

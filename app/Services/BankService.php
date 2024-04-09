@@ -22,6 +22,14 @@ class BankService{
         return Bank::search($search)->paginate($page);
     }
 
+    public function accoutCount(){
+        return Account::get()->count();
+    }
+
+    public function bankCount(){
+        return Bank::get()->count();
+    }
+
     public function create($data){
         return Bank::create($data);
     }
