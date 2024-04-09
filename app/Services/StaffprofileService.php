@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Livewire\Staff;
 use App\Models\Staffprofile;
 use Carbon\Carbon as carbon;
 
@@ -13,6 +14,10 @@ class StaffprofileService {
                 ->with(['dutystation','gradelevel.gradelevelname','conposs'])
                 ->orderby('created_at','DESC')
                 ->paginate($page);
+    }
+
+    public function staffCount(){
+        return Staffprofile::get()->count();
     }
 
     public function create($data){

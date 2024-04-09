@@ -9,6 +9,7 @@ use App\Livewire\Contract;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Contractor;
 use App\Livewire\ContributoryPension;
+use App\Livewire\Dashboard;
 use App\Livewire\Deduction;
 use App\Livewire\Department;
 use App\Livewire\Expenditure;
@@ -42,9 +43,7 @@ use App\Livewire\TandT;
 */
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',Dashboard::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/conposs', Conposs::class)->middleware(['auth', 'verified'])->name('conposs');
 Route::get('/contractors', Contractor::class)->middleware(['auth', 'verified'])->name('contractors');

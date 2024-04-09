@@ -4,10 +4,10 @@
       <div class="card bg-transparent shadow-none my-4 border-0">
         <div class="card-body row p-0 pb-3">
           <div class="col-12 col-md-8 card-separator">
-            <h3>Welcome back, User 👋🏻</h3>
-            <div class="col-12 col-lg-7">
+            <h3>Welcome back, <span class="text-capitalize">{{auth()->user()->username}}</span> 👋🏻</h3>
+            {{-- <div class="col-12 col-lg-7">
               <p>Your progress this week is Awesome. let's keep it up and get a lot of points reward !</p>
-            </div>
+            </div> --}}
             <div class="d-flex justify-content-between flex-wrap gap-3 me-5">
               <div class="d-flex align-items-center gap-3 me-4 me-sm-0">
                 <span class="bg-label-primary p-2 rounded">

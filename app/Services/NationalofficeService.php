@@ -16,6 +16,10 @@ class NationalofficeService {
                 ->paginate($page);
     }
 
+    public function nationalCount(){
+        return Nationalofficer::get()->count();
+    }
+
     public function create($data){
         return Nationalofficer::create($data);
     }
