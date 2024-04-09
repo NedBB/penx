@@ -72,6 +72,7 @@
     <link rel="stylesheet" href="{{asset('css/rtl/theme-default.css')}}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{asset('libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css')}}" />
     <link rel="stylesheet" href="{{asset('css/demo.css')}}" />
+    <link rel="stylesheet" href="{{asset('libs/select2/select2.css')}}" />
 
     <link rel="stylesheet" href="{{asset('css/main.css?v=').time()}}" />
     @livewireStyles
@@ -132,6 +133,12 @@
         <script src="{{asset('libs/@form-validation/umd/plugin-auto-focus/index.min.js')}}"></script>
         <!-- Page JS --> --}}
         <script src="{{asset('js/app-academy-dashboard.js')}}"></script>
+        <script src="{{asset('libs/select2/select2.js')}}"></script>
+
+        <script src="{{asset('js/forms-selects.js')}}"></script>
+        <script src="{{asset('js/forms-tagify.js')}}"></script>
+        <script src="{{asset('js/forms-typeahead.js')}}"></script>
+
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}"></script>
 {{--         
