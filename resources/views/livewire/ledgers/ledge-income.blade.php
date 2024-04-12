@@ -3,19 +3,19 @@
     <div class="card">
       
       <div class="card-datatable table-responsive pt-0">
-        <div class="dataTables_wrapper dt-bootstrap5 no-footer">
-          <div class="card-header">
-            
-          </div>
+          <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+            <div class="card-header">
+              
+            </div>
           </div>
           <div class="card-body">
             <form wire:submit='search'>
-            <div class="row mb-3">
+              <div class="row mb-3">
                     <div class="col-3 col-md-3">
                       <div class="select2-info">
-                        <select id="select2Info" wire:model='state_id' name="state_id" class="select2 form-select"
-                            multiple
+                        <select id="select2Info" wire:model='state' name="state" class="form-select"
                             placeholder="Select States">
+                            <option value="">Select States</option>
                             <option value="all">All States</option>
                             @foreach($states as $value)
                                     <option value="{{$value->id}}">{{$value->name}}</option>
@@ -25,10 +25,9 @@
                     </div>
                     <div class="col-3 col-md-3">
                         <div class="select2-info">
-                          <select wire:model='state_id' name="state_id" class="form-select"
+                          <select wire:model='report_type' name="report_type" class="form-select"
                             >
-                              <option value="">Report Type</option>
-                              <option value="regular">Regular</option>
+                              <option value="all">Regular</option>
                               <option value="summarized">Summarized</option>
                               <option value="detailed">Detailed</option>
                           </select>
@@ -45,81 +44,34 @@
                     </div>
                 </div>
             </form>
-
-          </div>
-            
-          </div>
-          @if($show)
+            @if ($show == true)
             <div class="table-responsive text-nowrap"> 
-                <table class="table table-hover table-bordered font-13 table-striped" id="result" style="border-collapse: collapse;table-layout: fixed; word-wrap:break-word;">
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <td>Date Paid</td>
-                            <td>Sender</td>
-                            <td>Account</td>
-                            <td>Description</td>
-                            <td>Amount</td>
-                            <td>Percent</td>
-                            <td>Period From</td>
-                            <td>Period To</td>
-                            <td>Receipt No.</td>
-                            <td>Total Amount</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php $bottomTotal = 0  @endphp
-                        @forelse($records ?? [] as $groupname => $groupdata)
-                            @foreach($groupdata->sortBy('fromdate_at') as $record)
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <a href='#' data-href={{route('get.ledger.query.income.receipt', $record->id)}} class='' data-target='.bs-modal-lg' data-toggle='modal'>
-                                            {{date5($record->fromdate_at)}}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href='#' data-href={{route('get.entry.income.edit', $record->id)}} data-target='.bs-modal-lg' data-toggle='modal'>
-                                            {{$record->location->name}}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        @if($record->account)
-                                            {{$record->account->name}}
-                                            @else
-                                            None
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{$record->description}}
-                                        <a href="{{route('post.entry.income.delete', $record->id)}}" class='removeIncome pull-right' >
-                                            <i class='fa fa-trash text-danger'></i>
-                                        </a>
-                                    </td>
-                                    <td> {{format_currency($record->remittedamount)}} </td>
-                                    <td> {{$record->incomeperc}} </td>
-                                    <td> {{date5($record->fromdate_at)}} </td>
-                                    <td> {{date5($record->todate_at)}} </td>
-                                    <td> {{$record->receiptno}} </td>
-                                    <td> {{format_currency($record->totalincome)}} </td>
-                                </tr>
-                            @endforeach
-                            @php $bottomTotal += $groupdata->sum('totalincome') @endphp
-                        @empty
-                                <tr><td colspan="11" class="text-danger text-center">No record exist at the moment</td></tr>
-                        @endforelse
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5" class="text-right total">Total</td>
-                           
-                        </tr>
-                    </tfoot>
-                </table>
+              <div class="dt-buttons">
+                <button  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">
+                  <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                  <span class="d-none d-sm-inline-block">Print</span>
+                </button>
+                <button id="export_excel" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">
+                  <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                  <span class="d-none d-sm-inline-block">Excel</span>
+                </button>
+                
+              </div>
+            </div>
+            @endif        
+        </div>
+          @if($show == true)
+            
+                @if($view == "summarized")
+                    <x-ledger-income-summarized :records="$records"/>
+                @elseif($view == "detailed")
+                    <x-ledger-income-detailed :records="$records"/>
+                @else
+                    <x-ledger-income-regular :records="$records"/>
+                @endif
             </div> 
           @endif
         </div>
-      </div>
-    </div>
-    {{-- <x-payslip :detail="$detail"/> --}}
+
+       
 </div> 

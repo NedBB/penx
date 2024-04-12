@@ -14,7 +14,7 @@
                     <div class="col-5 col-md-5">
                         <select wire:model='head_id'
                             name="head_id"
-                            class="select2 form-select"
+                            class="form-select"
                             >
                             <option value="">Select Head</option>
                             @foreach($heads as $value)

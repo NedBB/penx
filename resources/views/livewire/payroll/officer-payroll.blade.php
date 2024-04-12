@@ -16,7 +16,7 @@
                         <select wire:model='option'
                             id="modalEditUserLanguage"
                             name="modalEditUserLanguage"
-                            class="select2 form-select"
+                            class="form-select"
                             >
                             <option value="">Option</option>
                             @foreach($options as $key => $value)

@@ -56,7 +56,7 @@
                   <select wire:model='month_2'
                       id="modalEditUserLanguage"
                       name="modalEditUserLanguage"
-                      class="select2 form-select"
+                      class="form-select"
                       >
                       <option value="">Month</option>
                       @foreach($monthrange as $key => $value)
@@ -68,7 +68,7 @@
                   <select wire:model='year_2'
                       id="modalEditUserLanguage"
                       name="modalEditUserLanguage"
-                      class="select2 form-select"
+                      class="form-select"
                       >
                       <option value="">Year</option>
                       @php

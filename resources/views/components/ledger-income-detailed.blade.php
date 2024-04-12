@@ -1,0 +1,94 @@
+<table class="table table-hover table-bordered table-striped" id="result">
+    <thead>
+    <tr>
+        <td></td>
+        <td>Sender</td>
+        <td>Description</td>
+        <td>Amount</td>
+        <td>Percent</td>
+        <td>Period From</td>
+        <td>Period To</td>
+        <td>Total Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+        <?php $total = 0; $remitted = 0; $subtotal = 0; ?>
+        @forelse($records as $groupname => $record)
+
+            <tr>
+                <td></td>
+                <td>
+                    {{$groupname}}
+                </td>
+                <td></td>
+                <td>
+
+                </td>
+                <td></td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    {{-- <?php //$rowTotal = array_sum($record['totalincome']); $total +=  $rowTotal?> --}}
+                </td>
+
+            </tr>
+            {{-- @php $record = usort($record['formdate_at']) @endphp --}}
+
+            @foreach($record as $row)
+                 @php   
+                        $remitted += $row['remittedamount'];
+                        $subtotal += $row['totalincome'];
+                        $total += $subtotal;
+                 @endphp
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        {{$row['description']}}
+                        <a href="#" class='removeIncome pull-right' >
+                            <i class='fa fa-trash text-danger'></i>
+                        </a>
+                    </td>
+                    <td>
+                        {{format_currency($row['remittedamount'])}}
+                    </td>
+                    <td>
+                        {{$row['incomeperc']}}
+                    </td>
+                    <td> {{date5($row['fromdate_at'])}} </td>
+                    <td> {{date5($row['todate_at'])}} </td>
+                    <td> {{format_currency($row['totalincome'])}} </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="text-align: right; font-weight: bold">
+                    TOTAL
+                </td>
+                <td>{{format_money($remitted)}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{format_money($subtotal)}}</td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="8" class="text-center text-danger">No data exist at the moment</td>
+            </tr>
+        @endforelse
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="7" style="text-align:right">GRAND TOTAL</td>
+        <td>
+            {{format_money($total)}}
+        </td>
+    </tr>
+    </tfoot>
+</table>
+
