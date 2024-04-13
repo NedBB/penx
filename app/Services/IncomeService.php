@@ -42,7 +42,7 @@ class IncomeService{
 
     public function getRecordsOrder($from, $to){
         
-        return Income::with(['location' => function($qr) {
+        return Income::with(['account','location' => function($qr) {
                          $qr->orderBy('name', 'ASC');
                         }])->whereBetween('fromdate_at',[$from, $to])
                        ->get();
@@ -50,7 +50,7 @@ class IncomeService{
     }
 
     public function getRecordsOrderWithLocation($from, $to, int $state){
-        return Income::with(['location' => function($qr) {
+        return Income::with(['account','location' => function($qr) {
                                 $qr->orderBy('name', 'ASC');
                             }])->whereBetween('fromdate_at',[$from, $to])
                         ->where('location_id',$state)

@@ -5,17 +5,20 @@ namespace App\Livewire;
 use App\Services\IncomeService;
 use App\Services\LocationService;
 use Livewire\Component;
-use Livewire\Attributes\Computed;
+use App\Exports\IncomeExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LedgeIncome extends Component
 {
     public $states;
     public $show = false;
     public $state;
+    public $event = '';
     public $start_date;
     public $view = '';
     public $report_type;
     public $end_date;
+    public $component;
     public $income;
     public $records = [];
     public $incomeService;
@@ -28,8 +31,6 @@ class LedgeIncome extends Component
     
     public function search(IncomeService $incomeService ){
 
-        //$this->incomeService = $incomeService;
-
         $validated = $this->validate([ 
             'state' => 'nullable',
             'start_date'=>'required',
@@ -37,7 +38,6 @@ class LedgeIncome extends Component
             'report_type' => 'required'
 
         ]);
-    
 
         if($this->report_type === 'summarized' || $this->report_type === 'detailed') {
 
@@ -56,11 +56,13 @@ class LedgeIncome extends Component
         
             $this->view = $this->report_type;
             $this->show = true;
-            
+            $this->event = $this->report_type;
+            $this->component = ($this->report_type == 'summarized' ? 'ledger-income-summarize': 'ledger-income-detailed');
+
         }
      
         elseif($this->report_type == "all") {
-           
+        
             $income = $incomeService->getRecordsOrder($this->start_date, $this->end_date);
             
 
@@ -73,12 +75,16 @@ class LedgeIncome extends Component
 
             $this->view = $this->report_type;
             $this->records = $income->toArray();
-           
+            $this->component = "ledge-income-regular";
             $this->show = true;
 
             
     
         }
+    }
+
+    public function export(){
+        return Excel::download(new IncomeExport($this->records, $this->view), 'income.xlsx');
     }
 
     public function render()

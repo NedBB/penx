@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\IncomeExport;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Allocation;
 use App\Livewire\Bank;
@@ -23,6 +24,7 @@ use App\Livewire\NationalStaff;
 use App\Livewire\OfficerPayroll;
 use App\Livewire\Ominbus;
 use App\Livewire\PaymentSchedule;
+use App\Livewire\Printer;
 use App\Livewire\Rank;
 use App\Livewire\Staff;
 use App\Livewire\StaffPayroll;
@@ -80,8 +82,6 @@ Route::get('/payroll/national/officers', OfficerPayroll::class)->middleware(['au
 //Ledger
 Route::get('/legder/income', LedgeIncome::class)->middleware(['auth', 'verified'])->name('ledger-income');
 Route::get('/ladger/expenditure', Expenditure::class)->middleware(['auth', 'verified'])->name('ledger-expenditure');
-
-
 
 
 Route::middleware('auth')->group(function () {

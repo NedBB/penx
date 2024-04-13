@@ -29,6 +29,8 @@
 <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" /> -->
 
 <!-- Core CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
 <link rel="stylesheet" href="{{asset('css/rtl/core.css')}}" class="template-customizer-core-css" />
 <link rel="stylesheet" href="{{asset('css/rtl/theme-default.css')}}" class="template-customizer-theme-css" />
 <!-- <link rel="stylesheet" href="../../assets/css/demo.css" /> -->

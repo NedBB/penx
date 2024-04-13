@@ -1,5 +1,6 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Ledgers /</span> Income </h4>
+    <h4 class="py-3 mb-4">
+      <span class="text-muted fw-light">Ledgers /</span> Income </h4>
     <div class="card">
       
       <div class="card-datatable table-responsive pt-0">
@@ -27,6 +28,7 @@
                         <div class="select2-info">
                           <select wire:model='report_type' name="report_type" class="form-select"
                             >
+                            <option value="">Select Report</option>
                               <option value="all">Regular</option>
                               <option value="summarized">Summarized</option>
                               <option value="detailed">Detailed</option>
@@ -47,11 +49,12 @@
             @if ($show == true)
             <div class="table-responsive text-nowrap"> 
               <div class="dt-buttons">
-                <button  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">
+                <a href="#" onclick="extractContentForPrinting()"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">
+                        
                   <span><i class="ti ti-file-export me-sm-1"></i> </span>
                   <span class="d-none d-sm-inline-block">Print</span>
-                </button>
-                <button id="export_excel" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">
+                </a>
+                <button wire:click='export()'id="export_excel" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">
                   <span><i class="ti ti-file-export me-sm-1"></i> </span>
                   <span class="d-none d-sm-inline-block">Excel</span>
                 </button>
@@ -59,7 +62,7 @@
               </div>
             </div>
             @endif        
-        </div>
+          </div>
           @if($show == true)
             
                 @if($view == "summarized")
@@ -73,5 +76,6 @@
           @endif
         </div>
 
+        
        
 </div> 

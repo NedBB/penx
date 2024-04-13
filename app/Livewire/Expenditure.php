@@ -13,6 +13,7 @@ class Expenditure extends Component
     public $head_id;
     public $records = [];
     public $columns = [];
+    public $event = '';
     public $data;
     public $count = 0;
     public $show = false;

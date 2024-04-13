@@ -89,17 +89,5 @@
         </tfoot>
     </table>
 
-    @script
-        <script>
-            
-                console.log("DOM fully loaded and parsed");
-                let excel_export = document.getElementById('export_excel');
-                excel_export.addEventListener('click',(event) => {
-                    alert('hello');
-                })
-
-            
-            
-        </script>
-    @endscript
+    
 </div>

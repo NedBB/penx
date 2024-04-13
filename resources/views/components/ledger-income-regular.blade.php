@@ -1,57 +1,61 @@
 <table class="table table-hover table-bordered table-striped" id="datatable-result">
     <thead>
     <tr>
-        <td></td>
-        <td>Date Paid</td>
-        <td>Sender</td>
-        <td>Account</td>
-        <td>Description</td>
-        <td>Amount</td>
-        <td>Percent</td>
-        <td>Period From</td>
-        <td>Period To</td>
-        <td>Receipt No.</td>
-        <td>Total Amount</td>
+        <th></td>
+        <th>Date Paid</th>
+        <th>Sender</th>
+        <th>Account</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Percent</th>
+        <th>Period From</th>
+        <th>Period To</th>
+        <th>Receipt No.</th>
+        <th>Total Amount</th>
     </tr>
     </thead>
     <tbody>
-        <?php $bottomTotal = 0  ?>
-        @forelse($records ?? [] as $groupname => $groupdata)
-            @foreach($groupdata->sortBy('fromdate_at') as $record)
+        @php  $total = 0;  @endphp
+        @forelse($records as $groupname => $groupdata)
+            @foreach($groupdata as $record)
+               
                 <tr>
                     <td></td>
                     <td>
                         <a href='#' data-href="" class='' data-target='.bs-modal-lg' data-toggle='modal'>
-                            {{date5($record->fromdate_at)}}
+                            {{date5($record['fromdate_at'])}}
                         </a>
                     </td>
                     <td>
                         <a href='#' data-href="" data-target='.bs-modal-lg' data-toggle='modal'>
-                            {{$record->location->name}}
+                            {{$record['location']['name']}}
                         </a>
                     </td>
                     <td>
-                        @if($record->account)
-                            {{$record->account->name}}
+                        @if($record['account'])
+                            {{$record['account']['name']}}
                             @else
                             None
                         @endif
                     </td>
                     <td>
-                        {{$record->description}}
-                        <a href="{{route('post.entry.income.delete', $record->id)}}" class='removeIncome pull-right' >
+                        {{$record['description']}}
+                        <a href="#" class='removeIncome pull-right' >
                             <i class='fa fa-trash text-danger'></i>
                         </a>
                     </td>
-                    <td> {{format_currency($record->remittedamount)}} </td>
-                    <td> {{$record->incomeperc}} </td>
-                    <td> {{date5($record->fromdate_at)}} </td>
-                    <td> {{date5($record->todate_at)}} </td>
-                    <td> {{$record->receiptno}} </td>
-                    <td> {{format_currency($record->totalincome)}} </td>
+                    <td> {{format_currency($record['remittedamount'])}} </td>
+                    <td> {{$record['incomeperc']}} </td>
+                    <td> {{date5($record['fromdate_at'])}} </td>
+                    <td> {{date5($record['todate_at'])}} </td>
+                    <td> {{$record['receiptno']}} </td>
+                    <td> 
+                        @php
+                            $total += $record['totalincome']
+                        @endphp
+                        {{format_currency($record['totalincome'])}} </td>
                 </tr>
             @endforeach
-            @php $bottomTotal += $groupdata->sum('totalincome') @endphp
         @empty
             <tr>
                 <td colspan="11" class="text-danger text-center">No data exist at the moment</td>
@@ -61,7 +65,7 @@
     <tfoot>
     <tr>
         <td colspan="10" style="text-align:right">Total</td>
-        <td>{{format_currency($bottomTotal)}}</td>
+        <td>{{format_currency($total)}}</td>
     </tr>
     </tfoot>
 </table>
