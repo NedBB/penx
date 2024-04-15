@@ -33,7 +33,9 @@
                             </div>
                         </div>
             </form>
-
+            @if ($show == true)
+            <x-exports />
+            @endif 
           </div>
             
           </div>
@@ -64,10 +66,14 @@
                             <tr class=>
                                 <td><input type="checkbox" wire:model='{{time()}}'> </td>
                                 @foreach($tr as $td)
-                                   @php 
-                                        
+                                   {{-- @php 
+                                      $federal_amount += $td['ALLOCATION OF FUNDS FEDERAL'];
+                                      $state_amount += $td['ALLOCATION OF FUNDS STATE'];
+                                      $arrear_amount +=$td['ARREARS OF ALLOCATION'];
+                                      $contri_amount +=$td['CONTRIBUTION TO NLC'];
+                                      $advance_amount +=$td['ADVANCE ALLOCATION'];
 
-                                   @endphp
+                                   @endphp --}}
                                     <td>
                                         {!! wordwrap($td, 120, '<br>', false)  !!}
                                     </td>
@@ -93,5 +99,4 @@
         </div>
       </div>
     </div>
-    {{-- <x-payslip :detail="$detail"/> --}}
 </div> 

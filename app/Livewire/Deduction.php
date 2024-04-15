@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Services\PayrollService;
 use Livewire\Component;
+use App\Exports\DeductionExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Deduction extends Component
 {
@@ -14,6 +16,7 @@ class Deduction extends Component
     public $option;
     public $data = "";
     public $records = [];
+    public $exports;
    
     public $hide = true;
 
@@ -37,7 +40,12 @@ class Deduction extends Component
         $this->records = $service->searchRecords($validated);
         $this->data = $validated['option'];
         $this->hide = false;
-        
+        session(['records' => $this->records]); 
+    }
+
+    public function export(){
+        $this->records = session('records'); 
+        return Excel::download(new DeductionExport($this->records,$this->data), 'deduction.xlsx');
     }
 
     public function render()

@@ -6,6 +6,8 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Services\PayrollService;
 use App\Services\NationalofficeService;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OfficerPayrollExport;
 
 class OfficerPayroll extends Component
 {
@@ -76,6 +78,10 @@ class OfficerPayroll extends Component
 
         }
 
+    }
+
+    public function export(){
+        return Excel::download(new OfficerPayrollExport($this->records), 'officer-payroll.xlsx');
     }
 
     public function render()

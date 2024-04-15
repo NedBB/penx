@@ -87,3 +87,6 @@ div.card-datatable [class*="col-md-"] {
 .font-18 {
   font-size: 18px !important;
 }
+.align-right{
+  text-align: right !important;
+}

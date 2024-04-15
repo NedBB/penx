@@ -2,15 +2,24 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 
-class PensionExport implements FromCollection
+
+class PensionExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+
+    public $records;
+
+    public function __construct($records)
     {
-        //
+        $this->records = $records;
+    }
+
+    public function view(): View
+    {
+        return view('livewire.exports.pension', [
+            'records' => $this->records,
+        ]);
     }
 }

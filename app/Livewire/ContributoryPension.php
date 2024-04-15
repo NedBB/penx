@@ -6,6 +6,8 @@ use Livewire\Component;
 
 use App\Services\StaffprofileService;
 use App\Services\ContributorypensionService;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PensionExport;
 
 class ContributoryPension extends Component
 {
@@ -15,6 +17,7 @@ class ContributoryPension extends Component
     public $year;
     public $option;
     public $records = [];
+    public $show = false;
    
     public $hide = true;
 
@@ -39,21 +42,27 @@ class ContributoryPension extends Component
 
         if(!($validated['option']) && ($validated['month']) && ($validated['year'])){
                 $this->records = $contributorypensionService->getContribution($validated);
+                session(['records' => $this->records]); 
         }
         elseif(($validated['option'] == 'create') & ($validated['month']) && ($validated['year'])){
 
             $generate =  $staffprofileservice->generateContributoryPension($validated['month'],$validated['year']);//this is
             $contributorypensionService->insertPension($validated['month'],$validated['year'],$generate);
             $this->records = $contributorypensionService->getContribution($validated);
+            session(['records' => $this->records]); 
         }
         elseif(($validated['option'] == 'generate') && ($validated['month']) && ($validated['year'])){
             $contributorypensionService->deleteSchedule($validated['month'],$validated['year']);
             $generate =  $staffprofileservice->generateContributoryPension($validated['month'],$validated['year']);
             $contributorypensionService->insertPension($validated['month'],$validated['year'],$generate);
             $this->records = $contributorypensionService->getContribution($validated);
+            session(['records' => $this->records]); 
         }
+    }
 
-        
+    public function export(){
+        $this->records = session('records'); 
+        return Excel::download(new PensionExport($this->records), 'contributory-pension.xlsx');
     }
 
     public function render()

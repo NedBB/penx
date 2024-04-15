@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Exports\ExpenditureExport;
 use App\Services\GroupheadService;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Expenditure extends Component
 {
@@ -37,7 +39,11 @@ class Expenditure extends Component
         $data = $this->expenseArranged($result);
         $this->records = $data['datas'];
         $this->columns = $data['columns'];
-        //dd($this->records);
+        
+    }
+
+    public function export(){
+        return Excel::download(new ExpenditureExport($this->records, $this->columns), 'expenditure.xlsx');
     }
 
     private function expenseArranged($data)

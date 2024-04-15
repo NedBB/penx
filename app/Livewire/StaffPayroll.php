@@ -7,6 +7,8 @@ use App\Services\StaffprofileService;
 use Faker\Provider\at_AT\Payment;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\StaffPayrollExport;
 
 class StaffPayroll extends Component{
     
@@ -80,6 +82,10 @@ class StaffPayroll extends Component{
         }
 
         
+    }
+
+    public function export(){
+        return Excel::download(new StaffPayrollExport($this->records), 'staff-payroll.xlsx');
     }
 
     public function render()

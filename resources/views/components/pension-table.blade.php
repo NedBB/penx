@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-hover table-bordered table-striped">
             <thead>
                 <tr role="row">
                     <th width="30%">Fullname</th>
@@ -9,7 +9,18 @@
                 </tr>
             </thead>
             <tbody>
+                @php 
+                    $employer = 0; 
+                    $employee = 0; 
+                    $total = 0; 
+                @endphp
+
                 @forelse ($records as $record)
+                    @php 
+                        $employer += $record->employer_pension; 
+                        $employee += $record->employee_pension; 
+                        $total += $record->contribution; 
+                    @endphp
 
                     <tr>
                         <td class="text-capitalize">
@@ -19,27 +30,27 @@
                             {{$record->staffprofile->pensionpin}}
                         </td>
                         <td class="text-capitalize">
-                            {{$record->employer_pension}}
+                            {{format_currency($record->employer_pension)}}
                         </td>
                         <td class="text-capitalize">
-                            {{$record->employee_pension}}
+                            {{format_currency($record->employee_pension)}}
                         </td>
                         <td class="text-capitalize">
-                            {{$record->contribution}}
+                            {{format_currency($record->contribution)}}
                         </td>
                     </tr>
                 @empty
                     <tr><td colspan="5" class="text-center text-danger">No data exist at the moment</td></tr>
                 @endforelse
             </tbody>
-            <tfooter>
+            <tfoot>
                   <tr>
-                    <td style="font-weght: bold" colspan="2" width="60%">Total</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td class="align-right" style="font-weght: bold" colspan="2" width="60%"><strong>Total</strong></td>
+                    <td><strong>{{format_currency($employer)}}</strong></td>
+                    <td><strong>{{format_currency($employee)}}</strong></td>
+                    <td><strong>{{format_currency($total)}}</strong></td>
                   </tr>
-            </tfooter>
+            </tfoot>
        
         
 </table>

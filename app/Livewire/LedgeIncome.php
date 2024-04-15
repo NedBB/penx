@@ -27,8 +27,6 @@ class LedgeIncome extends Component
         $this->states = $locationService->listState();
     }
 
-
-    
     public function search(IncomeService $incomeService ){
 
         $validated = $this->validate([ 

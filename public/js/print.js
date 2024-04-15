@@ -4,7 +4,7 @@
         header = header.replace("/", "");
 
         let currentDate = new Date().toLocaleDateString('en-GB');
-        currentDate = currentDate.replace("/", "-");
+        currentDate = currentDate.replace(/\//g, "-");
 
         var newTable = $(window.document.body).find('table').html();
 

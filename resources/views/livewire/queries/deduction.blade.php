@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Deductions </h4>
+    <h4 class="py-3 mb-4">Deductions </h4>
     <div class="card">
       
       <div class="card-datatable table-responsive pt-0">
@@ -16,7 +16,7 @@
                 <select wire:model='option'
                     id="modalEditUserLanguage"
                     name="modalEditUserLanguage"
-                    class="select2 form-select"
+                    class="form-select"
                     >
                     <option value="">Option</option>
                        @foreach($options as $key => $value)
@@ -27,7 +27,7 @@
                 <div class="col-2 col-md-2">
                   <select wire:model='month_1'
                       name="month_1"
-                      class="select2 form-select"
+                      class="form-select"
                       >
                       <option value="">Month</option>
                        @foreach($monthrange as $key => $value)
@@ -40,7 +40,7 @@
                   <select wire:model='year_1'
                       id="modalEditUserLanguage"
                       name="modalEditUserLanguage"
-                      class="select2 form-select"
+                      class="form-select"
                       >
                       <option value="">Year</option>
                       @php
@@ -86,9 +86,12 @@
                 </div>
               </div>
             </form>
+            @if ($hide == false)
+              <x-exports/>
+            @endif
           </div>
-            
           </div>
+          
           <div class="table-responsive text-nowrap"> 
               <x-deduction-table :records="$records" :data="$data" :hide="$hide" />
           </div> 

@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Exports\PaymentExport;
 use App\Services\AllocationService;
 use App\Services\ContributorypensionService;
 use App\Services\OmnibusService;
 use App\Services\PayrollService;
 use App\Services\TransportandtravelService;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PaymentSchedule extends Component
 {
@@ -18,6 +20,7 @@ class PaymentSchedule extends Component
     public $sort;
     public $nationpayroll;
     public $staffpayroll;
+    public $show = false;
 
     public $data = [];
 
@@ -87,13 +90,13 @@ class PaymentSchedule extends Component
             $this->nationpayroll = $data['nationpayroll'];
             $this->staffpayroll =  $data['staffpayroll'];
             $this->sort = $data['sort'];
-
-
-           
-
+            $this->show = true;
         }
 
+    }
 
+    public function export(){
+        return Excel::download(new PaymentExport($this->pension, $this->nationpayroll,$this->staffpayroll,$this->sort), 'payment.xlsx');
     }
 
     public function render()
