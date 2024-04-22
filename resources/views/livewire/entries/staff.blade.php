@@ -1,13 +1,13 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Entries /</span> Staff </h4>
+    <h4 class="py-3 mb-4">Staff Profile </h4>
     <div class="card">
       <div class="card-datatable table-responsive pt-0">
         <div class="dataTables_wrapper dt-bootstrap5 no-footer">
           <div class="card-header">
             <livewire:add-anchor :eventoption="$addevent">
           </div>
-          <div class="row mt-2">
-            <div class="col-sm-12 col-md-6">
+          <div class="row mt-2 mb-3">
+            <div class="col-sm-12 col-md-4">
               <div class="dataTables_length">
                 <label>
                   Show
@@ -22,7 +22,8 @@
                   Entries</label>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+            <div class="col-sm-12 col-md-4 mt-3"><x-exports /></div>
+            <div class="col-sm-12 col-md-4 d-flex justify-content-center justify-content-md-end">
               <div class="dataTables_filter">
                 <div class="dt-search">
                   <label for="dt-search-0">Search:</label>
@@ -41,6 +42,9 @@
                   <th>Firstname</th>
                   <th>Middlename</th>
                   <th>Status</th>
+                  <th>Gradelevel name</th>
+                  <th>Gradelevel</th>
+                  <th>Step</th>
                   <th>Position</th>
                   <th>Account No</th>
                   <th>Basic Salary [₦]</th>
@@ -67,6 +71,9 @@
                           <td>
                             {{($list->active) ? "Active" : "Disabled"}}
                           </td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                           <td class="text-capitalize">
                             {{$list->dutystation->name}}
                           </td>

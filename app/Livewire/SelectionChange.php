@@ -6,7 +6,9 @@ use Livewire\Component;
 
 class SelectionChange extends Component
 {
-    public $heads;
+    public $records;
+    public $record_id;
+    public $name;
     
     public function render()
     {

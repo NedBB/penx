@@ -1,10 +1,15 @@
 
-<select class="form-control" name="subhead_id" @change="$dispatch('selectionSubhead',{'value': $event.target.value})" wire:model='subhead_id'>
+<select class="form-control" name="record_id" @change="$dispatch('selectionSubhead',{'value': $event.target.value})" wire:model='recordx_id'>
     <option>Select Option</option>
-   
-    @forelse ($subheads as $sub)
-        <option value="{{$sub['id']}}" wire:key='{{$sub['id']}}'>{{$sub['name']}}</option>
-    @empty
-        
-    @endforelse
+     @foreach ($records as $record)
+            <option value="{{$record['id']}}" wire:key='{{$record['id']}}'>
+                @if(isset($record['name']))
+                    {{$record['name']}} 
+                @else 
+                    {{$record['firstname']}} {{$record['surname']}} 
+                @endif
+            </option>
+        @endforeach
+    
+    
 </select>

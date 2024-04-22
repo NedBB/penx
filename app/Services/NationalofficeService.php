@@ -20,6 +20,10 @@ class NationalofficeService {
         return Nationalofficer::get()->count();
     }
 
+    public function getFulllist(){
+        return Nationalofficer::get();
+    }
+
     public function create($data){
         return Nationalofficer::create($data);
     }

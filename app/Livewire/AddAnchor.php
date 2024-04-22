@@ -7,6 +7,7 @@ use Livewire\Component;
 class AddAnchor extends Component
 {
     public $eventoption = '';
+    //public $name;
 
     public function render()
     {

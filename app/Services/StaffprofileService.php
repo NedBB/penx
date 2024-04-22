@@ -20,6 +20,10 @@ class StaffprofileService {
         return Staffprofile::get()->count();
     }
 
+    public function getFulllist(){
+        return Staffprofile::get();
+    }
+
     public function create($data){
         return Staffprofile::create($data);
     }

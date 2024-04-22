@@ -21,6 +21,8 @@ class Ominbus extends Component
     public $subhead_id;
     public $head_id;
     public $date;
+    public $head_field ="head_id";
+    public $subhead_field = "subhead_id";
     public $amount;
     public $title = "Add Omnibus";
     public $edittitle = "Edit Omnibus";
@@ -30,13 +32,12 @@ class Ominbus extends Component
     public $search = '';
 
     public function search(OmnibusService $service){
-        $omnibus = $service->list($this->search);
+        $omnibus = $service->list($this->page,$this->search);
     }
 
     #[On('selectionChanged')]
     public function getSubheads($value,GroupheadService $service){
         $records = $service->getSubHeadByHeadid($value);
-     
         $this->dispatch('messageSent', data:$records);
     }
 

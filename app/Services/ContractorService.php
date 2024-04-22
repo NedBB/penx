@@ -7,7 +7,11 @@ use App\Models\Contractor;
 class ContractorService {
 
     public function list($page,$search){
-        return Contractor::search($search)->with(['bank','title'])->paginate($page);
+        return Contractor::search($search)->with(['bank','title'])->orderby('id','desc')->paginate($page);
+    }
+
+    public function getAll(){
+        return Contractor::get();
     }
 
     public function create($data){
@@ -21,7 +25,6 @@ class ContractorService {
     public function update($id,$data){
         $contractor = Contractor::find($id);
 
-        $contractor->contractor = $data['number'];
         $contractor->surname = $data['surname'];
         $contractor->firstname = $data['firstname'];
         $contractor->title_id = $data['title_id'];

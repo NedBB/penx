@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Conposs </h4>
+    <h4 class="py-3 mb-4">Contractor </h4>
     <div class="card">
       <div class="card-datatable table-responsive pt-0">
         <div class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -33,7 +33,7 @@
           </div>
           <div class="table-responsive text-nowrap">
             
-            <table class="table">
+            <table class="table table-hover table-bordered font-13 table-striped">
                   <thead>
                     <tr role="row">
                       <th>Unique ID</th>
@@ -64,15 +64,15 @@
                             {{$contractor->account_name}}
                           </td>
                           <td class="text-capitalize">
-                            {{$bank->name}}
+                            {{$contractor->bank->name}}
                           </td>
                           <td class="text-center">
-                            <livewire:edit-anchor :record="$conposs" :eventoption="$editevent" wire:key='{{time().$conposs->id}}' > 
+                            <livewire:edit-anchor :record="$contractor" :eventoption="$editevent" wire:key='{{time().$contractor->id}}' > 
                              &nbsp;
                           </td>
                       </tr>
                     @empty
-                        <tr><td colspan="7">No data exist at the moment</td></tr>
+                        <tr><td colspan="7" class="text-center text-danger">No data exist at the moment</td></tr>
                     @endforelse
                   </tbody>
               </table>
@@ -84,7 +84,7 @@
       </div>
     </div>
     
-    <x-add-contractor :title="$title" :edit=$edit :banks="$banks" :titles="$titles"/>
+    <x-add-contractor :title="$title" :edit="$edit" :banks="$banks" :titles="$titles"/>
   
   </div>
   

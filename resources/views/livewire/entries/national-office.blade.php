@@ -7,7 +7,7 @@
             <livewire:add-anchor :eventoption="$addevent">
           </div>
           <div class="row mt-2">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-4">
               <div class="dataTables_length">
                 <label>
                   Show
@@ -22,7 +22,15 @@
                   Entries</label>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+            <div class="col-sm-12 col-md-4 mt-3">
+              <div class="table-responsive text-nowrap"> 
+                <div class="dt-buttons">
+                  <x-export-printing/>
+                  <x-export-excell />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4 d-flex justify-content-center justify-content-md-end">
               <div class="dataTables_filter">
                 <div class="dt-search">
                   <label for="dt-search-0">Search:</label>

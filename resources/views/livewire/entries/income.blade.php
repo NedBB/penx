@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3"><span class="text-muted fw-light">Entries /</span> Income</h4>
+    <h4 class="py-3">Income</h4>
 
     <!-- DataTable with Buttons -->
     <div class="card">

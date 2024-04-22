@@ -12,6 +12,10 @@
     @endif
 
     <form id="editUserForm" class="row g-3" wire:submit='save'>
+        @php
+            $head_field = "head_id";
+            $subhead_field = "subhead_id"
+        @endphp
             <div class="col-12 col-md-6">
                 <label class="form-label">Name</label>
                 <input
@@ -38,15 +42,15 @@
         
             <div class="col-12 col-md-6">
                 <label class="form-label" for="modalEditUserFirstName">Head</label>
-                <livewire:selection-change :heads='$heads'>
+                <livewire:selection-change :records='$heads' :name="$head_field">
                     <div>
-                        @error('head_id') <span class="error">{{ $message }}</span> @enderror 
+                        @error('record_id') <span class="error">{{ $message }}</span> @enderror 
                     </div>
             </div>
 
             <div class="col-12 col-md-6">
                 <label class="form-label" for="modalEditUserFirstName">Subhead</label>
-                <livewire:selection-update :subheads='$subheads'>
+                <livewire:selection-update :records='$records' :name="$subhead_field">
                     <div>
                         @error('subhead_id') <span class="error">{{ $message }}</span> @enderror 
                     </div>

@@ -50,17 +50,17 @@ class Contractor extends Component
     }
 
     public function save(ContractorService $service){
-
+        
         $validated = $this->validate([ 
-            'title_id' => 'required|numeric|min:3',
-            'bank_id' => 'required|numeric|min:3',
-            'number' => 'required|min:3',
+            'title_id' => 'required',
+            'bank_id' => 'required',
             'surname' => 'required|min:3',
-            'firstname' => 'required|numeric|min:3',
-            'account_no' => 'required|min:3',
+            'firstname' => 'required|min:3',
+            'account_no' => 'required|numeric',
             'account_name' => 'required|min:3',
             'address' => 'required|min:3'
         ]);
+        $validated['number'] = generate_numbers(10);
 
         $response = $service->create($validated);
 
@@ -78,14 +78,13 @@ class Contractor extends Component
     public function update(ContractorService $service){
 
         $validated = $this->validate([ 
-            'title_id' => 'required|numeric|min:3',
-            'bank_id' => 'required|numeric|min:3',
-            'number' => 'required|min:3',
-            'surname' => 'required|min:3',
-            'firstname' => 'required|numeric|min:3',
-            'account_no' => 'required|min:3',
-            'account_name' => 'required|min:3',
-            'address' => 'required|min:3'
+            'title_id' => 'required',
+            'bank_id' => 'required',
+            'surname' => 'required',
+            'firstname' => 'required',
+            'account_no' => 'required|numeric',
+            'account_name' => 'required',
+            'address' => 'required'
         ]);
 
         $response = $service->update($this->id,$validated);
@@ -106,13 +105,12 @@ class Contractor extends Component
         $this->contractor = $service->getById($id);
         $this->firstname = $this->contractor->firstname;
         $this->surname = $this->contractor->surname;
-        $this->number = $this->contractor->number;
         $this->account_name = $this->contractor->account_name;
         $this->account_no = $this->contractor->account_no;
         $this->address = $this->contractor->address;
         $this->bank_id = $this->contractor->bank_id;
         $this->title_id = $this->contractor->title_id;
-        $this->id = $this->conposs->id;
+        $this->id = $this->contractor->id;
        
     }
 

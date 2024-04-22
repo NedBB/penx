@@ -53,6 +53,17 @@ if( ! function_exists('date5') ){
     }
 }
 
+if(! function_exists('generate_numbers')) {
+    function generate_numbers($len, $removeZero = false) {
+        $a='';
+        $start = ($removeZero) ? 1 : 0;
+        for ($i = 0; $i<$len; $i++) {
+            $a .= mt_rand($start,9);
+        }
+        return $a;
+    }
+}
+
 
 if( ! function_exists('custom_format_date') ){
     function custom_format_date( $date = null, $format="jS F, Y \- g\:i\:s a" ){

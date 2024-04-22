@@ -1,6 +1,14 @@
-<select class="form-control" @change="$dispatch('selectionChanged',{'value': $event.target.value})" name="head_id" wire:model='head_id'>
+<select class="form-control" @change="$dispatch('selectionChanged',{'value': $event.target.value})" name="record_id" wire:model='record_id'>
     <option>Select Option</option>
-    @foreach ($heads as $head)
-        <option value="{{$head->id}}">{{$head->name}}</option>
-    @endforeach
+
+    @if (is_array($records))
+        @foreach ($records as $key => $record)
+            <option value="{{$key}}" class="text-capitalize">{{$record}}</option>
+        @endforeach
+    @else
+        @foreach ($records as $record)
+            <option value="{{$record->id}}" class="text-capitalize">{{$record->name}}</option>
+        @endforeach
+    @endif
+    
 </select>

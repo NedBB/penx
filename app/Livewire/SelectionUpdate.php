@@ -7,14 +7,15 @@ use Livewire\Attributes\On;
 
 class SelectionUpdate extends Component
 {
-    public $subheads;
-    public $subhead_id;
+    public $records;
+    public $recordx_id;
+    public $name;
 
    
     #[On('messageSent')] 
     public function receiveMessage($data)
     {
-        $this->subheads = $data;
+        $this->records = $data;
     }
 
     public function render()

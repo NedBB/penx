@@ -15,6 +15,10 @@ class LoanService {
         return Loantype::search($search)->paginate($page);
     }
 
+    public function getFulllist(){
+        return Loantype::get();
+    }
+
     public function create($data){
         return Loantype::create($data);
     }

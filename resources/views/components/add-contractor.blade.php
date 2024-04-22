@@ -16,7 +16,7 @@
                     wire:model='title_id'
                     id="title_id"
                     name="title_id"
-                    class="select2 form-select"
+                    class="form-select"
                     >
                     <option value="">Select</option>
                     @foreach ($titles as $title)
@@ -24,6 +24,9 @@
                     @endforeach
 
                 </select>
+                <div>
+                    @error('title_id') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
 
             <div class="col-12 col-md-6">
@@ -35,6 +38,9 @@
                     name="surname"
                     class="form-control"
                     placeholder="surname" />
+                    <div>
+                        @error('surname') <span class="error">{{ $message }}</span> @enderror 
+                    </div>
             </div>
 
             <div class="col-12 col-md-6">
@@ -46,16 +52,9 @@
                     name="firstname"
                     class="form-control"
                     placeholder="Doe" />
-            </div>
-            
-            <div class="col-12 col-md-6">
-                <label class="form-label">Address</label>
-                <input
-                    wire:model='address'
-                    type="text"
-                    name="address"
-                    class="form-control"
-                    placeholder="Address" />
+                <div>
+                    @error('firstname') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
 
             <div class="col-12 col-md-6">
@@ -66,6 +65,9 @@
                     name="account_name"
                     class="form-control"
                     placeholder="Account name" />
+                <div>
+                    @error('account_name') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
 
             <div class="col-12 col-md-6">
@@ -76,6 +78,9 @@
                     name="account_no"
                     class="form-control"
                     placeholder="Account No" />
+                <div>
+                    @error('account_no') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
             <div class="col-12 col-md-6">
                 <label class="form-label">Bank</label>
@@ -89,6 +94,21 @@
                         <option value="{{$bank->id}}">{{$bank->name}}</option>
                     @endforeach
                 </select>
+                <div>
+                    @error('bank_id') <span class="error">{{ $message }}</span> @enderror 
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <label class="form-label">Address</label>
+                <input
+                    wire:model='address'
+                    type="text"
+                    name="address"
+                    class="form-control"
+                    placeholder="Address" />
+                <div>
+                    @error('address') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
         <div class="col-12 text-center">
           <button type="submit" class="btn btn-primary me-sm-3 me-1">@if($edit == false)Submit @else Update @endif</button>

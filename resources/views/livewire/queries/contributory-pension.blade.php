@@ -11,9 +11,14 @@
           <div class="card-body">
             
             <div class="row mb-3">
-              <div class="col-3">
-                <x-exports />
-               </div>
+              <div class="col-md-3">
+                <div class="table-responsive text-nowrap"> 
+                  <div class="dt-buttons">
+                    <x-export-printing/>
+                    <x-export-excell />
+                  </div>
+                </div>
+              </div>
                <div class="col-9">
                   <form wire:submit='search'>
                     <div class="row">

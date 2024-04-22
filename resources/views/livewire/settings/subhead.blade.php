@@ -33,7 +33,7 @@
         </div>
         <div class="table-responsive text-nowrap">
           
-          <table class="table">
+          <table class="table table-hover table-bordered font-13 table-striped">
                 <thead>
                   <tr role="row">
                     <th>Name</th>

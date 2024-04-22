@@ -87,7 +87,6 @@ class LedgeIncome extends Component
 
     public function render()
     {
-        //$records = $this->records;
         return view('livewire.ledgers.ledge-income')->layout('layouts.app');
     }
 }

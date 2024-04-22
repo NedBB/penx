@@ -8,6 +8,15 @@ class Contract extends Basemodel
 
 	protected $guarded=['id'];
 
+    protected static function booted()
+    {
+        static::deleting(function ($parent) {
+            foreach ($parent->children as $child) {
+                $child->delete();
+            }
+        });
+    }
+
     public function contractor()
     {
     	return $this->belongsTo(Contractor::class);
@@ -18,10 +27,10 @@ class Contract extends Basemodel
     	return $this->hasMany(Contractpayment::class);
     }
 
-    public function getStartAtAttribute($value)
-    {
-    	return sqldate($value);
-    }
+    // public function getStartAtAttribute($value)
+    // {
+    // 	return sqldate($value);
+    // }
 
     public function getExpectedEndAtAttribute($value)
     {
@@ -38,10 +47,10 @@ class Contract extends Basemodel
     	return ($value) ? sqldate($value) : null;
     }
 
-    public function getCostAttribute($value)
-    {
-        return format_money($value);
-    }
+    // public function getCostAttribute($value)
+    // {
+    //     return format_money($value);
+    // }
 
     public function scopeSearch($query,$value){
         $query->where('name','like',"%{$value}%");

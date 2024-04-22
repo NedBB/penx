@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Services\AllocationService;
 use Livewire\Component;
 
 class Allocation extends Component
 {
-    public function render()
+    public function render(AllocationService $allocationService)
     {
-        return view('livewire.entries.allocation');
+        //$allocations = $allocations
+        return view('livewire.entries.allocation')->layout('layouts.app');
     }
 }

@@ -1,6 +1,6 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Omnibus</h4>
+    <h4 class="py-3 mb-4"> Omnibus</h4>
 
     <!-- DataTable with Buttons -->
     <div class="card">
@@ -25,7 +25,15 @@
                   Entries</label>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+            <div class="col-sm-12 col-md-4 mt-3">
+              <div class="table-responsive text-nowrap"> 
+                <div class="dt-buttons">
+                  <x-export-printing/>
+                  <x-export-excell />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4 d-flex justify-content-center justify-content-md-end">
               <div class="dataTables_filter">
                 <div class="dt-search">
                   <label for="dt-search-0">PVNO:</label>
@@ -85,6 +93,6 @@
       </div>
     </div>
 
-    <x-add-omnibus :title="$title" :heads="$heads" :subheads="$subheads"/>
+    <x-add-omnibus :title="$title" :heads="$heads" :records="$subheads"/>
 
 </div>
