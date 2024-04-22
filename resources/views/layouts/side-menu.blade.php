@@ -113,7 +113,7 @@
             <div data-i18n="National Officers">National Officers</div>
             </a>
         </li>
-         <li class="menu-item">
+         {{-- <li class="menu-item">
             <a href="{{route('t.t')}}" class="menu-link">
             <div data-i18n="T & T">T & T</div>
             </a>
@@ -122,7 +122,7 @@
             <a href="{{route('allocation')}}" class="menu-link">
             <div data-i18n="Allocation">Allocation</div>
             </a>
-        </li> 
+        </li>  --}}
         <li class="menu-item">
             <a href="{{route('income')}}" class="menu-link">
             <div data-i18n="Income">Income</div>
