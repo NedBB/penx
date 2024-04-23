@@ -50,9 +50,12 @@ class StaffPayroll extends Component{
     #[On('staff-payroll')]
     public function edit($id, PayrollService $payrollService){     
        $this->detail = $payrollService->getPersonPayroll($id,'staffprofile',$this->month, $this->year);
-        dd($this->detail);
     }
- 
+
+    public function payslip(){
+
+    }
+    
     public function search(PayrollService $payrollService, StaffprofileService $staffprofileService){
 
         $validated = $this->validate([ 
@@ -80,7 +83,7 @@ class StaffPayroll extends Component{
             $this->records = $payrollService->getProfilePayroll($validated['month'],$validated['year'], 'staffprofile');
    
         }
-
+         dd($this->records);
         
     }
 

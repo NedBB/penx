@@ -6,6 +6,8 @@ use App\Services\ContractorService;
 use App\Services\ContractService;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ContractExport;
 
 class Contract extends Component
 {
@@ -112,6 +114,11 @@ class Contract extends Component
 
     public function delete($id,ContractService $contractorService){
         $contractorService->delete($id);
+    }
+
+    public function export(ContractService $service){
+        $contracts= $service->getFulllist();
+        return Excel::download(new ContractExport($contracts), 'contract.xlsx');
     }
 
     public function render(ContractService $contractService, ContractorService $contractorService)

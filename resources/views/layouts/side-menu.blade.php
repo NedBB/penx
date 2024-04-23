@@ -122,7 +122,7 @@
             <a href="{{route('allocation')}}" class="menu-link">
             <div data-i18n="Allocation">Allocation</div>
             </a>
-        </li>  --}}
+        </li> --}}
         <li class="menu-item">
             <a href="{{route('income')}}" class="menu-link">
             <div data-i18n="Income">Income</div>

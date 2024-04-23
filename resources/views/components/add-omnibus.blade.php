@@ -34,15 +34,16 @@
                     wire:model='date'
                     type="date"
                     name="date"
-                    class="form-control" />
-                    <div>
-                        @error('date') <span class="error">{{ $message }}</span> @enderror 
-                    </div>
+                    class="form-control" 
+                />
+                <div>
+                    @error('date') <span class="error">{{ $message }}</span> @enderror 
+                </div>
             </div>
         
             <div class="col-12 col-md-6">
                 <label class="form-label" for="modalEditUserFirstName">Head</label>
-                <livewire:selection-change :records='$heads' :name="$head_field">
+                <livewire:selection-change :records='$heads' :data="$data" :name="$head_field">
                     <div>
                         @error('record_id') <span class="error">{{ $message }}</span> @enderror 
                     </div>

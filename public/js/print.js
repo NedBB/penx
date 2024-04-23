@@ -17,7 +17,60 @@
         printTableTpl(header, newTable,currentDate, footer);
     }
 
-    function printTableTpl(newH1, newTable,currentDate, footer) {
+    function removeColumnByClass() {
+        const table = document.getElementById("print_table");
+        let columnIndex = -1;
+    
+        // Find the index of the column to remove
+        const headers = table.querySelectorAll('th');
+        headers.forEach((header, index) => {
+            if (header.classList.contains(className)) {
+                columnIndex = index;
+            }
+        });
+    
+        // If the column index was found, remove that column from all rows
+        if (columnIndex !== -1) {
+            const rows = table.querySelectorAll('tr'); // Includes rows in <thead> and <tbody>
+            rows.forEach(row => {
+                if (row.cells.length > columnIndex) {
+                    row.deleteCell(columnIndex);
+                }
+            });
+        }
+    }
+    
+
+    function printChecked() {
+        const heading = document.querySelector('table.table > thead > tr');
+        const items = document.querySelectorAll('table.table > tbody > tr');
+        let selectedRows = 0;
+        
+        // Loop through each item in the tbody
+        items.forEach((tr) => {
+            const input = tr.querySelector('input[type=checkbox]');
+            const isChecked = input && input.checked; // Ensure input exists and is checked
+    
+            if (isChecked) {
+                selectedRows++; // Increment the count of selected rows
+                tr.classList.remove('no-print'); // Prepare row for printing
+            } else {
+                tr.classList.add('no-print'); // Hide row from printing
+            }
+        });
+    
+        // Manage the heading based on whether there are selected rows
+        if (selectedRows > 0) {
+            heading.classList.remove('no-print');
+        } else {
+            heading.classList.add('no-print');
+        }
+    
+        window.print(); // Trigger the print dialogue
+    }
+    
+
+    function printTableTpl(newH1, newTable,currentDate, footer, column) {
 
         var newWindow = window.open("", "_blank");
         newWindow.document.write(`
@@ -51,7 +104,7 @@
                         
                     </div>
                     <div class="col-lg-12 mt-3">
-                        <table class="table table-hover table-bordered font-13 nowrap dataTable">
+                        <table class="table table-hover table-bordered font-13 nowrap dataTable" id="print_table">
                             ${newTable}
                         </table><br>
                         <div class="row">
@@ -69,5 +122,8 @@
                 </div>
             </div>
         `);
+
+        removeColumnByClass();
+
     }
         

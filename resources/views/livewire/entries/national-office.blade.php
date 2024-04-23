@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Entries /</span> National  Office </h4>
+    <h4 class="py-3 mb-4"> National  Office </h4>
     <div class="card">
       <div class="card-datatable table-responsive pt-0">
         <div class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -12,12 +12,7 @@
                 <label>
                   Show
                 <select wire:model.live='perpage' name="perpage" class="form-select">
-                  <option value="5">5</option>
-                  <option value="7">7</option>
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
+                  <option value="">All</option>
                   </select> 
                   Entries</label>
               </div>
@@ -41,7 +36,7 @@
           </div>
 
           <div class="table-responsive text-nowrap">
-            <table class="table">
+            <table class="table table-hover table-bordered font-13 table-striped">
               <thead>
                 <tr>
                   <th>Unique ID</th>
@@ -92,7 +87,7 @@
             </table>
           </div>
           <div class="card-footer">
-            {{$officers->links()}}
+            {{-- {{$officers->links()}} --}}
         </div>
         </div>
       </div>

@@ -86,7 +86,7 @@
             <div class="col-sm-12 col-md-4 mt-3">
               <div class="table-responsive text-nowrap"> 
                 <div class="dt-buttons">
-                  <x-export-printing/>
+                  <x-export-printing />
                   <x-export-pdf />
                 </div>
               </div>

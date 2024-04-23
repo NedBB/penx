@@ -8,12 +8,12 @@ use Carbon\Carbon as carbon;
 
 class StaffprofileService {
 
-    public function list($page,$search){
+    public function list($search){
         return Staffprofile::search($search)
                 // ->select('id','uniqueid','dutystation_id','gradelevel_id','step','surname','firstname','middlename','conposs_id','active')
                 ->with(['dutystation','gradelevel.gradelevelname','conposs'])
                 ->orderby('created_at','DESC')
-                ->paginate($page);
+                ->get();
     }
 
     public function staffCount(){

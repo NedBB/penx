@@ -12,17 +12,20 @@
                 <label>
                   Show
                 <select wire:model.live='perpage' name="perpage" class="form-select">
-                  <option value="5">5</option>
-                  <option value="7">7</option>
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
+                  <option value="">All</option>
                   </select> 
                   Entries</label>
               </div>
             </div>
-            <div class="col-sm-12 col-md-4 mt-3"><x-exports /></div>
+            <div class="col-md-4 mt-3">
+              <div class="table-responsive text-nowrap"> 
+                <div class="dt-buttons">
+                  <x-export-printing/>
+                  {{-- <x-export-print-selection/> --}}
+                  <x-export-excell />
+                </div>
+              </div>
+            </div>
             <div class="col-sm-12 col-md-4 d-flex justify-content-center justify-content-md-end">
               <div class="dataTables_filter">
                 <div class="dt-search">
@@ -34,7 +37,7 @@
           </div>
 
           <div class="table-responsive text-nowrap">
-            <table class="table">
+            <table class="table table-hover table-bordered font-13 table-striped">
               <thead>
                 <tr>
                   <th>Unique ID</th>
@@ -71,9 +74,9 @@
                           <td>
                             {{($list->active) ? "Active" : "Disabled"}}
                           </td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td>{{$list->gradelevel->gradelevelname->name}}</td>
+                          <td>{{$list->gradelevel->level}}</td>
+                          <td>{{$list->step}}</td>
                           <td class="text-capitalize">
                             {{$list->dutystation->name}}
                           </td>
@@ -91,7 +94,7 @@
             </table>
           </div>
           <div class="card-footer">
-            {{$staff->links()}}
+            {{-- {{$staff->links()}} --}}
         </div>
         </div>
       </div>

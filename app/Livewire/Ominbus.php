@@ -7,6 +7,8 @@ use App\Services\OmnibusService;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
+use App\Exports\OmnibusExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Ominbus extends Component
 {
@@ -19,7 +21,7 @@ class Ominbus extends Component
     public $subheads = [];
     public $pvno;
     public $subhead_id;
-    public $head_id;
+    public $head_id = 0;
     public $date;
     public $head_field ="head_id";
     public $subhead_field = "subhead_id";
@@ -30,9 +32,23 @@ class Ominbus extends Component
     public $editevent = "edit-omnibus";
     public $edit = false;
     public $search = '';
+    public $omnibusses = [];
+    public $pvno_search;
+    public $omnibusService;
+    public $selected;
+    public $selection = [];
+    public $id;
 
-    public function search(OmnibusService $service){
-        $omnibus = $service->list($this->page,$this->search);
+    // public function boot(OmnibusService $omnibusService){
+    //     $this->omnibusService = $omnibusService;
+    // }
+
+    public function selectData(){
+        
+    }
+
+    public function searchrecords(OmnibusService $omnibusService){
+        $this->omnibusses = $omnibusService->list($this->pvno_search);
     }
 
     #[On('selectionChanged')]
@@ -45,7 +61,6 @@ class Ominbus extends Component
     public function updateSubhead($value){
         $this->subhead_id = $value;
     }
-
 
     public function save(OmnibusService $service)
     {
@@ -69,10 +84,34 @@ class Ominbus extends Component
         }
     }
 
+    #[On('edit-omnibus')]
+    public function edit($id, OmnibusService $omnibusservice, GroupheadService $groupheadService){
+      
+        $this->title = "edit omnibus";
+        $this->edit = true;
+        $this->omnibus = $omnibusservice->getById($id);
+        $this->name = $this->omnibus->name;
+        $this->amount = $this->omnibus->amount;
+        $this->description = $this->omnibus->description;
+        $this->subhead_id = $this->omnibus->subhead_id;
+        $subhead = $groupheadService->getById($this->omnibus->subhead_id,'subhead');
+        $this->head_id = $subhead->head_id;
+    
+        $this->date = sqldate($this->omnibus->created_at);
+        $this->pvno = $this->omnibus->pvno;
+        $this->id = $this->omnibus->id;
+       
+    }
+
+    public function export(){
+        return Excel::download(new OmnibusExport($this->omnibusses), 'omnibus.xlsx');
+    }
+
     public function render(GroupheadService $headService, OmnibusService $omnibusService)
     {
         $heads = $headService->headList();
-        $omnibusses = $omnibusService->list($this->page,$this->search);
-        return view('livewire.entries.ominbus',compact('omnibusses','heads'))->layout('layouts.app');
+        //$omnibusses = $omnibusService->list($this->page,$this->search);
+         //$omnibusses = $this->omnibusses;
+        return view('livewire.entries.ominbus',compact('heads'))->layout('layouts.app');
     }
 }

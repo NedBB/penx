@@ -13,6 +13,8 @@ use App\Services\DepartmentService;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Exports\StaffprofileExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Staff extends Component
 {
@@ -139,6 +141,10 @@ class Staff extends Component
        
     }
 
+    public function export(StaffprofileService $service){
+        $staff = $service->getFulllist();
+        return Excel::download(new StaffprofileExport($staff), 'staffprofile.xlsx');
+    }
 
     public function save(StaffprofileService $service)
     {
@@ -174,8 +180,8 @@ class Staff extends Component
 
     public function render(StaffprofileService $service)
     {
-        $staff = $service->list($this->perpage, $this->search);
-       
+        $staff = $service->list($this->search);
+        
         return view('livewire.entries.staff',compact('staff'))->layout('layouts.app');
     }
 }

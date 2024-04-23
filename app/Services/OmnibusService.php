@@ -8,13 +8,13 @@ use Carbon\Carbon as carbon;
 
 class OmnibusService {
 
-    public function list($page,$search){
+    public function list($search){
         $start = date('Y').'-'.date('m').'-'.'01';
         $end = carbon::parse($start)->endOfMonth();
         return Omnibus::search($search)
                 ->with('subhead.head')
                 ->orderby('created_at','ASC')
-                ->paginate($page);
+                ->get();
     }
 
     public function create($data){
@@ -22,7 +22,7 @@ class OmnibusService {
     }
 
     public function getById($id){
-        return Ominbus::find($id);
+        return Omnibus::find($id);
     }
 
     public function getOmnibusSchedule($first, $end)

@@ -15,6 +15,10 @@ class ContractService {
         return Contract::find($id);
     }
 
+    public function getFullList(){
+        return Contract::get();
+    }
+
     public function getContractPayment($id){
         return Contractpayment::where('contract_id',$id)->first();
     }

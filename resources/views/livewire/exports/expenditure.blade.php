@@ -21,8 +21,8 @@
         </thead>
         <tbody>
             @forelse($records as $tr)
-                <tr class=>
-                    <td><input type="checkbox" wire:model='{{time()}}'> </td>
+                <tr>
+                    {{-- <td><input type="checkbox" wire:model='{{time()}}'> </td> --}}
                     @foreach($tr as $td)
                        {{-- @php 
                           $federal_amount += $td['ALLOCATION OF FUNDS FEDERAL'];

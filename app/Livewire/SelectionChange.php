@@ -9,6 +9,7 @@ class SelectionChange extends Component
     public $records;
     public $record_id;
     public $name;
+    public $data;
     
     public function render()
     {

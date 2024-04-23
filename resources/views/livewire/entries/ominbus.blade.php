@@ -10,89 +10,100 @@
             <livewire:add-anchor :eventoption="$addevent">
           </div>
           <div class="row mt-2">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-3">
               <div class="dataTables_length">
                 <label>
                   Show
-                <select wire:model.live='perpage' name="perpage" class="form-select">
-                  <option value="5">5</option>
-                  <option value="7">7</option>
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
+                <select wire:model.live='page' name="page" class="form-select">
+                  <option value="">All</option>
                   </select> 
                   Entries</label>
               </div>
             </div>
-            <div class="col-sm-12 col-md-4 mt-3">
+            <div class="col-md-6 mt-3">
               <div class="table-responsive text-nowrap"> 
                 <div class="dt-buttons">
                   <x-export-printing/>
+                  <x-export-print-selection/>
                   <x-export-excell />
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-4 d-flex justify-content-center justify-content-md-end">
-              <div class="dataTables_filter">
-                <div class="dt-search">
-                  <label for="dt-search-0">PVNO:</label>
-                  <input type="text" wire:model.live.debounce.300ms='search' class="form-control form-control-sm" id="dt-search-0" placeholder="" aria-controls="example">
+            <div class="col-sm-12 col-md-3 d-flex justify-content-center justify-content-md-end">
+              <form wire:submit='searchrecords'>
+                <div class="input-group mt-3">
+                  <input type="text" wire:model='pvno_search' class="form-control" placeholder="Enter PVNO">
+                  <button class="btn btn-primary" type="submit" id="button-addon1">Search</button>
                 </div>
-              </div>
+
+              </form>
             </div>
           </div>
           <div class="table-responsive text-nowrap">
-            <table class="table">
+            <table class="table table-hover table-bordered font-13 table-striped">
               <thead>
                 <tr>
-                  <th></th>
+                  <th class="remove"></th>
                   <th>Date</th>
                   <th>Group Head</th>
                   <th>Description</th>
                   <th>Amount</th>
-                  <th>Action</th>
+                  <th class="remove">Action</th>
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">
-              
+                  @php
+                    $total = 0;
+                  @endphp
                   @forelse ($omnibusses as $omni)
+                    @php
+                      $total += $omni->amount;
+                    @endphp
                       <tr wire:key='{{$omni->id}}'>
-                        <td><input type="checkbox" wire:model='selected' /></td>
+                        <td class="remove">
+                          <input id="{{time()}}" type="checkbox" />
+                        </td>
                         <td class="text-capitalize">
-                            <span class="fw-medium">{{$omni->created_at}}</span>
-                            </td>
-                          <td class="text-capitalize">
-                          <span class="fw-medium">{{$omni->subhead->head->name}}</span>
-                          </td>
-                          <td>
-                              <span class="fw-medium">{{$omni->description}}</span>
-                          </td>
-                          <td>
-                              <span class="fw-medium">{{$omni->amount}}</span>
-                          </td>
-                          <td>
+                            <span class="fw-medium">{{sqldate($omni->created_at)}}</span>
+                        </td>
+                        <td class="text-capitalize">
+                            <span class="fw-medium">{{$omni->subhead->head->name}}</span>
+                        </td>
+                        <td>
+                            <span class="fw-medium">{{$omni->description}}</span>
+                        </td>
+                        <td>
+                            <span class="fw-medium">{{format_money($omni->amount)}}</span>
+                        </td>
+                        <td class="remove">
                           <livewire:edit-anchor :record="$omni" :eventoption="$editevent" wire:key='{{time().$omni->id}}' > 
-                             &nbsp;
-                            <a href="#" onclick="confirm('Are you sure you want to delete {{$omni->name}} ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$omni->id}})'>
-                                <i class="fa-solid fa-trash text-danger"></i>
-                              </a>
-                            </td>
+                            &nbsp;
+                          <a href="#" onclick="confirm('Are you sure you want to delete {{$omni->name}} ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$omni->id}})'>
+                              <i class="fa-solid fa-trash text-danger"></i>
+                            </a>
+                        </td>
                       </tr>
                   @empty
-                      <tr><td colspan="5" class="text-center text-danger">No data exist at the moment</td></tr>
+                      <tr><td colspan="6" class="text-center text-danger">No data exist at the moment</td></tr>
                   @endforelse
               </tbody>
+              <tfoot>
+                  <tr>
+                      <td colspan="4" class="align-right">Total</td>
+                      <td>{{format_money($total)}}</td>
+                      <td class="remove"></td>
+                  </tr>
+              </tfoot>
             </table>
           </div>
 
-          <div class="card-footer">
-              {{$omnibusses->links()}}
+          <div class="table table-hover table-bordered font-13 table-striped">
+              {{-- {{$omnibusses->links()}} --}}
           </div>
         </div>
       </div>
     </div>
 
-    <x-add-omnibus :title="$title" :heads="$heads" :records="$subheads"/>
+    <x-add-omnibus :title="$title" :data="$head_id" :heads="$heads" :records="$subheads"/>
 
 </div>

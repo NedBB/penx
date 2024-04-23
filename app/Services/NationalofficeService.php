@@ -8,12 +8,12 @@ use Carbon\Carbon as carbon;
 
 class NationalofficeService {
 
-    public function list($page,$search){
+    public function list($search){
         return Nationalofficer::search($search)
                 ->select('id','uniqueid','dutystation_id','accountno','surname','firstname','middlename','basicsalary','active')
                 ->with(['dutystation'])
                 ->orderby('created_at','DESC')
-                ->paginate($page);
+                ->get();
     }
 
     public function nationalCount(){

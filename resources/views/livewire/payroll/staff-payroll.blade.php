@@ -187,5 +187,5 @@
         </div>
       </div>
     </div>
-    {{-- <x-payslip :detail="$detail"/> --}}
+    {{-- <x-staff-payslip :detail="$detail"/> --}}
 </div> 

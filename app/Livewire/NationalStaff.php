@@ -11,6 +11,8 @@ use App\Services\TitleService;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use App\Exports\NationalofficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NationalStaff extends Component
 {
@@ -108,6 +110,11 @@ class NationalStaff extends Component
        
     }
 
+    public function export(StaffprofileService $service){
+        $staff = $service->getFulllist();
+        return Excel::download(new NationalofficerExport($staff), 'nationalofficers.xlsx');
+    }
+
 
     public function save(NationalofficeService $service)
     {
@@ -144,7 +151,7 @@ class NationalStaff extends Component
 
     public function render(NationalofficeService $service)
     {
-        $officers = $service->list($this->perpage, $this->search);
+        $officers = $service->list($this->search);
         return view('livewire.entries.national-office', compact('officers'))->layout('layouts.app');
 
     }
