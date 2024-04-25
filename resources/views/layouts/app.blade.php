@@ -141,6 +141,7 @@
 
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}"></script>
+        <script src="{{asset('js/jquery.div.print.js')}}"></script>
         <script src="{{asset('js/print.js')}}"></script>
 
 {{--         

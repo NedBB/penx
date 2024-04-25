@@ -1,3 +1,15 @@
+
+
+let printArea = document.getElementById('printable');
+let print = document.getElementId('slip');
+
+
+    
+    print.addEventListener('click', (e) => {
+        e.preventDefault();
+        printArea.print("#printable");
+    })
+    
     function extractContentForPrinting(){
        
         let header = $(window.document.body).find('h4').html();
@@ -40,6 +52,45 @@
         }
     }
     
+    function numberToEnglishKobo(num, separator){
+
+        //Separator value
+    
+        var sepa = separator || 'and';
+    
+    
+    
+        //First we unformat money
+    
+        
+    
+        var nowIsNum = num;
+    
+    
+    
+        //We have to get the decimal value first;
+    
+        var arrKobo = nowIsNum.toString().split('.');
+    
+        var koboWord = '';
+    
+    
+    
+    
+    
+        if(arrKobo[1]){
+    
+            koboWord = numberToEnglish(arrKobo[1])+' kobo';
+    
+        }
+    
+    
+    
+        return '<span style="text-transform:capitalize">'+ numberToEnglish(Number(arrKobo[0].replace(/[^0-9\.-]+/g,""))) + ' Naira,' + ' ' + koboWord +' only</span>';
+    
+    
+    
+    }
 
     function printChecked() {
         const heading = document.querySelector('table.table > thead > tr');

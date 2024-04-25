@@ -36,6 +36,8 @@ class StaffPayroll extends Component{
     public $editevent = "staff-payroll";
     public $detail;
     public $selectRow;
+    public $fullname;
+    public $show = false;
    
     public $hide = true;
 
@@ -50,12 +52,27 @@ class StaffPayroll extends Component{
     #[On('staff-payroll')]
     public function edit($id, PayrollService $payrollService){     
        $this->detail = $payrollService->getPersonPayroll($id,'staffprofile',$this->month, $this->year);
+       
     }
 
-    public function payslip(){
-
+    public function payslip($id,PayrollService $payrollService){
+        $detail = $payrollService->getPersonPayroll($id,'staffprofile', $this->month, $this->year);
+        $this->show = true;
+        // $this->detail = [
+        //     'basicsalary' => $detail->basicsalary,
+        //     'fullname' => $detail->profile->fullname(),
+        //     'month' => $detail->month,
+        //     'year' => $detail->year,
+        //     'uniqueid' => $detail->profile->uniqueid
+        // ];
+        $this->detail = $detail;
+      
     }
-    
+
+    public function data(){
+        
+    }
+
     public function search(PayrollService $payrollService, StaffprofileService $staffprofileService){
 
         $validated = $this->validate([ 
@@ -83,7 +100,7 @@ class StaffPayroll extends Component{
             $this->records = $payrollService->getProfilePayroll($validated['month'],$validated['year'], 'staffprofile');
    
         }
-         dd($this->records);
+         
         
     }
 
@@ -93,6 +110,6 @@ class StaffPayroll extends Component{
 
     public function render()
     {
-        return view('livewire.payroll.staff-payroll')->layout('layouts.app');
+        return view('livewire.payroll.staff-payroll',['detail' => $this->detail])->layout('layouts.app');
     }
 }
