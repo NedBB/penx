@@ -1,11 +1,11 @@
 <table class="table table-hover table-bordered dataTable font-13" id="result">
     <thead>
     <tr>
-        <td style="width: 15px;"></td>
-        <td>S/N</td>
+        <td style="width: 15px;" class="remove"></td>
+        <td  class="remove">S/N</td>
         <td>Description</td>
         <td>PV No</td>
-        <td>Record Type</td>
+        <td class="remove">Record Type</td>
         <td>Amount</td>
         <td>Net Amount</td>
     </tr>
@@ -26,12 +26,12 @@
                             <td class="remove">
                                 <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
                               </td>
-                            <td>{{++$count}}</td>
+                            <td class="remove">{{++$count}}</td>
                             <td>{{($value['tablename'] == 'allocation')?$value['subhead']['name'].' for '
                             .$value['location']['name']
                             :$value['description']}}</td>
                             <td>{{$value['pvno']}}</td>
-                            <td>{{$value['tablename']}}</td>
+                            <td class="remove">{{$value['tablename']}}</td>
                             <td>{{format_money($value['amount'])}}</td>
                             <td>&nbsp;</td>
                         </tr>
@@ -50,13 +50,13 @@
                         </tr>
 
                         <tr>
-                            <td></td>
-                            <td>{{++$count}}</td>
+                            <td class="remove"></td>
+                            <td class="remove">{{++$count}}</td>
                             <td>{{($value['tablename'] == 'allocation')?$value['subhead']['name'].' for '
                             .$value['location']['name']
                             :$value['description']}}</td>
                             <td>{{$value['pvno']}}</td>
-                            <td>{{$value['tablename']}}</td>
+                            <td  class="remove">{{$value['tablename']}}</td>
                             <td>{{format_money($value['amount'])}}</td>
                             <td>&nbsp;</td>
                         </tr>
@@ -76,7 +76,7 @@
                 <td class="remove">
                     <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
                   </td>
-                <td>{{++$count}}</td>
+                <td class="remove">{{++$count}}</td>
                 <td>Staff Contributory pension</td>
                 <td>Contribution</td>
                 <td>Pension</td>
@@ -102,7 +102,7 @@
                 <td class="remove">
                     <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
                   </td>
-                <td>{{++$count}}</td>
+                <td  class="remove"> {{++$count}}</td>
                 <td>Payroll for nationa officers</td>
                 <td>Payroll</td>
                 <td>NOF Payroll</td>
@@ -128,10 +128,10 @@
                 <td class="remove">
                     <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
                   </td>
-                <td>{{++$count}}</td>
+                <td  class="remove">{{++$count}}</td>
                 <td>Payroll for staff</td>
-                <td>Payroll</td>
-                <td>Staff Payroll</td>
+                <td class="remove">Payroll</td>
+                <td  class="remove">Staff Payroll</td>
                 <td>{{format_money($staffpayroll)}}</td>
                 <td></td>
             </tr>
