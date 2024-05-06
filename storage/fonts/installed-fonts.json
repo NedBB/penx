@@ -10,5 +10,10 @@
         "500": "\/var\/www\/html\/penx\/storage\/fonts\/public_sans_500_f9f62700f16295459f07e4490758a56c",
         "600": "\/var\/www\/html\/penx\/storage\/fonts\/public_sans_600_8570cdb5fbb80ecdad4dd8164ff3b49b",
         "bold": "public_sans_bold_d5a12de6d381386375a53c00843755b6"
+    },
+    "ubuntu": {
+        "normal": "\/var\/www\/html\/penx\/storage\/fonts\/ubuntu_normal_a9b4465f75f1e035e352908784fee311",
+        "500": "\/var\/www\/html\/penx\/storage\/fonts\/ubuntu_500_77b379fb022b48e8a5f4b688af8ca205",
+        "bold": "ubuntu_bold_01f1f5adaa8ee473febf98094d81e93b"
     }
 }

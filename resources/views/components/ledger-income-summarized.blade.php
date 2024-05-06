@@ -2,7 +2,7 @@
     <table class="table table-hover table-bordered table-striped" id="summarized">
         <thead>
         <tr>
-            <td></td>
+            {{-- <td class="remove"></td> --}}
             <td>Sender</td>
             <td>Amount</td>
             <td>Period From</td>
@@ -15,7 +15,9 @@
             @forelse($records as $groupname => $record)
             @foreach ($record as $list)
                 <tr>
-                    <td></td>
+                    {{-- <td class="remove">
+                        <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                      </td> --}}
                     <td>
                         {{$groupname}}
                     </td>
@@ -81,8 +83,8 @@
         </tbody>
         <tfoot id="summarized_footer">
         <tr>
-            <td colspan="5" style="text-align:right">Total</td>
-            <td id="summarized_total">
+            <td colspan="4" style="text-align:right">Total</td>
+            <td id="total_words" data-total={{$total}}>
                 {{format_money($total)}}
             </td>
         </tr>

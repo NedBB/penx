@@ -45,6 +45,7 @@ class Staff extends Component
     public $addevent= "add-staff";
     public $editevent = "edit-staff";
     public $edit = false;
+    public $page_title = "Staff Profile";
     public $staffdetail;
     public $tax;
     public $partofpension;

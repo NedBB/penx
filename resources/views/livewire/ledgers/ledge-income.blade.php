@@ -1,6 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4">
-      <span class="text-muted fw-light">Ledgers /</span> Income </h4>
+    <h4 class="py-3 mb-4">Ledgers Income </h4>
     <div class="card">
       
       <div class="card-datatable table-responsive pt-0">
@@ -46,16 +45,31 @@
                     </div>
                 </div>
             </form>
-            @if ($show == true)
-            <div class="col-sm-12 col-md-4 mt-3">
+           
+            <div class="col-sm-12 col-md-6 mt-3">
               <div class="table-responsive text-nowrap"> 
                 <div class="dt-buttons">
-                  <x-export-printing/>
-                  <x-export-excell />
+                  @if ($show == true && $report_type !== 'all')
+                    <a href="#" onclick="extractContentForPrinting(9,'ledger-income')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                      <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                      <span class="d-none d-sm-inline-block">Print</span>
+                    </a>
+                    <x-export-excell />
+                  @endif
+                  @if ($show == true && $report_type == 'all')
+                  <a href="#" onclick="extractContentForPrinting(9,'ledger-income')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                    <span class="d-none d-sm-inline-block">Print</span>
+                  </a>
+                    <a href="#" onclick="extractSelectionforPrinting(9,10,'income',null,[10],1)"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                      <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                      <span class="d-none d-sm-inline-block">Print Selection</span>
+                    </a>
+                    <x-export-excell />
+                  @endif
                 </div>
               </div>
-            </div>
-            @endif        
+            </div>      
           </div>
           @if($show == true)
             

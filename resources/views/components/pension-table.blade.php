@@ -1,6 +1,7 @@
 <table class="table table-hover table-bordered table-striped">
             <thead>
                 <tr role="row">
+                    <th class="remove"></th>
                     <th width="30%">Fullname</th>
                     <th width="30%">Pension Pin</th>
                     <th>Employer</th>
@@ -23,6 +24,9 @@
                     @endphp
 
                     <tr>
+                        <td class="remove">
+                            <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                          </td>
                         <td class="text-capitalize">
                             {{$record->staffprofile->fullname()}}
                         </td>
@@ -45,10 +49,10 @@
             </tbody>
             <tfoot>
                   <tr>
-                    <td class="align-right" style="font-weght: bold" colspan="2" width="60%"><strong>Total</strong></td>
-                    <td><strong>{{format_currency($employer)}}</strong></td>
-                    <td><strong>{{format_currency($employee)}}</strong></td>
-                    <td><strong>{{format_currency($total)}}</strong></td>
+                    <td class="align-right" style="font-weght: bold" colspan="3" width="60%"><strong>Total</strong></td>
+                    <td>{{format_currency($employer)}}</td>
+                    <td>{{format_currency($employee)}}</td>
+                    <td id="total_words" data-total='{{$total}}'>{{format_currency($total)}}</td>
                   </tr>
             </tfoot>
        

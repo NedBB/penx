@@ -15,6 +15,7 @@ class OfficerPayroll extends Component
     public $data;
     public $year;
     public $option;
+    public $page_title="National Officers Payroll";
     public $records = [];
     public $count = 0;
     public $salary = 0;
@@ -59,6 +60,8 @@ class OfficerPayroll extends Component
             'month' => 'required'
         ]);
 
+        $this->page_title = $this->page_title." for ". $this->monthrange[$this->month]." ".$this->year;
+
         if(($validated['year']) && ($validated['month']) && !($validated['option'])){
            $this->records = $payrollService->getProfilePayroll($validated['month'],$validated['year'], 'nationaloffice');
             //  dd($this->records);
@@ -78,6 +81,19 @@ class OfficerPayroll extends Component
 
         }
 
+    }
+
+    public function payslip($id,PayrollService $payrollService){
+        $detail = $payrollService->getPersonPayroll($id,'nationalofficer', $this->month, $this->year);
+        // $this->detail = [
+        //     'basicsalary' => $detail->basicsalary,
+        //     'fullname' => $detail->profile->fullname(),
+        //     'month' => $detail->month,
+        //     'year' => $detail->year,
+        //     'uniqueid' => $detail->profile->uniqueid
+        // ];
+        $this->detail = $detail;
+      
     }
 
     public function export(){

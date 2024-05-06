@@ -35,6 +35,7 @@ class Ominbus extends Component
     public $omnibusses = [];
     public $pvno_search;
     public $omnibusService;
+    public $page_title = 'List of Omnibus Records';
     public $selected;
     public $selection = [];
     public $id;

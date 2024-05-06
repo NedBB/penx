@@ -1,6 +1,6 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"> Omnibus</h4>
+    <h4 class="py-3 mb-4"> {{$page_title}}</h4>
 
     <!-- DataTable with Buttons -->
     <div class="card">
@@ -23,8 +23,14 @@
             <div class="col-md-6 mt-3">
               <div class="table-responsive text-nowrap"> 
                 <div class="dt-buttons">
-                  <x-export-printing/>
-                  <x-export-print-selection/>
+                  <a href="#" onclick="extractContentForPrinting(4,'omnibus','{{$pvno_search}}')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                    <span class="d-none d-sm-inline-block">Print</span>
+                  </a>
+                  <a href="#" onclick="extractSelectionforPrinting(4,5,'omnibus','{{$pvno_search}}',[4],2)"  id="print-selection" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                    <span class="d-none d-sm-inline-block">Print Selection</span>
+                  </a>
                   <x-export-excell />
                 </div>
               </div>
@@ -40,15 +46,15 @@
             </div>
           </div>
           <div class="table-responsive text-nowrap">
-            <table class="table table-hover table-bordered font-13 table-striped">
+            <table class="table table-hover table-bordered font-13 table-striped" id="printTable">
               <thead>
                 <tr>
                   <th class="remove"></th>
-                  <th>Date</th>
+                  <th class="remove">Date</th>
                   <th>Group Head</th>
                   <th>Description</th>
                   <th>Amount</th>
-                  <th class="remove">Action</th>
+                  <th class="change">Action</th>
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">
@@ -61,9 +67,9 @@
                     @endphp
                       <tr wire:key='{{$omni->id}}'>
                         <td class="remove">
-                          <input id="{{time()}}" type="checkbox" />
+                          <input id="{{time()}}" type="checkbox" class="checkbox"/>
                         </td>
-                        <td class="text-capitalize">
+                        <td class="remove">
                             <span class="fw-medium">{{sqldate($omni->created_at)}}</span>
                         </td>
                         <td class="text-capitalize">
@@ -72,10 +78,10 @@
                         <td>
                             <span class="fw-medium">{{$omni->description}}</span>
                         </td>
-                        <td>
-                            <span class="fw-medium">{{format_money($omni->amount)}}</span>
+                        <td data-amount={{$omni->amount}} >
+                            {{format_money($omni->amount)}}
                         </td>
-                        <td class="remove">
+                        <td class="change">
                           <livewire:edit-anchor :record="$omni" :eventoption="$editevent" wire:key='{{time().$omni->id}}' > 
                             &nbsp;
                           <a href="#" onclick="confirm('Are you sure you want to delete {{$omni->name}} ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$omni->id}})'>
@@ -87,10 +93,10 @@
                       <tr><td colspan="6" class="text-center text-danger">No data exist at the moment</td></tr>
                   @endforelse
               </tbody>
-              <tfoot>
+              <tfoot class="footer">
                   <tr>
                       <td colspan="4" class="align-right">Total</td>
-                      <td>{{format_money($total)}}</td>
+                      <td id="total_words" data-total={{$total}}>{{format_money($total)}}</td>
                       <td class="remove"></td>
                   </tr>
               </tfoot>

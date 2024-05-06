@@ -4,6 +4,7 @@
         @if($data == "pension")
             <thead>
                 <tr role="row">
+                    <th class="remove"></th>
                     <th>Pension Id</th>
                     <th>Name</th>
                     <th>Employer[10%]</th>
@@ -27,6 +28,9 @@
                     @endphp
 
                     <tr>
+                        <td class="remove">
+                            <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                          </td>
                         <td class="text-capitalize">
                             {{$record->profile->pensionpin}}
                         </td>
@@ -59,6 +63,7 @@
             <thead>
                 <thead>
                     <tr role="row">
+                        <th class="remove text-center"></th>
                         @if($data == 'tax')
                             <td>Tax Pin</td>
                         @else
@@ -84,6 +89,9 @@
                         <td class="text-capitalize" style="width: 80%">
                             {{$record->name}}
                         </td> --}}
+                        <td class="remove">
+                            <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                          </td>
                         <td class="text-capitalize">{{($data == 'tax')?$record->profile->taxpin:$record->profile->uniqueid}}</td>
                         <td>{{$record->profile->fullname()}}</td>
                         <td>{{format_currency($record->amount)}}</td>
@@ -103,8 +111,8 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2" class="align-right"><strong>Total</strong></td>
-                    <td><strong>{{format_currency($total)}}</strong></td>
+                    <td colspan="3" class="align-right"><strong>Total</strong></td>
+                    <td id="total_words" data-total={{$total}}>{{format_currency($total)}}</td>
                 </tr>
             </tfoot>
         @endif

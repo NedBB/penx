@@ -639,6 +639,7 @@ class ComposerStaticInit5c23e0135e65bb1e19466367403efef9
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\AllocationExport' => __DIR__ . '/../..' . '/app/Exports/AllocationExport.php',
+        'App\\Exports\\ContractExport' => __DIR__ . '/../..' . '/app/Exports/ContractExport.php',
         'App\\Exports\\DeductionExport' => __DIR__ . '/../..' . '/app/Exports/DeductionExport.php',
         'App\\Exports\\ExpenditureExport' => __DIR__ . '/../..' . '/app/Exports/ExpenditureExport.php',
         'App\\Exports\\IncomeExport' => __DIR__ . '/../..' . '/app/Exports/IncomeExport.php',

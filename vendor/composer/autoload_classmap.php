@@ -9,6 +9,7 @@ return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Exports\\AllocationExport' => $baseDir . '/app/Exports/AllocationExport.php',
+    'App\\Exports\\ContractExport' => $baseDir . '/app/Exports/ContractExport.php',
     'App\\Exports\\DeductionExport' => $baseDir . '/app/Exports/DeductionExport.php',
     'App\\Exports\\ExpenditureExport' => $baseDir . '/app/Exports/ExpenditureExport.php',
     'App\\Exports\\IncomeExport' => $baseDir . '/app/Exports/IncomeExport.php',

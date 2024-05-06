@@ -25,10 +25,17 @@
             </form>
 
             @if ($show == true)
-            <div class="col-sm-12 col-md-4 mt-3">
+            <div class="col-sm-12 col-md-6 mt-3">
               <div class="table-responsive text-nowrap"> 
                 <div class="dt-buttons">
-                  <x-export-printing/>
+                  <a href="#" onclick="extractContentForPrinting(3,'payment')"  id="print-selection" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                    <span class="d-none d-sm-inline-block">Print</span>
+                  </a>
+                  <a href="#" onclick="extractSelectionforPrinting(6,7,'payment',null,[6,7],1)"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                    <span class="d-none d-sm-inline-block">Print Selection</span>
+                  </a>
                   <x-export-excell />
                 </div>
               </div>

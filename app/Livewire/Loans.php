@@ -19,6 +19,7 @@ class Loans extends Component
     public $editevent = "edit-entry-loan";
     public $profile_option = "profile";
     public $profile_list = "profile_id";
+    public $page_title = 'Loan Entries';
     public $payable;
     public $loan;
     public $interestrate;
@@ -197,7 +198,7 @@ class Loans extends Component
     }
 
     public function exportPdf(){
-        $pdf = Pdf::loadView('livewire.pdfs.loan-pdf',["loans" => $this->loans]);
+        $pdf = Pdf::loadView('livewire.pdfs.loan-pdf',["loans" => $this->loans,'page_title' => $this->page_title]);
 
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();

@@ -6,11 +6,13 @@ use App\Exports\ExpenditureExport;
 use App\Services\GroupheadService;
 use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class Expenditure extends Component
 {
     public $heads;
     public $start_date;
+    public $page_title = "Expenditure";
     public $end_date;
     public $head_id;
     public $records = [];
@@ -40,6 +42,14 @@ class Expenditure extends Component
         $this->records = $data['datas'];
         $this->columns = $data['columns'];
         
+    }
+
+    public function exportPdf(){
+        $pdf = Pdf::loadView('livewire.pdfs.expenditure-pdf',["records" => $this->records,'columns' => $this->columns,'page_title' => $this->page_title]);
+
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+            }, 'expenditure.pdf');
     }
 
     public function export(){

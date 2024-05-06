@@ -23,7 +23,9 @@
                             $total += $value['amount']
                        @endphp
                         <tr>
-                            <td></td>
+                            <td class="remove">
+                                <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                              </td>
                             <td>{{++$count}}</td>
                             <td>{{($value['tablename'] == 'allocation')?$value['subhead']['name'].' for '
                             .$value['location']['name']
@@ -71,7 +73,9 @@
                $total += $pension
            @endphp
             <tr>
-                <td></td>
+                <td class="remove">
+                    <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                  </td>
                 <td>{{++$count}}</td>
                 <td>Staff Contributory pension</td>
                 <td>Contribution</td>
@@ -95,7 +99,9 @@
                $total += $nationpayroll
            @endphp
             <tr>
-                <td></td>
+                <td class="remove">
+                    <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                  </td>
                 <td>{{++$count}}</td>
                 <td>Payroll for nationa officers</td>
                 <td>Payroll</td>
@@ -119,7 +125,9 @@
                $total += $staffpayroll
            @endphp
             <tr>
-                <td></td>
+                <td class="remove">
+                    <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                  </td>
                 <td>{{++$count}}</td>
                 <td>Payroll for staff</td>
                 <td>Payroll</td>

@@ -1,7 +1,7 @@
 <table class="table table-hover table-bordered table-striped" id="datatable-result">
     <thead>
     <tr>
-        <th></td>
+        <th class="remove"></td>
         <th>Date Paid</th>
         <th>Sender</th>
         <th>Account</th>
@@ -20,7 +20,9 @@
             @foreach($groupdata as $record)
                
                 <tr>
-                    <td></td>
+                    <td class="remove">
+                        <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                      </td>
                     <td>
                         <a href='#' data-href="" class='' data-target='.bs-modal-lg' data-toggle='modal'>
                             {{date5($record['fromdate_at'])}}
@@ -65,7 +67,7 @@
     <tfoot>
     <tr>
         <td colspan="10" style="text-align:right">Total</td>
-        <td>{{format_currency($total)}}</td>
+        <td class="total_words" data-total={{$total}}>{{format_currency($total)}}</td>
     </tr>
     </tfoot>
 </table>

@@ -33,6 +33,7 @@ class NationalStaff extends Component
     public $paymentmethod_id;
     public $honours;
     public $basicsalary;
+    public $page_title = 'National Officers';
     public $id;
     public $title = "Add Nation Office";
     public $edittitle = "Edit National Officer";

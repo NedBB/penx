@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"> National  Office </h4>
+    <h4 class="py-3 mb-4"> {{$page_title}} </h4>
     <div class="card">
       <div class="card-datatable table-responsive pt-0">
         <div class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -20,7 +20,10 @@
             <div class="col-sm-12 col-md-4 mt-3">
               <div class="table-responsive text-nowrap"> 
                 <div class="dt-buttons">
-                  <x-export-printing/>
+                  <a href="#" onclick="extractContentForPrinting(2,'plain')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                    <span class="d-none d-sm-inline-block">Print</span>
+                  </a>
                   <x-export-excell />
                 </div>
               </div>

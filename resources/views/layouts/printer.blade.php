@@ -34,6 +34,9 @@
 <link rel="stylesheet" href="{{asset('css/rtl/core.css')}}" class="template-customizer-core-css" />
 <link rel="stylesheet" href="{{asset('css/rtl/theme-default.css')}}" class="template-customizer-theme-css" />
 <!-- <link rel="stylesheet" href="../../assets/css/demo.css" /> -->
+<link rel="stylesheet" href="{{asset('css/main.css?v=').time()}}" />
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet">
+               
 <!-- Page CSS -->
 <!-- Page -->
 <link rel="stylesheet" href="{{asset('css/pages/page-auth.css')}}" />
@@ -53,17 +56,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="print-header" style="background-color:#009688 !important">
-                            <div class="text-uppercase text-center m">Nigerian Union Of Pensioners</div><div class="font-18 text-uppercase  s">National HeadQuarter</div></div></div>'+
+                        <div class="print-header">
                                 <div class="col-lg-12">
-                                    <h2 class="text-center clearfix">$newH1</h2>
+                                    <h2 class="text-center clearfix">{{$page_title}}</h2>
                                     <br>
                                     <div class="pull-left">Date: {{date('d-m-Y')}}</div>
                                         <div class="pull-right">Cheque No: ............</div>
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="col-lg-12"> 
-                                            {{ $slot }}
+                                            @yield('content')
                                             <br>
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -72,7 +74,7 @@
                                             </div>
                                             <br><br>
                                             <div class="row">
-                                                <div class="col-sm-3">Prepared by:......................</div><div class="col-sm-3">Collected by:.................<br>National Treasurer</div><div class="col-sm-3">........................<br>General Secretary</div>
+                                                <div class="col-sm-3">Prepared by:......................</div><div class="col-sm-3">Checked by:.................<br>National Treasurer</div><div class="col-sm-3">........................<br>General Secretary</div>
                                                 <div class="col-sm-3">.........................<br>National President</div>
                                             </div>
                                         </div>

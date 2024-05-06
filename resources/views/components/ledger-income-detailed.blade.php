@@ -1,7 +1,7 @@
 <table class="table table-hover table-bordered table-striped" id="result">
     <thead>
     <tr>
-        <td></td>
+      
         <td>Sender</td>
         <td>Description</td>
         <td>Amount</td>
@@ -16,7 +16,9 @@
         @forelse($records as $groupname => $record)
 
             <tr>
-                <td></td>
+                {{-- <td class="remove">
+                    <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                  </td> --}}
                 <td>
                     {{$groupname}}
                 </td>
@@ -45,7 +47,7 @@
                         $total += $subtotal;
                  @endphp
                 <tr>
-                    <td></td>
+                    {{-- <td></td> --}}
                     <td></td>
                     <td>
                         {{$row['description']}}
@@ -65,7 +67,7 @@
                 </tr>
             @endforeach
             <tr>
-                <td></td>
+                {{-- <td></td> --}}
                 <td></td>
                 <td style="text-align: right; font-weight: bold">
                     TOTAL
@@ -84,8 +86,8 @@
     </tbody>
     <tfoot>
     <tr>
-        <td colspan="7" style="text-align:right">GRAND TOTAL</td>
-        <td>
+        <td colspan="6" style="text-align:right">GRAND TOTAL</td>
+        <td id="total_works" data-total={{$total}}>
             {{format_money($total)}}
         </td>
     </tr>

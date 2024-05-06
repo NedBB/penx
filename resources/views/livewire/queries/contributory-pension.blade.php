@@ -11,15 +11,8 @@
           <div class="card-body">
             
             <div class="row mb-3">
-              <div class="col-md-3">
-                <div class="table-responsive text-nowrap"> 
-                  <div class="dt-buttons">
-                    <x-export-printing/>
-                    <x-export-excell />
-                  </div>
-                </div>
-              </div>
-               <div class="col-9">
+              
+               <div class="col-12">
                   <form wire:submit='search'>
                     <div class="row">
                         <div class="col-4 col-md-4">
@@ -65,7 +58,23 @@
                                 </div>
                     </div>   
                   </form>
-               </div>   
+               </div>  
+               
+               <div class="col-md-6 mt-2">
+                <div class="table-responsive text-nowrap"> 
+                  <div class="dt-buttons">
+                    <a href="#" onclick="extractContentForPrinting(2,'pension')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                      <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                      <span class="d-none d-sm-inline-block">Print</span>
+                    </a>
+                    <a href="#" onclick="extractSelectionforPrinting(3,6,'pension',null,[3,4,5],1)"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                      <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                      <span class="d-none d-sm-inline-block">Print Selection</span>
+                    </a>
+                    <x-export-excell />
+                  </div>
+                </div>
+              </div>
                
           </div>
           

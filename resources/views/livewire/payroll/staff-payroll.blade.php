@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4">Staff Payroll </h4>
+    <h4 class="py-3 mb-4">Staff Payroll @if($month) for {{$monthrange[$month]}}  {{$year}}@endif</h4>
     <div class="card">
       
       <div class="card-datatable table-responsive pt-0">
@@ -10,15 +10,8 @@
         </div>
         <div class="card-body">
             <div class="row mb-3">
-              <div class="col-md-3">
-                <div class="table-responsive text-nowrap"> 
-                  <div class="dt-buttons">
-                    <x-export-printing/>
-                    <x-export-excell />
-                  </div>
-                </div>
-              </div>
-              <div class="col-9 col-md-9">
+              
+              <div class="col-12 col-md-12">
                 <form wire:submit='search'>
                     <div class="row mb-3">
                         <div class="col-4 col-md-4">
@@ -65,6 +58,22 @@
                         </div>
                 </form>
               </div>
+
+              <div class="col-md-6">
+                <div class="table-responsive text-nowrap"> 
+                  <div class="dt-buttons">
+                    <a href="#" onclick="extractContentForPrinting(6,'staff-payroll')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                      <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                      <span class="d-none d-sm-inline-block">Print</span>
+                    </a>
+                    <a href="#" onclick="extractSelectionforPrinting(7,22,'staff',null,[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],1)"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                      <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                      <span class="d-none d-sm-inline-block">Print Selection</span>
+                    </a>
+                    <x-export-excell />
+                  </div>
+                </div>
+              </div>
             </div> 
         </div>
         <div class="table-responsive text-nowrap"> 
@@ -72,7 +81,7 @@
               <table class="table table-hover table-bordered font-13 table-striped" id="result" style="border-collapse: collapse;table-layout: fixed; word-wrap:break-word;">
                   <thead>
                     <tr class="bold">
-                        <th width="50px"></th>
+                        <th class="remove" width="50px"></th>
                         <th width="50px">#</th>
                         <th width="200px">Names</th>
                         <th width="150px">G.level</th>
@@ -116,8 +125,10 @@
                           $netpay = $netpay + $record->netpay;
                         @endphp
                           <tr>
-                              <td class="text-center"><input type="checkbox" wire:model='selectRow'></td>
-                              <td>{{++$count}}</td>
+                            <td class="remove">
+                              <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                            </td>
+                                 <td>{{++$count}}</td>
                               <td>
                                   <a href="#" wire:click.prevent='payslip({{$record->id}})' class="text-underline-dotted" data-bs-toggle="modal" data-bs-target="#editUser">{{$record->profile->fullname()}}</a>
                               </td>
@@ -147,7 +158,7 @@
                   </tbody>
                   <tfoot>
                       <tr>
-                          <td colspan="7" class="text-right"><strong>Total</strong></td>
+                          <td colspan="6" class="align-right"><strong>Total</strong></td>
                           <td id="total1">{{format_currency($salary)}}</td>
                           <td id="total2">{{format_currency($rent)}}</td>
                           <td id="total6">{{format_currency($transport)}}</td>
@@ -162,7 +173,7 @@
                           <td id="tota110">{{format_currency($pension)}}</td>
                           <td id="total13">{{format_currency($nhf)}}</td>
                           <td id="total14">{{format_currency($deduction)}}</td>
-                          <td id="total15">{{format_currency($netpay)}}</td>
+                          <td id="total_words" data-total={{$netpay}}>{{format_currency($netpay)}}</td>
                       </tr>
                   </tfoot>
               </table>
