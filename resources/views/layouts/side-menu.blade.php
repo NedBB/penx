@@ -163,6 +163,11 @@
             <div data-i18n="Payment Schedule">Payment Schedule</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('staff-schedule')}}" class="menu-link">
+            <div data-i18n="Staff Payment Schedule">Staff Payment Schedule</div>
+            </a>
+        </li>
         </ul>
     </li>
 

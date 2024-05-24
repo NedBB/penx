@@ -17,6 +17,20 @@
             @error('name') <span class="error">{{ $message }}</span> @enderror 
           </div>
         </div>
+        <div class="col-12 col-md-12">
+          <label class="form-label">Abbreviation</label>
+          <input type="text" name="abbreviation"  wire:model="abbreviation" class="form-control"/>
+          <div>
+            @error('abbreviation') <span class="error">{{ $message }}</span> @enderror 
+          </div>
+        </div>
+        <div class="col-12 col-md-12">
+          <label class="form-label">Sort Code</label>
+          <input type="text" name="sortcode"  wire:model="sortcode" class="form-control"/>
+          <div>
+            @error('sortcode') <span class="error">{{ $message }}</span> @enderror 
+          </div>
+        </div>
         <div class="col-12 text-center">
           <button type="submit" class="btn btn-primary me-sm-3 me-1">@if($edit == false)Submit @else Update @endif</button>
         </div>

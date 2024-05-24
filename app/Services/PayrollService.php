@@ -65,7 +65,9 @@ class PayrollService {
     public function getProfilePayroll($month, $year,$profiletype){
 
         if($profiletype == 'staffprofile'){
-            return Payroll::with('profile')
+            return Payroll::with(['profile' => function($query){
+                            $query->with('bank');
+                        }])
                         ->where('profile_type',$profiletype)
                         ->where([
                             ['month', (int)$month],

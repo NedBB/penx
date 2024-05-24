@@ -28,6 +28,7 @@ use App\Livewire\Printer;
 use App\Livewire\Rank;
 use App\Livewire\Staff;
 use App\Livewire\StaffPayroll;
+use App\Livewire\StaffSchedule;
 use App\Livewire\StateParastatal;
 use App\Livewire\Subhead;
 use App\Livewire\SystemUser;
@@ -74,7 +75,7 @@ Route::get('/transport/travel', TandT::class)->middleware(['auth', 'verified'])-
 Route::get('/deductions', Deduction::class)->middleware(['auth', 'verified'])->name('deductions');
 Route::get('/payment/schedule', PaymentSchedule::class)->middleware(['auth', 'verified'])->name('payment-schedule');
 Route::get('/contributory/pension', ContributoryPension::class)->middleware(['auth', 'verified'])->name('contributory-pension');
-
+Route::get('/staff/payment/schedule', StaffSchedule::class)->middleware(['auth','verified'])->name('staff-schedule');
 //Payroll
 Route::get('/payroll/staff', StaffPayroll::class)->middleware(['auth', 'verified'])->name('payroll-staff');
 Route::get('/payroll/national/officers', OfficerPayroll::class)->middleware(['auth', 'verified'])->name('payroll-officer');

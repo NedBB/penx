@@ -12,6 +12,8 @@ class Bank extends Component
     use WithPagination;
 
     public $name; 
+    public $sortcode;
+    public $abbreviation;
     public $id;
     public $bank;
     public $title = "Add Bank";
@@ -26,18 +28,19 @@ class Bank extends Component
     public function add(){
         $this->edit = false;
         $this->title = "Add Bank";
-        $this->reset(['name']);
-    }
+        $this->reset(['name','abbreviation','sortcode']);    }
 
     public function save(BankService $service){
 
         $validated = $this->validate([ 
-            'name' => 'required|min:3'
+            'name' => 'required|min:3',
+            'abbreviation' => 'required|min:3',
+            'sortcode' => 'required|min:3'
         ]);
 
         $response = $service->create($validated);
 
-        $this->reset(['name']);
+        $this->reset(['name','abbreviation','sortcode']);
 
         if($response){
             request()->session()->flash('success','Record has successfully been created',array('timeout' => 3000));
@@ -49,7 +52,9 @@ class Bank extends Component
 
     public function update(BankService $service){
         $validated = $this->validate([ 
-            'name' => 'required|min:3'
+            'name' => 'required|min:3',
+            'abbreviation' => 'required|min:3',
+            'sortcode' => 'required|min:3'
         ]);
 
         $response = $service->update($this->id,$validated);
@@ -68,6 +73,8 @@ class Bank extends Component
         $this->edit = true;
         $this->bank = $service->getById($id);
         $this->name = $this->bank->name;
+        $this->abbreviation = $this->bank->abbreviation;
+        $this->sortcode = $this->bank->sortcode;
         $this->id = $this->bank->id; 
     }
 

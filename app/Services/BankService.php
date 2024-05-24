@@ -19,7 +19,9 @@ class BankService{
     }
 
     public function list($page,$search){
-        return Bank::search($search)->paginate($page);
+        return Bank::search($search)
+                    ->orderby('id','DESC')
+                    ->paginate($page);
     }
 
     public function accoutCount(){
@@ -39,9 +41,11 @@ class BankService{
     }
 
     public function update($id,$data){
-        $department = Bank::find($id);
-        $department->name = $data['name'];
-        return $department->save();
+        $bank = Bank::find($id);
+        $bank->name = $data['name'];
+        $bank->abbreviation = $data['abbreviation'];
+        $bank->sortcode = $data['sortcode'];
+        return $bank->save();
     }
 
     public function delete($id){
