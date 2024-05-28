@@ -31,6 +31,8 @@ class StaffSchedule extends Component
 
         if(($validated['year']) && ($validated['month'])){
            $this->records = $payrollService->getProfilePayroll($validated['month'],$validated['year'], 'staffprofile');
+           $data = $this->records;
+           dd($data[0]);
         }
     }
 
