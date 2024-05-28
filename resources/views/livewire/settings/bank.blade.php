@@ -37,6 +37,8 @@
                 <thead>
                   <tr role="row">
                     <th>Banks</th>
+                    <th>Sort Code</th>
+                    <th>Abbreviation</th>
                     <th class="text-center">Actions</th>
                   </tr>
                 </thead>
@@ -45,6 +47,12 @@
                     <tr wire:key='{{$bank->id}}'>
                         <td class="text-capitalize" style="width: 80%">
                               {{$bank->name}}
+                        </td>
+                        <td class="text-capitalize" style="width: 80%">
+                          {{$bank->sortcode}}
+                        </td>
+                        <td class="text-capitalize" style="width: 80%">
+                          {{$bank->abbreviation}}
                         </td>
                         <td class="text-center">
 
