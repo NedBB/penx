@@ -21,7 +21,7 @@
                               <td>{{$record->profile->accountno}}</td>
                               <td>{{format_currency($record->netpay)}}</td>
                               <td>{{$record->profile->bank->sortcode}}</td>
-                              <td>{{$record->profile->bank->name}}</td>
+                              <td>{{empty($record->profile->bank->abbreviation) ? $record->profile->bank->name : $record->profile->bank->abbreviation}}</td>
                               <td></td>
                           </tr>
                       @empty
