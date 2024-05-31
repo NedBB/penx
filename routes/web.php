@@ -33,6 +33,7 @@ use App\Livewire\StateParastatal;
 use App\Livewire\Subhead;
 use App\Livewire\SystemUser;
 use App\Livewire\TandT;
+use App\Livewire\YearlyExpenditure;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +83,8 @@ Route::get('/payroll/national/officers', OfficerPayroll::class)->middleware(['au
 
 //Ledger
 Route::get('/legder/income', LedgeIncome::class)->middleware(['auth', 'verified'])->name('ledger-income');
-Route::get('/ladger/expenditure', Expenditure::class)->middleware(['auth', 'verified'])->name('ledger-expenditure');
+Route::get('/ledger/expenditure', Expenditure::class)->middleware(['auth', 'verified'])->name('ledger-expenditure');
+Route::get('/ledger/year/expenditure', YearlyExpenditure::class)->middleware(['auth', 'verified'])->name('ledger-year-expenditure');
 
 
 Route::middleware('auth')->group(function () {

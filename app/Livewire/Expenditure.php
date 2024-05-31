@@ -216,8 +216,6 @@ class Expenditure extends Component
 
     }
 
-    
-
     public function boot(GroupheadService $groupheadService){
         $this->heads = $groupheadService->headList();
     }

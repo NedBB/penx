@@ -19,6 +19,47 @@ class GroupheadService {
         return Head::get();
     }
 
+    public function getExpenditureByYear($year){
+        $heads = Head::with([
+            'subheads' => function($h) use ($year){
+                $h->with([
+                    'omnibuses'=>function($m) use($year){
+                        $m->whereYear('created_at',$year)
+                            ->select('id','pvno','subhead_id','description','amount');
+                    },
+                    'allocations'=>function($a) use($year){
+                        $a->with([
+                            'location'=>function($l){
+                                $l->select('id','name');
+                            }
+                        ])->whereYear('created_at',$year)
+                            ->select('id','pvno','subhead_id','netpay as amount','location_id');
+                    },
+                    'transportandtravels'=>function($a) use($year){
+                        $a->whereYear('created_at',$year)
+                            ->select('id','pvno','subhead_id','description','totalamount as amount');
+                    }
+                ])->select('id','head_id','name');
+            }
+        ])->get();
+
+        $totalAmounts = [
+            'allocations' => 0,
+            'transportandtravels' => 0,
+            'omnibuses' => 0
+        ];
+        
+        foreach ($heads as $head) {
+            foreach ($head->subheads as $subhead) {
+                $totalAmounts['allocations'] += $subhead->allocations->sum('amount');
+                $totalAmounts['transportandtravels'] += $subhead->transportandtravels->sum('amount');
+                $totalAmounts['omnibuses'] += $subhead->omnibuses->sum('amount');
+            }
+        }
+
+        return $heads;
+    }
+
     public function getExpenditure($id,$from, $to){
         return  Head::where('id',$id)
         ->with([
