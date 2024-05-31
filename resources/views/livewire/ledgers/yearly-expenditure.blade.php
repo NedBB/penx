@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4">Yearly Ledgers Expenditure </h4>
+    <h4 class="py-3 mb-4">{{$year}} Ledgers Expenditure </h4>
     <div class="card">
       
       <div class="card-datatable table-responsive pt-0">
@@ -41,7 +41,7 @@
           @if($show)
             <div class="table-responsive text-nowrap"> 
 
-                <table style="width: 100%; table-layout: auto; border-collapse: collapse;" class="table table-hover table-bordered font-13 table-striped" id="result" style="border-collapse: collapse;table-layout: fixed; word-wrap:break-word;">
+                <table style="width: 100%; table-layout: auto; border-collapse: collapse;" class="table table-hover table-bordered font-13 table-striped" id="result">
                    
                     <tbody>
                         <tr><td><strong>{{$year}} EXPENDITURE</strong></td></tr>

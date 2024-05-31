@@ -13,13 +13,9 @@ class YearlyExpenditure extends Component
     public $heads;
     public $year;
     public $records;
+    public $export_data;
     public $start_date;
     public $page_title = "Expenditure";
-    public $end_date;
-    public $head_id;
-    public $columns = [];
-    public $event = '';
-    public $data;
     public $count = 0;
     public $show = false;
     public $federal_amount=0;
@@ -33,8 +29,10 @@ class YearlyExpenditure extends Component
         $this->show = true;
         $result = $groupheadService->getExpenditureByYear($this->year);
 
-        $this->records = $this->expenseArranged($result);
-        //dd($record[0]);
+        $result = $this->expenseArranged($result);
+        $this->records = $result;
+        session(['records' => $result]); 
+        //dd($records[0]);
         // $data = $this->expenseArranged($result);
         // $this->records = $data['datas'];
         // $this->columns = $data['columns'];
@@ -48,25 +46,30 @@ class YearlyExpenditure extends Component
             'transportandtravels' => 0,
             'omnibuses' => 0
         ];
+        $count = 0;
     
         foreach ($data as $head) {
             foreach ($head->subheads as $subhead) {
-                $totalAmounts['allocations'] += $subhead->allocations->sum('amount');
-                $totalAmounts['transportandtravels'] += $subhead->transportandtravels->sum('amount');
-                $totalAmounts['omnibuses'] += $subhead->omnibuses->sum('amount');
-                $total = $totalAmounts['allocations'] + $totalAmounts['transportandtravels'] + $totalAmounts['omnibuses'];
-                $subhead->amount = $total;
+                if($subhead->name != "UNKNOWN"){
+                    $totalAmounts['allocations'] += $subhead->allocations->sum('amount');
+                    $totalAmounts['transportandtravels'] += $subhead->transportandtravels->sum('amount');
+                    $totalAmounts['omnibuses'] += $subhead->omnibuses->sum('amount');
+                    $total = $totalAmounts['allocations'] + $totalAmounts['transportandtravels'] + $totalAmounts['omnibuses'];
+                    $subhead->amount = $total;
+                    ++$count;
+                }
             }
-            $head->cols = count($head->subheads);
+            $head->cols = $count;
         }
 
         return $data;
 
-
     }
 
     public function export(){
-        return Excel::download(new YearlyExpenditureExport($this->records, $this->year), 'expenditures.xlsx');
+        $data = session('records'); 
+        
+        return Excel::download(new YearlyExpenditureExport($data, $this->year), 'expenditures-annual.xlsx');
     }
 
     public function render()
