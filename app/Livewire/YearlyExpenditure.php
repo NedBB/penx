@@ -29,7 +29,8 @@ class YearlyExpenditure extends Component
         $this->show = true;
         $result = $groupheadService->getExpenditureByYear($this->year);
 
-        $result = $this->expenseArranged($result);
+       // $result = $this->expenseArranged($result);
+       //dd($result[0]);
         $this->records = $result;
         session(['records' => $result]); 
         //dd($records[0]);

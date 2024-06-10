@@ -49,15 +49,46 @@ class GroupheadService {
             'omnibuses' => 0
         ];
         
-        foreach ($heads as $head) {
+        // foreach ($heads as $head) {
+        //     foreach ($head->subheads as $subhead) {
+        //         $totalAmounts['allocations'] += $subhead->allocations->sum('amount');
+        //         $totalAmounts['transportandtravels'] += $subhead->transportandtravels->sum('amount');
+        //         $totalAmounts['omnibuses'] += $subhead->omnibuses->sum('amount');
+        //     }
+        // }
+
+        
+        return $this->expenseArranged($heads);
+    }
+
+    private function expenseArranged($data)
+    {
+        
+        $count = 0;
+    
+        foreach ($data as $head) {
             foreach ($head->subheads as $subhead) {
-                $totalAmounts['allocations'] += $subhead->allocations->sum('amount');
-                $totalAmounts['transportandtravels'] += $subhead->transportandtravels->sum('amount');
-                $totalAmounts['omnibuses'] += $subhead->omnibuses->sum('amount');
+                $totalAmounts = [
+                    'allocations' => 0,
+                    'transportandtravels' => 0,
+                    'omnibuses' => 0
+                ];
+
+                if($subhead->name != "UNKNOWN"){
+                    $totalAmounts['allocations'] += $subhead->allocations->sum('amount');
+                    $totalAmounts['transportandtravels'] += $subhead->transportandtravels->sum('amount');
+                    $totalAmounts['omnibuses'] += $subhead->omnibuses->sum('amount');
+                    $total = $totalAmounts['allocations'] + $totalAmounts['transportandtravels'] + $totalAmounts['omnibuses'];
+                    $subhead->amount = $total;
+                    ++$count;
+                }
+                $total = 0;
             }
+            $head->cols = $count;
         }
 
-        return $heads;
+        return $data;
+
     }
 
     public function getExpenditure($id,$from, $to){
