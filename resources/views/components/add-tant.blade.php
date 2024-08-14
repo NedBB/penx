@@ -11,7 +11,7 @@
         <div class="alert alert-danger" role="alert">{{session('failed')}}</div>
     @endif
 
-    <form id="editUserForm" class="row g-3" wire:submit='save'>
+    <form id="editUserForm" class="row g-3" wire:submit="@if($edit == false)save @else update @endif">
         @php
             $head_field = "head_id";
             $subhead_field = "subhead_id"

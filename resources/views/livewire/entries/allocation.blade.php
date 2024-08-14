@@ -214,6 +214,6 @@
     </div>
   </div>
 
-  {{-- <x-add-tant :title="$title" :data="$head_id" :heads="$heads" :records="$subheads" :fullnames="$fullnames"/> --}}
+  <x-add-allocation :title="$title" :locations="$locations" :monthrange="$monthrange" :month_1="$month_1" :month_2="$month_2" :year_2="$year_2" :year_1="$year_1" :data="$head_id" :heads="$heads" :records="$subheads" :edit="$edit"/>
 
 </div>
