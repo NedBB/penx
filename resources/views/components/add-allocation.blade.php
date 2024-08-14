@@ -119,7 +119,7 @@
                 <div class="col-md-4">
                     <div class="input-group">
                     <span class="input-group-addon" style="background: #e8e8e8;padding: 4px;">
-                        <input type="checkbox" id="apply" aria-label="..." name="applypercent" >
+                        <input type="checkbox" id="apply" aria-label="..." name="applypercent"  wire:blur="selectApply">
                    </span>
                         <input type="text" class="form-control checks" aria-label="..." placeholder="Apply Percentages" disabled>
                     </div>
@@ -130,11 +130,11 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon"  style="background: #e8e8e8;padding: 4px;">
-                                <input type="radio" id="nty" aria-label="..." name="divisionpercent" value="90" >
+                            <input type="radio" id="nty" aria-label="..." name="divisionpercent" wire:click="getPercent(90)" value="90" >
                        </span>
                         <input type="text" class="form-control checks" aria-label="..." placeholder="90%" disabled>
                         <span class="input-group-addon"  style="background: #e8e8e8;padding: 4px;">
-                            <input type="radio" id="hnd" aria-label="90" name="divisionpercent" value="100" >
+                            <input type="radio" id="hnd" aria-label="90" name="divisionpercent" wire:blur="getPercent(100)" value="100" >
                          </span>
                         <input type="text" class="form-control checks" aria-label="..." placeholder="100%" disabled>
                     </div>
@@ -162,7 +162,7 @@
                     <label class="form-label">Amount Received</label>
                     <input
                         wire:model='amount'
-                        wire:blur="calculateTotals"
+                        wire:blur="getPay"
                         type="number"
                         name="amount"
                         class="form-control" 
@@ -176,7 +176,6 @@
                     <label class="form-label">Allocation %</label>
                     <input
                         wire:model='allocation_field'
-                        wire:blur="calculateTotals"
                         type="number"
                         name="allocation_field"
                         class="form-control" 
@@ -189,7 +188,7 @@
                     <label class="form-label">Gross Pay</label>
                     <input
                         wire:model='gross_pay'
-                        type="text"
+                        type="number"
                         name="gross_pay"
                         class="form-control" 
                         disabled
@@ -231,7 +230,7 @@
                     <label class="form-label">Advance Allocation</label>
                     <input
                         wire:model='advance_allocation'
-                        type="text"
+                        type="number"
                         name="advance_allocation"
                         class="form-control" 
                     />
@@ -272,7 +271,7 @@
                     <label class="form-label">Audit Fees</label>
                     <input
                         wire:model='audit_fees'
-                        type="text"
+                        type="number"
                         name="audit_fees"
                         class="form-control" 
                     />
@@ -313,7 +312,7 @@
                     <label class="form-label">Badges</label>
                     <input
                         wire:model='badges'
-                        type="text"
+                        type="number"
                         name="badges"
                         class="form-control" 
                     />
@@ -326,7 +325,7 @@
                     <label class="form-label">Net Pay</label>
                     <input
                         wire:model='net_pay'
-                        type="text"
+                        type="number"
                         name="net_pay"
                         class="form-control" 
                         disabled

@@ -153,6 +153,8 @@
                       </td>
                       <td>
                           <span class="fw-medium">{{$list->subhead->name}}</span>
+                          <livewire:edit-anchor :record="$list" :eventoption="$editevent" wire:key='{{time().$list->id}}' > 
+                          &nbsp;
                       </td>
                       <td>
                         <span class="fw-medium">{{$list->location->name}}</span>
@@ -192,8 +194,7 @@
                         <span class="fw-medium">{{format_money($list->netpay)}}</span>
                     </td>
                       <td class="change">
-                        <livewire:edit-anchor :record="$list" :eventoption="$editevent" wire:key='{{time().$list->id}}' > 
-                          &nbsp;
+                        
                         <a href="#" onclick="confirm('Are you sure you want to delete ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$list->id}})'>
                             <i class="fa-solid fa-trash text-danger"></i>
                           </a>

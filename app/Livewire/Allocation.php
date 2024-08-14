@@ -40,8 +40,8 @@ class Allocation extends Component
     public $constitution = 0;
     public $arrears = 0;
     public $nlc = 0;
-    public $allocation_field = 0;
-    public $divisionpercent = false;
+    public $allocation_field = 55;
+    public $divisionpercent;
     public $applypercent = false;
     public $legal = 0;
     public $almanac = 0;
@@ -89,29 +89,66 @@ class Allocation extends Component
         $this->subhead_id = $value;
     }
 
-    public function save(TransportandtravelService $transport)
+    public function getPercent($value){
+        if($this->applypercent){
+            $this->divisionpercent = $value;
+        }
+    }
+
+    public function getPay(){
+        $start_date = Carbon::create($this->year_1,$this->month_1,1)->startOfMonth();
+        $end_date = Carbon::create($this->year_2,$this->month_2)->endOfMonth();
+        $diffInMonths = $start_date->diffInMonths($end_date);
+        $this->gross_pay = ($diffInMonths * ($this->amount*($this->allocation_field/$this->divisionpercent)));
+        $deduct = $this->nlc + $this->arrears + $this->advance_allocation + $this->constitution 
+        + $this->northern_dues + $this->audit_fees + $this->legal + $this->almanac + $this->badges;
+        $this->net_pay = $this->gross_pay - $deduct;
+    }
+
+    public function calculateTotals(){
+        $deduct = $this->nlc + $this->arrears + $this->advance_allocation + $this->constitution 
+        + $this->northern_dues + $this->audit_fees + $this->legal + $this->almanac + $this->badges;
+        $this->net_pay = $this->gross_pay - $deduct;
+    }
+
+    public function selectApply(){
+        $this->applypercent = true;
+    }
+
+    public function save(AllocationService $allocationService)
     {
         $validate =  $this->validate([
+            "head_id"       => ['required'],
             "subhead_id"       => ['required'],
-            "transport"    => ['required'],
-            "description"       => ['required'],
+            "amount"    => ['required'],
+            "advance_allocation"       => ['required'],
             "pvno"          => ['required'],
-            "name"            => ['nullable'],
+            "location_id"            => ['required'],
+            "legal"            => ['required'],
+            "almanac" => ["required"],
+            "audit_fees" => ["required"],
+            "nlc"            => ['required'],
+            "arrears"            => ['required'],
+            "badges"            => ['required'],
+            "gross_pay"            => ['required'],
+            "net_pay"            => ['required'],
+            "allocation_field"            => ['required'],
+            "constitution"            => ['required'],
+            "northern_dues"            => ['required'],
+            "audit_fees"            => ['required'],
+            "month_1"            => ['required'],
+            "month_2"            => ['required'],
+            "year_1"            => ['required'],
+            "year_2"            => ['required'],
+            "divisionpercent" => ['required']
         ]);
 
-        $validate['food'] = $this->food;
-        $validate['food_multiple'] = $this->food_multiple;
-        $validate['seating_multiple'] = $this->seating_multiple;
-        $validate['seating'] = $this->seating;
-        $validate['outstation'] = $this->outstation;
-        $validate['outstation_multiple'] = $this->outstation_multiple;
-        $validate['house'] = $this->house;
-        $validate['house_multiple'] = $this->house_multiple;
-        $validate['grand_total'] = $this->grand_total;
+        $response = $allocationService->createRecord($validate);
 
-        $response = $transport->createRecord($validate);
-
-        $this->reset(['transport','head_id','pvno','description','name','description','date']);
+        $this->reset(['amount','head_id','subhead_id',
+        'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
+        'almanac','badges','legal','northen_dues','divisionpercent'
+    ]);
 
         if($response){
             request()->session()->flash('success','Record has successfully been created',array('timeout' => 3000));
@@ -119,6 +156,10 @@ class Allocation extends Component
         else{
             request()->session()->flash('failed','Record creation failed',array('timeout' => 3000));
         }
+    }
+
+    public function delete($id,AllocationService $allocationService){
+        $allocationService->delete($id);
     }
 
     #[On('edit-allocation')]

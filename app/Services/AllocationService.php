@@ -35,4 +35,35 @@ class AllocationService {
                             ->get();
     }
 
+    public function createRecord($data){
+        return Allocation::create([
+            'head_id' => $data['head_id'],
+            'subhead_id' => $data['subhead_id'],
+            'location_id' => $data['location_id'],
+            'remittedamount' => $data['amount'],
+            'pvno' => $data['pvno'],
+            'allocationpercent' => $data['allocation_field'],
+            'divisionpercent' => $data['divisionpercent'],
+            'grosspay' => $data['gross_pay'],
+            'netpay' => $data['net_pay'],
+            'contributiontonlc' => $data['nlc'],
+            'legal' => $data['legal'],
+            'constitution' => $data['constitution'],
+            'almanac' => $data['almanac'],
+            'badges' => $data['badges'],
+            'advanceallocation' => $data['advance_allocation'],
+            'arrears' => $data['arrears'],
+            'magazine' => $data['northern_dues'],
+            'auditfee' => $data['audit_fees'],
+            'month_1' => $data['month_1'],
+            'month_2' => $data['month_2'],
+            'year_2' => $data['year_2'],
+            'year_1' => $data['year_1'],
+        ]);
+    }
+
+
+    public function delete($id){
+        return Allocation::where('id',$id)->delete();
+    }
 }
