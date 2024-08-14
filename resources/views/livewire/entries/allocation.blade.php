@@ -1,99 +1,219 @@
-
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Sub Head</h4>
+  <h4 class="py-3 mb-4"> {{$page_title}}</h4>
 
-    <!-- DataTable with Buttons -->
-    <div class="card">
-          <div class="card-header">
-          <button type="button" class="btn btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#editUser">
-                  + Add Record
-          </button>
-          </div>
-          <div class="table-responsive text-nowrap">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Group Head</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody class="table-border-bottom-0">
-                  @forelse ($subs as $sub)
-                      <tr wire:key='{{$sub->id}}'>
-                          <td class="text-capitalize">
-                          <span class="fw-medium">{{$sub->name}}</span>
-                          </td>
-                          <td>
-                              <span class="fw-medium">{{$sub->head->slug}}</span>
-                          </td>
-                          <td>
-                              <span class="fw-medium"><button class="btn btn-sm btn-danger">delete</button></span>
-                          </td>
-                      
-                      </tr>
-                  @empty
-                      
-                  @endforelse
+  <!-- DataTable with Buttons -->
+  <div class="card">
+    <div class="card-datatable table-responsive pt-0">
+      <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+        <div class="card-header">
+          <livewire:add-anchor :eventoption="$addevent">
+        </div>
+        <div class="row mt-2 mb-3">
+          <form wire:submit='searchs' style="padding: 0 20px">
+            <div class="row mb-3">
+              <div class="col-2 col-md-2">
+                <select wire:model='subhead_search_field'
+                    name="subhead_search_field"
+                    class="form-select"
+                    >
+                    <option value="">Subhead</option>
+                     @foreach($subhead_field_lists as $list)
+                          <option value="{{$list->id}}">{{$list->name}}</option>
+                      @endforeach
+                </select>
+              </div>
+              <div class="col-2 col-md-2">
+                <select wire:model='month_1'
+                    name="month_1"
+                    class="form-select"
+                    >
+                    <option value="">Month 1</option>
+                     @foreach($monthrange as $key => $value)
+                          <option value="{{$key}}">{{$value}}</option>
+                      @endforeach
+                </select>
+              </div>
+              <div class="col-2 col-md-2">
                 
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer">
-              {{$subs->links()}}
-          </div>
-    </div>
-
-    <!-- Edit User Modal -->
-        <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-md modal-simple modal-edit-user">
-            <div class="modal-content p-3 p-md-5">
-              <div class="modal-body">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="text-center mb-4">
-                  <h3 class="mb-2">Add Group Head</h3>
-                </div>
-                <form id="editUserForm" class="row g-3" onsubmit="return false">
-                  <div class="col-12 col-md-12">
-                    <label class="form-label" for="modalEditUserFirstName">Name</label>
-                    <input
-                      type="text"
-                      id="modalEditUserFirstName"
-                      name="modalEditUserFirstName"
-                      class="form-control"
-                      placeholder="John" />
-                  </div>
-                  
-                  <div class="col-12 col-md-12">
-                    <label class="form-label" for="modalEditUserFirstName">Descriptions</label>
-                    <input
-                      type="text"
-                      id="modalEditUserFirstName"
-                      name="modalEditUserFirstName"
-                      class="form-control"
-                      placeholder="John" />
-                  </div>
+                <select wire:model='year_1'
+                    name="year_1"
+                    class="form-select"
+                    >
+                    <option value="">Year 1</option>
+                    @php
+                      $reverse = array_reverse(range(1990, date('Y')));
+                    @endphp
+                    @foreach($reverse as $i)
+                          <option value="{{$i}}">{{$i}}</option>
+                      @endforeach
+                </select>
+              </div>
+              <div class="col-2 col-md-2">
                 
-                  
-                 
-                    
-                  </div>
-                  <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                    <button
-                      type="reset"
-                      class="btn btn-label-secondary"
-                      data-bs-dismiss="modal"
-                      aria-label="Close">
-                      Cancel
-                    </button>
-                  </div>
-                </form>
+                <select wire:model='month_2'
+                    name="month_2"
+                    class="form-select"
+                    >
+                    <option value="">Month 2</option>
+                    @foreach($monthrange as $key => $value)
+                          <option value="{{$key}}">{{$value}}</option>
+                      @endforeach
+                </select>
+              </div>
+              <div class="col-2 col-md-2">
+                <select wire:model='year_2'
+                    name="year_2"
+                    class="form-select"
+                    >
+                    <option value="">Year 2</option>
+                    @php
+                        $reverse = array_reverse(range(1990, date('Y')));
+                    @endphp
+                    @foreach($reverse as $i)
+                          <option value="{{$i}}">{{$i}}</option>
+                      @endforeach
+                </select>
+            
+                
+              </div>
+              <div class="col-1 col-md-1">
+                <button class="btn btn-primary" type="submit">submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-12 col-md-3">
+            <div class="dataTables_length">
+              <label>
+                Show
+              <select wire:model.live='page' name="page" class="form-select">
+                <option value="">All</option>
+                </select> 
+                Entries</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3">
+            <div class="table-responsive text-nowrap"> 
+              <div class="dt-buttons">
+                <a href="#" onclick="extractContentForPrinting(1,'allocation','{{$pvno_search}}')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                  <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                  <span class="d-none d-sm-inline-block">Print</span>
+                </a>
+                <a href="#" onclick="extractSelectionforPrinting(1,5,'allocation','{{$pvno_search}}',[4],2)"  id="print-selection" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                  <span><i class="ti ti-file-export me-sm-1"></i> </span>
+                  <span class="d-none d-sm-inline-block">Print Selection</span>
+                </a>
+                <x-export-excell />
               </div>
             </div>
           </div>
-        </div>
-        <!--/ Edit User Modal -->
+          <div class="col-sm-12 col-md-3 d-flex justify-content-center justify-content-md-end">
+            <form wire:submit='searchrecords'>
+              <div class="input-group mt-3">
+                <input type="text" wire:model='pvno_search' class="form-control" placeholder="Enter PVNO">
+                <button class="btn btn-primary" type="submit" id="button-addon1">Search</button>
+              </div>
 
+            </form>
+          </div>
+        </div>
+        <div class="table-responsive text-nowrap">
+          <table class="table table-hover table-bordered font-13 table-striped" id="printTable">
+            <thead>
+              <tr>
+                <th class="remove"></th>
+                <th class="remove">Date</th>
+                <th>Subhead</th>
+                <th>State</th>
+                <th>Total Check-off</th>
+                <th>Gross Pay</th>
+                <th>Legal</th>
+                <th>Constition</th>
+                <th>Almanac</th>
+                <th>Badges</th>
+                <th>Advance Allocation</th>
+                <th>Arrears</th>
+                <th>Norther Dues</th>
+                <th>Audit Fee</th>
+                <th>Net Pay</th>
+                <th class="change">Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                
+                @forelse ($allocations as $list)
+                  
+                    <tr wire:key='{{$list->id}}'>
+                      <td class="remove">
+                        <input id="{{time()}}" type="checkbox" class="checkbox"/>
+                      </td>
+                      <td class="remove">
+                          <span class="fw-medium">{{sqldate($list->created_at)}}</span>
+                      </td>
+                      <td>
+                          <span class="fw-medium">{{$list->subhead->name}}</span>
+                      </td>
+                      <td>
+                        <span class="fw-medium">{{$list->location->name}}</span>
+                    </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->remittedamount)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->grosspay)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+
+                          <span class="fw-medium">{{format_money($list->legal) }}</span>
+                      </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->constitution)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->almanac)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->badges)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->advanceallocation)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->arrears)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->magazine)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+                          <span class="fw-medium">{{format_money($list->auditfee)}}</span>
+                      </td>
+                      <td class="text-capitalize">
+                        <span class="fw-medium">{{format_money($list->netpay)}}</span>
+                    </td>
+                      <td class="change">
+                        <livewire:edit-anchor :record="$list" :eventoption="$editevent" wire:key='{{time().$list->id}}' > 
+                          &nbsp;
+                        <a href="#" onclick="confirm('Are you sure you want to delete ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$list->id}})'>
+                            <i class="fa-solid fa-trash text-danger"></i>
+                          </a>
+                      </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="16" class="text-center text-danger">No data exist at the moment</td></tr>
+                @endforelse
+            </tbody>
+            
+          </table>
+        </div>
+
+        <div class="table table-hover table-bordered font-13 table-striped">
+            {{-- {{$omnibusses->links()}} --}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{-- <x-add-tant :title="$title" :data="$head_id" :heads="$heads" :records="$subheads" :fullnames="$fullnames"/> --}}
 
 </div>

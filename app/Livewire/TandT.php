@@ -64,7 +64,7 @@ class TandT extends Component
         $this->food_total = $this->food_multiple * $this->food;
         $this->outstation_total = $this->outstation_multiple * $this->outstation;
         $this->seating_total = $this->seating_multiple * $this->seating;
-        $this->grand_total = $this->house_total + $this->food_total + $this->outstation_total + $this->seating_total;
+        $this->grand_total = $this->transport + $this->house_total + $this->food_total + $this->outstation_total + $this->seating_total;
     }
 
     public function searchrecords(TransportandtravelService $transport){

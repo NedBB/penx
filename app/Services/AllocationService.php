@@ -16,14 +16,23 @@ class AllocationService {
     }
 
     public function getRecords($data){
+       
         return Allocation::with(['location','subhead'])
                             ->where([
                                 'month_1'=>$data['month_1'],
                                 'month_2'=>$data['month_2'],
                                 'year_1'=>$data['year_1'],
                                 'year_2'=>$data['year_2'],
-                                'subhead_id'=>$data['subhead']
-                            ])->get();
+                                'subhead_id'=>$data['subhead_search_field']
+                            
+                            ])->orderby('location_id')->get();
+    }
+
+    public function getRecordsByPvno($pvno){
+        return Allocation::with(['location','subhead'])
+                            ->where('pvno', $pvno)
+                            ->orderby('location_id')
+                            ->get();
     }
 
 }

@@ -3,14 +3,22 @@
 namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 
-class AllocationExport implements FromCollection
+class AllocationExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public $records;
+
+    public function __construct($records)
     {
-        //
+        $this->records = $records;
+    }
+
+    public function view(): View
+    {
+        return view('livewire.exports.allocation', [
+            'allocations' => $this->records,
+        ]);
     }
 }
