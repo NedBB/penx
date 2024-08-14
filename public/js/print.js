@@ -328,7 +328,7 @@
 
                 <title>${newH1}</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
-                <link rel="stylesheet" href="http://52.200.186.6/css/main.css?v=${Date.now()}" />
+                <link rel="stylesheet" href="http://localhost:8000/css/main.css?v=${Date.now()}" />
                 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet">
                 <style>
                     body {
@@ -401,7 +401,7 @@
 
                 <title>${newH1}</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
-                <link rel="stylesheet" href="http://52.200.186.6/css/main.css?v=${Date.now()}" />
+                <link rel="stylesheet" href="http://localhost:8000/css/main.css?v=${Date.now()}" />
                 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet">
                 <style>
                     body {
@@ -470,7 +470,7 @@
 
                 <title>${newH1}</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
-                <link rel="stylesheet" href="http://52.200.186.6/css/main.css?v=${Date.now()}" />
+                <link rel="stylesheet" href="http://localhost:8000/css/main.css?v=${Date.now()}" />
                 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet">
                 <style>
                     body {
