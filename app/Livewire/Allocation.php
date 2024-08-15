@@ -38,6 +38,7 @@ class Allocation extends Component
     public $net_pay = 0;
     public $gross_pay = 0;
     public $constitution = 0;
+    public $id;
     public $arrears = 0;
     public $nlc = 0;
     public $allocation_field = 55;
@@ -177,34 +178,38 @@ class Allocation extends Component
         $this->title = "edit allocation";
         $this->edit = true;
 
-         $allocation = $allocationService->getRecordById($id);
+         $records = $allocationService->getRecordById($id);
+         $this->id = $records->id;
         // $this->name = $this->ttrecords->profile;
         // $this->description = $this->ttrecords->description;
-        $this->subhead_id = $allocation->subhead_id;
+        $this->subhead_id = $records->subhead_id;
         //$subhead = $groupheadService->getById($this->allocation->subhead_id,'subhead');
-        $this->head_id = $allocation->head_id;    
-        $this->amount = $allocation->remittedamount;
-        $this->pvno = $allocation->pvno;
+        $this->head_id = $records->head_id;    
+        $this->amount = $records->remittedamount;
+        $this->pvno = $records->pvno;
         //$this->id = $this->allocation->id;
-        $this->arrears = $allocation->arrears;
-        $this->year_1 = $allocation->year_1;
-        $this->year_2 = $allocation->year_2;
-        $this->month_2 = $allocation->month_2;
-        $this->month_1 = $allocation->month_1;
-        $this->audit_fees = $allocation->auditfee;
-        $this->northern_dues = $allocation->magazine;
-        $this->legal = $allocation->legal;
-        $this->advance_allocation = $allocation->advanceallocation;
-        $this->badges = $allocation->badges;
-        $this->almanac = $allocation->almanac;
-        $this->divisionpercent = $allocation->divisionpercent;
-        $this->constitution = $allocation->constitution;
-        $this->nlc = $allocation->contributiontonlc;
-        $this->net_pay = $allocation->netpay;
-        $this->gross_pay = $allocation->grosspay;
-        $this->net_pay = $allocation->netpay;
-        $this->allocation_field = $allocation->allocationpercent;
-        $this->location_id = $allocation->location_id;
+        $this->arrears = $records->arrears;
+        $this->year_1 = $records->year_1;
+        $this->year_2 = $records->year_2;
+        $this->month_2 = $records->month_2;
+        $this->month_1 = $records->month_1;
+        $this->audit_fees = $records->auditfee;
+        $this->northern_dues = $records->magazine;
+        $this->legal = $records->legal;
+        $this->advance_allocation = $records->advanceallocation;
+        $this->badges = $records->badges;
+        $this->almanac = $records->almanac;
+        $this->divisionpercent = $records->divisionpercent;
+        $this->constitution = $records->constitution;
+        $this->nlc = $records->contributiontonlc;
+        $this->net_pay = $records->netpay;
+        $this->gross_pay = $records->grosspay;
+        $this->net_pay = $records->netpay;
+        $this->allocation_field = $records->allocationpercent;
+        $this->location_id = $records->location_id;
+    }
+
+    public function update(AllocationService $allocationService){
 
         $validate =  $this->validate([
             "head_id"       => ['required'],
@@ -232,12 +237,8 @@ class Allocation extends Component
             "divisionpercent" => ['required']
         ]);
 
-        $response = $allocationService->updateRecord($id,$validate);
-
-        $this->reset(['amount','head_id','subhead_id',
-        'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
-        'almanac','badges','legal','northern_dues','divisionpercent'
-    ]);
+  
+        $response = $allocationService->updateRecord($this->id,$validate);
 
         if($response){
             request()->session()->flash('success','Record has successfully been updated',array('timeout' => 3000));

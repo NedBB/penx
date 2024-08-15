@@ -67,8 +67,9 @@ class AllocationService {
     }
 
     public function updateRecord($id,$data){
+         
             $record = Allocation::find($id);
-
+        
             $record->head_id = $data['head_id'];
             $record->subhead_id = $data['subhead_id'];
             $record->location_id = $data['location_id'];
