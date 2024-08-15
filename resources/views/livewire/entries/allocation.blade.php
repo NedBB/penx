@@ -153,7 +153,7 @@
                       </td>
                       <td>
                           <span class="fw-medium">{{$list->subhead->name}}</span>
-                          <livewire:edit-anchor :record="$list" :eventoption="$editevent" wire:key='{{time().$list->id}}' > 
+                          <livewire:edit-anchor :record="$list" :eventoption="$editevent" wire:key='{{time().$list->id}}' class="remove" > 
                           &nbsp;
                       </td>
                       <td>

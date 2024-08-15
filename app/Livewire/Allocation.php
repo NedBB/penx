@@ -159,39 +159,92 @@ class Allocation extends Component
     }
 
     public function delete($id,AllocationService $allocationService){
-        $allocationService->delete($id);
+        $state = $allocationService->delete($id);
+        if($state){
+            $records = $this->allocations;
+            foreach ($records as $key => $record) {
+                if ($record['id'] == $id) {
+                    unset($records[$key]);
+                }
+            }
+            $this->allocations = $records;
+        }
     }
 
     #[On('edit-allocation')]
     public function edit($id, AllocationService $allocationService, GroupheadService $groupheadService){
       
-        $this->title = "edit transport and travel";
+        $this->title = "edit allocation";
         $this->edit = true;
-        // $this->allocation = $allocationService->getRecordById($id);
+
+         $allocation = $allocationService->getRecordById($id);
         // $this->name = $this->ttrecords->profile;
         // $this->description = $this->ttrecords->description;
-        // $this->subhead_id = $this->ttrecords->subhead_id;
-        // $subhead = $groupheadService->getById($this->ttrecords->subhead_id,'subhead');
-        // $this->head_id = $subhead->head_id;
-    
-        // $this->date = sqldate($this->ttrecords->created_at);
-        // $this->pvno = $this->ttrecords->pvno;
-        // $this->id = $this->ttrecords->id;
-        // $this->transport = $this->ttrecords->transportallowance;
-        // $this->outstation = $this->ttrecords->outstationallowance;
-        // $this->outstation_multiple = $this->ttrecords->os_multiple;
-        // $this->food = $this->ttrecords->foodallowance;
-        // $this->food_multiple = $this->ttrecords->fa_multiple;
-        // $this->house = $this->ttrecords->houseallowance;
-        // $this->house_multiple = $this->ttrecords->ha_multiple;
-        // $this->seating_multiple = $this->ttrecords->sa_multiple;
-        // $this->seating = $this->ttrecords->sittingallowance;
-        // $this->grand_total = $this->ttrecords->totalamount;
+        $this->subhead_id = $allocation->subhead_id;
+        //$subhead = $groupheadService->getById($this->allocation->subhead_id,'subhead');
+        $this->head_id = $allocation->head_id;    
+        $this->amount = $allocation->remittedamount;
+        $this->pvno = $allocation->pvno;
+        //$this->id = $this->allocation->id;
+        $this->arrears = $allocation->arrears;
+        $this->year_1 = $allocation->year_1;
+        $this->year_2 = $allocation->year_2;
+        $this->month_2 = $allocation->month_2;
+        $this->month_1 = $allocation->month_1;
+        $this->audit_fees = $allocation->auditfee;
+        $this->northern_dues = $allocation->magazine;
+        $this->legal = $allocation->legal;
+        $this->advance_allocation = $allocation->advanceallocation;
+        $this->badges = $allocation->badges;
+        $this->almanac = $allocation->almanac;
+        $this->divisionpercent = $allocation->divisionpercent;
+        $this->constitution = $allocation->constitution;
+        $this->nlc = $allocation->contributiontonlc;
+        $this->net_pay = $allocation->netpay;
+        $this->gross_pay = $allocation->grosspay;
+        $this->net_pay = $allocation->netpay;
+        $this->allocation_field = $allocation->allocationpercent;
+        $this->location_id = $allocation->location_id;
 
-        // $this->food_total = $this->food * $this->food_multiple;
-        // $this->seating_total = $this->seating * $this->seating_multiple;
-        // $this->house_total = $this->house * $this->house_multiple;
-        // $this->outstation_total = $this->outstation * $this->outstation_multiple;
+        $validate =  $this->validate([
+            "head_id"       => ['required'],
+            "subhead_id"       => ['required'],
+            "amount"    => ['required'],
+            "advance_allocation"       => ['required'],
+            "pvno"          => ['required'],
+            "location_id"            => ['required'],
+            "legal"            => ['required'],
+            "almanac" => ["required"],
+            "audit_fees" => ["required"],
+            "nlc"            => ['required'],
+            "arrears"            => ['required'],
+            "badges"            => ['required'],
+            "gross_pay"            => ['required'],
+            "net_pay"            => ['required'],
+            "allocation_field"            => ['required'],
+            "constitution"            => ['required'],
+            "northern_dues"            => ['required'],
+            "audit_fees"            => ['required'],
+            "month_1"            => ['required'],
+            "month_2"            => ['required'],
+            "year_1"            => ['required'],
+            "year_2"            => ['required'],
+            "divisionpercent" => ['required']
+        ]);
+
+        $response = $allocationService->updateRecord($id,$validate);
+
+        $this->reset(['amount','head_id','subhead_id',
+        'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
+        'almanac','badges','legal','northern_dues','divisionpercent'
+    ]);
+
+        if($response){
+            request()->session()->flash('success','Record has successfully been updated',array('timeout' => 3000));
+        }
+        else{
+            request()->session()->flash('failed','Record update failed',array('timeout' => 3000));
+        }
        
     }
 

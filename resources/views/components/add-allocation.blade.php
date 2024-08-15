@@ -163,7 +163,7 @@
                     <input
                         wire:model='amount'
                         wire:blur="getPay"
-                        type="number"
+                        type="text"
                         name="amount"
                         class="form-control" 
                     />

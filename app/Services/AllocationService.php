@@ -35,6 +35,10 @@ class AllocationService {
                             ->get();
     }
 
+    public function getRecordById($id){
+        return Allocation::find($id);
+    }
+
     public function createRecord($data){
         return Allocation::create([
             'head_id' => $data['head_id'],
@@ -60,6 +64,35 @@ class AllocationService {
             'year_2' => $data['year_2'],
             'year_1' => $data['year_1'],
         ]);
+    }
+
+    public function updateRecord($id,$data){
+            $record = Allocation::find($id);
+
+            $record->head_id = $data['head_id'];
+            $record->subhead_id = $data['subhead_id'];
+            $record->location_id = $data['location_id'];
+            $record->remittedamount = $data['amount'];
+            $record->pvno = $data['pvno'];
+            $record->allocationpercent = $data['allocation_field'];
+            $record->divisionpercent = $data['divisionpercent'];
+            $record->grosspay = $data['gross_pay'];
+            $record->netpay = $data['net_pay'];
+            $record->contributiontonlc = $data['nlc'];
+            $record->legal = $data['legal'];
+            $record->constitution = $data['constitution'];
+            $record->almanac = $data['almanac'];
+            $record->badges = $data['badges'];
+            $record->advanceallocation = $data['advance_allocation'];
+            $record->arrears = $data['arrears'];
+            $record->magazine = $data['northern_dues'];
+            $record->auditfee = $data['audit_fees'];
+            $record->month_1 = $data['month_1'];
+            $record->month_2 = $data['month_2'];
+            $record->year_2 = $data['year_2'];
+            $record->year_1 = $data['year_1'];
+
+            return $record->save();
     }
 
 
