@@ -6,7 +6,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
 
-class AllocationExport implements FromView
+class TandTExport implements FromView
 {
     public $records;
 
@@ -17,8 +17,8 @@ class AllocationExport implements FromView
 
     public function view(): View
     {
-        return view('livewire.exports.allocation', [
-            'allocations' => $this->records,
+        return view('livewire.exports.tandt', [
+            'tts' => $this->records,
         ]);
     }
 }

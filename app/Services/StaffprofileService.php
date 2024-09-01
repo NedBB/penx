@@ -167,4 +167,8 @@ class StaffprofileService {
         return $data;
     }
 
+    public function getNameAndId(){
+        return Staffprofile::get(['id','surname','firstname']);
+    }
+
 }
