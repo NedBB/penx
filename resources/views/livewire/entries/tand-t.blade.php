@@ -179,6 +179,6 @@
       </div>
     </div>
 
-    <x-add-tant :title="$title" :data="$head_id" :heads="$heads" :records="$subheads" :fullnames="$fullnames"/>
+    <x-add-tant :title="$title" :edit="$edit" :data="$head_id" :heads="$heads" :records="$subheads" :fullnames="$fullnames"/>
 
 </div>
