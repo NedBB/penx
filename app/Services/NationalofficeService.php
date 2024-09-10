@@ -73,7 +73,8 @@ class NationalofficeService {
             $transport = 0;
             $meal = 0;
             $loan = ($national->fixeddeductions != null)?$national->fixeddeductions->first():0;
-            $loan= ($loan['monthlydue'] == null?0:$loan['monthlydue']);
+            
+            $loan= ($loan == null)? 0:$loan['monthlydue'];
             $tax = 0;
             $pension = 0;
 

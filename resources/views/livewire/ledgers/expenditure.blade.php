@@ -34,7 +34,7 @@
                         </div>
             </form>
             @if ($show == true)
-            <div class="col-sm-12 col-md-4 mt-3">
+            <div class="col-sm-12 col-md-12 mt-3">
                 <div class="table-responsive text-nowrap"> 
                   <div class="dt-buttons">
                     <a href="#" onclick="extractContentForPrinting(5,'expenditure')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
@@ -79,7 +79,8 @@
                     <tbody>
                         @forelse($records as $tr)
                             <tr class=>
-                                <td class="remove text-center"><input type="checkbox" wire:model='{{time()}}'> </td>
+                                <td class="remove text-center">
+                                    <input type="checkbox" wire:model='{{time()}}'> </td>
                                 @foreach($tr as $td)
                                    {{-- @php 
                                       $federal_amount += $td['ALLOCATION OF FUNDS FEDERAL'];

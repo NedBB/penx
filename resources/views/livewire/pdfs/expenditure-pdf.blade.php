@@ -41,7 +41,7 @@
             <tr><td colspan="22" class="text-center text-danger"> No record exist at the moment</td></tr>
         @endforelse
     </tbody>
-    <tfoot>
+    {{-- <tfoot>
         <tr>
             <td colspan="5" class="text-right total">Total</td>
             <td>{{$federal_amount}}</td>
@@ -50,6 +50,6 @@
             <td>{{$contri_amount}}</td>
             <td>{{$advance_amount}}</td>
         </tr>
-    </tfoot>
+    </tfoot> --}}
 </table>
 @endsection
