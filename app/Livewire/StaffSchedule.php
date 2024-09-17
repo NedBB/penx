@@ -12,6 +12,7 @@ class StaffSchedule extends Component
 {
     public $month;
     public $year;
+    public $types = "Staff/National Office";
     public $type;
     public $records = [];
     public $options = ["create" => "Create Record","delete" => "Generate Record"];
@@ -35,7 +36,7 @@ class StaffSchedule extends Component
 
         if(($validated['year']) && ($validated['month']) && $validated['type']){
            $this->records = $payrollService->getProfilePayroll($validated['month'],$validated['year'], $validated['type']);
-          
+           $this->types = $this->user_types[$validated['type']];
         }
     }
 

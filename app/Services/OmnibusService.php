@@ -17,6 +17,12 @@ class OmnibusService {
                 ->get();
     }
 
+    public function getOmnibusByDateRange($date_1,$date_2){
+        return Omnibus::with('subhead.head')
+                            ->whereBetween('created_at', [$date_1, $date_2])
+                            ->get(['id','subhead_id','pvno','amount']);
+    }
+
     public function create($data){
         return Omnibus::create($data);
     }

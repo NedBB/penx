@@ -15,6 +15,12 @@ class AllocationService {
                             ->get(['location_id','subhead_id','pvno','netpay as amount'])->groupBy('pvno');
     }
 
+    public function getAllocationByDateRange($date_1,$date_2){
+        return Allocation::with('head','subhead')
+                            ->whereBetween('created_at', [$date_1, $date_2])
+                            ->get(['id','head_id','pvno','netpay as amount']);
+    }
+
     public function getRecords($data){
        
         return Allocation::with(['location','subhead'])

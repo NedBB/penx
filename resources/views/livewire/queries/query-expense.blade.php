@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4">{{$types}} Payment Schedule @if($month) for {{$monthrange[$month]}}  {{$year}}@endif</h4>
+    <h4 class="py-3 mb-4">{{$types}}</h4>
     <div class="card">
       
       <div class="card-datatable table-responsive pt-0">
@@ -28,30 +28,11 @@
                           </select>
                   </div>
                         <div class="col-3 col-md-3">
-                                <select wire:model='month'
-                                    id="modalEditUserLanguage"
-                                    name="modalEditUserLanguage"
-                                    class="form-select"
-                                    >
-                                    <option value="">Month</option>
-                                    @foreach($monthrange as $key => $value)
-                                            <option value="{{$key}}">{{$value}}</option>
-                                        @endforeach
-                                </select>
+                            <input wire:model='start_date' class="form-control" type="date" />
                         </div>
                         <div class="col-3 col-md-3">
-                                <select wire:model='year'
-                                    name="year"
-                                    class="form-select"
-                                    >
-                                    <option value="">Year</option>
-                                    @php
-                                        $reverse = array_reverse(range(1990, date('Y')));
-                                    @endphp
-                                    @foreach($reverse as $i)
-                                            <option value="{{$i}}">{{$i}}</option>
-                                        @endforeach
-                                </select>
+                            <input wire:model='end_date' class="form-control" type="date" />
+
                         </div>
                         <div class="col-2 col-md-2">
                                 <button class="btn btn-primary" type="submit">submit</button>
@@ -78,12 +59,10 @@
                   <thead>
                     <tr class="bold">
                         <th width="50px">S/N</th>
-                        <th width="200px">BENEFICIARY NAME</th>
-                        <th width="150px">ACCTS NO</th>
-                        <th width="100px">AMOUNT</th>
-                        <th width="150px">SORT CODE</th>
-                        <th width="150px">BANK</th>
-                        <th width="150px">NARATION</th>
+                        <th width="200px">HEAD</th>
+                        <th width="200px">SUBHEAD</th>
+                        <th width="150px">PVNO</th>
+                        <th width="150px">AMOUNT</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,16 +71,16 @@
                           <tr>
                               <td>{{++$count}}</td>
                               <td>
-                                 {{$record->profile->fullname()}}
+                                 {{$record->subhead->head->name}}
                               </td>
-                              <td>{{$record->profile->accountno}}</td>
-                              <td>{{format_currency($record->netpay)}}</td>
-                              <td>{{$record->profile->bank->sortcode}}</td>
-                              <td>{{empty($record->profile->bank->abbreviation) ? $record->profile->bank->name : $record->profile->bank->abbreviation}}</td>
-                              <td></td>
+                              <td>
+                                {{$record->subhead->name}}
+                             </td>
+                              <td>{{$record->pvno}}</td>
+                              <td>{{format_currency($record->amount)}}</td>
                           </tr>
                       @empty
-                          <tr><td colspan="7" class="text-center text-danger"> No record exist at the moment</td></tr>
+                          <tr><td colspan="5" class="text-center text-danger"> No record exist at the moment</td></tr>
                       @endforelse
                   </tbody>
                   

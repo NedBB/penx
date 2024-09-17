@@ -34,6 +34,7 @@ use App\Livewire\Subhead;
 use App\Livewire\SystemUser;
 use App\Livewire\TandT;
 use App\Livewire\YearlyExpenditure;
+use App\Livewire\QueryExpense;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,8 @@ Route::get('/deductions', Deduction::class)->middleware(['auth', 'verified'])->n
 Route::get('/payment/schedule', PaymentSchedule::class)->middleware(['auth', 'verified'])->name('payment-schedule');
 Route::get('/contributory/pension', ContributoryPension::class)->middleware(['auth', 'verified'])->name('contributory-pension');
 Route::get('/staff/payment/schedule', StaffSchedule::class)->middleware(['auth','verified'])->name('staff-schedule');
+Route::get('/expense/payment/schedule', QueryExpense::class)->middleware(['auth','verified'])->name('query-expense-schedule');
+
 //Payroll
 Route::get('/payroll/staff', StaffPayroll::class)->middleware(['auth', 'verified'])->name('payroll-staff');
 Route::get('/payroll/national/officers', OfficerPayroll::class)->middleware(['auth', 'verified'])->name('payroll-officer');

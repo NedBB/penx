@@ -165,7 +165,12 @@
         </li>
         <li class="menu-item">
             <a href="{{route('staff-schedule')}}" class="menu-link">
-            <div data-i18n="Staff Payment Schedule">Staff Payment Schedule</div>
+            <div data-i18n="Staff & National Office Payment Schedule">Staff & National Office Payment Schedule</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{route('query-expense-schedule')}}" class="menu-link">
+            <div data-i18n="Query Expenses">Query Expenses</div>
             </a>
         </li>
         </ul>

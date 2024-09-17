@@ -65,5 +65,11 @@ class TransportandtravelService{
         return $record->save();
     }
 
+    public function getTantByDateRange($date_1,$date_2){
+        return Transportandtravel::with('subhead')
+                            ->whereBetween('created_at', [$date_1, $date_2])
+                            ->get(['id','subhead_id','pvno','totalamount as amount']);
+    }
+
 
 }

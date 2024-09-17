@@ -19,6 +19,8 @@ class GroupheadService {
         return Head::get();
     }
 
+    
+
     public function getExpenditureByYear($year){
         $heads = Head::with([
             'subheads' => function($h) use ($year){
