@@ -20,7 +20,7 @@ class Deduction extends Component
    
     public $hide = true;
 
-    public $options = ["tax" => "tax","pension" => "pension","salaryadvance"=>"salary advance"];
+    public $options = ["tax" => "tax","pension" => "pension","salaryadvance"=>"salary advance","loan"=>"loan"];
     public $monthrange = [
         '01'=>'January', '02'=>'February','03'=>'March','04'=>'April',
         '05'=>'May','06'=>'June','07'=>'July','08'=>'August',

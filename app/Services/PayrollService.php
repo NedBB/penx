@@ -16,12 +16,13 @@ class PayrollService {
                 ->where($data['option'], '>', 0)
                 ->with([
                         'profile'=>function($p){
-                            $p->select('id','uniqueid','firstname','surname','taxpin','pensionpin');
+                            $p->select('*');
                         }
                     ])
                 ->select('profile_id','profile_type','basicsalary',$data['option'].' as amount')
                 ->get();
 
+        
         if($data['option'] != 'tax' && $data['option']!= 'pension'){
             return $collect->sortBy('profile.uniqueid');
         }else{
@@ -74,7 +75,19 @@ class PayrollService {
                             ['year', $year]
                         ])
                         ->get()->sortByDesc('profile.gradelevel_id');
-        }else{
+        }
+        else if($profiletype == 'nationalofficer'){
+            return Payroll::with(['profile' => function($query){
+                $query->with('bank');
+            }])
+            ->where('profile_type',$profiletype)
+            ->where([
+                ['month', (int)$month],
+                ['year', $year]
+            ])
+            ->get();
+        } 
+        else{
             return Payroll::orderby('id','asc')
                             ->where('profile_type',$profiletype)
                             ->where([

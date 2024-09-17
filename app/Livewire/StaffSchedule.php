@@ -12,6 +12,7 @@ class StaffSchedule extends Component
 {
     public $month;
     public $year;
+    public $type;
     public $records = [];
     public $options = ["create" => "Create Record","delete" => "Generate Record"];
 
@@ -21,18 +22,20 @@ class StaffSchedule extends Component
         '09'=>'September','10'=>'October','11'=>'November','12'=>'December'
     ];
 
+    public $user_types = ["staffprofile" => "Staff Profile","nationaloffice" => "National Officer"];
+
 
     public function search(PayrollService $payrollService){
 
         $validated = $this->validate([ 
             'year' => 'required',
-            'month' => 'required'
+            'month' => 'required',
+            'type' => 'required'
         ]);
 
-        if(($validated['year']) && ($validated['month'])){
-           $this->records = $payrollService->getProfilePayroll($validated['month'],$validated['year'], 'staffprofile');
-        //    $data = $this->records;
-        //    dd($data[0]);
+        if(($validated['year']) && ($validated['month']) && $validated['type']){
+           $this->records = $payrollService->getProfilePayroll($validated['month'],$validated['year'], $validated['type']);
+          
         }
     }
 

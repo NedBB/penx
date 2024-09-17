@@ -3,8 +3,8 @@
     <table class="table table-hover table-bordered font-13 table-striped" id="result" style="border-collapse: collapse;table-layout: fixed; word-wrap:break-word;">
         <thead>
             <tr>
-                <th width="50px" class="noExport"></th>
-                @php $footercount = count($columns); $count @endphp
+
+                @php $footercount = count($columns); $count; @endphp
                     @foreach($columns as $th=>$key)
     
                     <th 
@@ -20,10 +20,12 @@
             </tr>
         </thead>
         <tbody>
+           
             @forelse($records as $tr)
                 <tr>
                     {{-- <td><input type="checkbox" wire:model='{{time()}}'> </td> --}}
                     @foreach($tr as $td)
+                       
                        {{-- @php 
                           $federal_amount += $td['ALLOCATION OF FUNDS FEDERAL'];
                           $state_amount += $td['ALLOCATION OF FUNDS STATE'];

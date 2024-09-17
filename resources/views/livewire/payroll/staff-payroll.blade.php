@@ -158,7 +158,7 @@
                   </tbody>
                   <tfoot>
                       <tr>
-                          <td colspan="6" class="align-right"><strong>Total</strong></td>
+                          <td colspan="7" class="align-right"><strong>Total</strong></td>
                           <td id="total1">{{format_currency($salary)}}</td>
                           <td id="total2">{{format_currency($rent)}}</td>
                           <td id="total6">{{format_currency($transport)}}</td>

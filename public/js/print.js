@@ -1,3 +1,5 @@
+let fullUrl = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "") + "/";
+    
 
     function extractSelectionforPrinting(colspan, total_index,page, pvno, td_arry,col_remove){
         let header = $(window.document.body).find('h4').html();
@@ -328,7 +330,7 @@
 
                 <title>${newH1}</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
-                <link rel="stylesheet" href="http://localhost:8000/css/main.css?v=${Date.now()}" />
+                <link rel="stylesheet" href="${fullUrl}css/main.css?v=${Date.now()}" />
                 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet">
                 <style>
                     body {
@@ -401,7 +403,7 @@
 
                 <title>${newH1}</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
-                <link rel="stylesheet" href="http://localhost:8000/css/main.css?v=${Date.now()}" />
+                <link rel="stylesheet" href="${fullUrl}css/main.css?v=${Date.now()}" />
                 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet">
                 <style>
                     body {
@@ -470,7 +472,7 @@
 
                 <title>${newH1}</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
-                <link rel="stylesheet" href="http://localhost:8000/css/main.css?v=${Date.now()}" />
+                <link rel="stylesheet" href="${fullUrl}css/main.css?v=${Date.now()}" />
                 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet">
                 <style>
                     body {

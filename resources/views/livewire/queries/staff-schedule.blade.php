@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4">Staff Payment Schedule @if($month) for {{$monthrange[$month]}}  {{$year}}@endif</h4>
+    <h4 class="py-3 mb-4">Staff/National Officer Payment Schedule @if($month) for {{$monthrange[$month]}}  {{$year}}@endif</h4>
     <div class="card">
       
       <div class="card-datatable table-responsive pt-0">
@@ -14,30 +14,20 @@
               <div class="col-12 col-md-12">
                 <form wire:submit='search'>
                     <div class="row mb-3">
-                        <div class="col-md-3">
-                            <div class="table-responsive text-nowrap"> 
-                              <div class="dt-buttons">
-                                {{-- <a href="#" onclick="extractContentForPrinting(6,'staff-schedule')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
-                                  <span><i class="ti ti-file-export me-sm-1"></i> </span>
-                                  <span class="d-none d-sm-inline-block">Print</span>
-                                </a> --}}
-                                <x-export-excell />
-                              </div>
-                            </div>
-                          </div>
-                        {{-- <div class="col-4 col-md-4">
-                            <select wire:model='option'
-                                id="modalEditUserLanguage"
-                                name="modalEditUserLanguage"
-                                class="form-select"
-                                >
-                                <option value="">Option</option>
-                                @foreach($options as $key => $value)
-                                        <option value="{{$key}}">{{$value}}</option>
-                                    @endforeach
-                            </select>
-                        </div> --}}
-                        <div class="col-4 col-md-4">
+                        
+                        <div class="col-3 col-md-3">
+                          <select wire:model='type'
+                              id="modalEditUserLanguage"
+                              name="modalEditUserLanguage"
+                              class="form-select"
+                              >
+                              <option value="">Select</option>
+                              @foreach($user_types as $key => $value)
+                                      <option value="{{$key}}">{{$value}}</option>
+                                  @endforeach
+                          </select>
+                  </div>
+                        <div class="col-3 col-md-3">
                                 <select wire:model='month'
                                     id="modalEditUserLanguage"
                                     name="modalEditUserLanguage"
@@ -68,6 +58,15 @@
                                 </div>
                         </div>
                 </form>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="table-responsive text-nowrap"> 
+                      <div class="dt-buttons">
+                        <x-export-excell />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               

@@ -45,7 +45,13 @@
                    
                     <tbody>
                         <tr><td><strong>{{$year}} EXPENDITURE</strong></td></tr>
+                        @php
+                            $grand = 0;
+                        @endphp
                         @forelse($records as $head)
+
+                        @if ($head->name != 'CONTRAL')
+                        
                             <tr>
                                 <td style="font-weight:bold" colspan="{{$head->cols}}">
                                     <span style="color:red">{{$head->slug}}</span>
@@ -68,6 +74,7 @@
                                 @foreach ($head->subheads as $subhead)
                                     @php
                                         $total += $subhead->amount;
+                                        $grand += $total;
                                     @endphp
                                     @if($subhead->name !== "UNKNOWN") 
                                         <td style="border: 1px solid #ccc; padding: 8px;">{{format_money($subhead->amount)}}</td>
@@ -75,9 +82,13 @@
                                 @endforeach
                                 <td>{{format_money($total)}}</td>
                             </tr>
+                            @endif
                         @empty
                             <tr><td colspan="1" class="text-center text-danger"> No record exist at the moment</td></tr>
                         @endforelse
+                            
+                        <tr><td class="text-center text-danger"><strong>Grand Total</strong></td><td><strong>{{format_money($grand)}}</strong></td></tr>
+
                     </tbody>
                 </table>
             </div> 

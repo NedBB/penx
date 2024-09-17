@@ -61,7 +61,7 @@
                     <thead>
                         <tr>
                             <th width="50px" class="noExport"></th>
-                            @php $footercount = count($columns); $count @endphp
+                            @php $footercount = count($columns); $count; @endphp
                                 @foreach($columns as $th=>$key)
                 
                                 <th 
@@ -77,11 +77,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @forelse($records as $tr)
                             <tr class=>
                                 <td class="remove text-center">
                                     <input type="checkbox" wire:model='{{time()}}'> </td>
                                 @foreach($tr as $td)
+                                @php dd($td) @endphp
                                    {{-- @php 
                                       $federal_amount += $td['ALLOCATION OF FUNDS FEDERAL'];
                                       $state_amount += $td['ALLOCATION OF FUNDS STATE'];
