@@ -83,7 +83,7 @@
                                 <td class="remove text-center">
                                     <input type="checkbox" wire:model='{{time()}}'> </td>
                                 @foreach($tr as $td)
-                                @php dd($td) @endphp
+                               
                                    {{-- @php 
                                       $federal_amount += $td['ALLOCATION OF FUNDS FEDERAL'];
                                       $state_amount += $td['ALLOCATION OF FUNDS STATE'];
