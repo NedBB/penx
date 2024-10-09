@@ -14,6 +14,7 @@ class YearlyExpenditure extends Component
     public $year;
     public $records;
     public $export_data;
+    public $data_record;
     public $start_date;
     public $page_title = "Expenditure";
     public $count = 0;
@@ -32,7 +33,8 @@ class YearlyExpenditure extends Component
        // $result = $this->expenseArranged($result);
        //dd($result[0]);
         $this->records = $result;
-        session(['records' => $result]); 
+        $this->data_record = $result;
+        //session(['records' => $result]); 
         //dd($records[0]);
         // $data = $this->expenseArranged($result);
         // $this->records = $data['datas'];
@@ -68,9 +70,9 @@ class YearlyExpenditure extends Component
     }
 
     public function export(){
-        $data = session('records'); 
+        //$data = session('records'); 
         
-        return Excel::download(new YearlyExpenditureExport($data, $this->year), 'expenditures-annual.xlsx');
+        return Excel::download(new YearlyExpenditureExport($this->data_record, $this->year), 'expenditures-annual.xlsx');
     }
 
     public function render()
