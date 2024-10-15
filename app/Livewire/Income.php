@@ -23,7 +23,7 @@ class Income extends Component
 
        $validate =  $this->validate([
             "location_id"       => ['required'],
-            "amount"    => ['required'],
+            "amount"    => ['required','regex:/^\d{1,8}(\.\d{1,2})?$/'],
             "income"        => ['required'],
             "receipt"         => ['required'],
             "description"       => ['required'],
@@ -49,7 +49,7 @@ class Income extends Component
     public function render(BankService $account, LocationService $location)
     {
         $states = $location->listState();
-        $accounts = $account->bankList();
+        $accounts = $account->listAccounts();
         return view('livewire.entries.income', compact('states','accounts'))->layout('layouts.app');
     }
 }

@@ -51,7 +51,7 @@
                 <tr>
                   <th class="remove"></th>
                   <th class="remove">Date</th>
-                  <th>Group Head</th>
+                  <th>Sub Head</th>
                   <th>Description</th>
                   <th>Amount</th>
                   <th class="change">Action</th>
@@ -73,7 +73,7 @@
                             <span class="fw-medium">{{sqldate($omni->created_at)}}</span>
                         </td>
                         <td class="text-capitalize">
-                            <span class="fw-medium">{{$omni->subhead->head->name}}</span>
+                            <span class="fw-medium">{{$omni->subhead->name}}</span>
                         </td>
                         <td>
                             <span class="fw-medium">{{$omni->description}}</span>

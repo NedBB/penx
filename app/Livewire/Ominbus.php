@@ -108,11 +108,25 @@ class Ominbus extends Component
         return Excel::download(new OmnibusExport($this->omnibusses), 'omnibus.xlsx');
     }
 
+    public function delete($id,OmnibusService $omnibusservice){
+        $state =  $omnibusservice->delete($id);
+        if($state){
+            $records = $this->omnibusses;
+            foreach ($records as $key => $record) {
+                if ($record['id'] == $id) {
+                    unset($records[$key]);
+                }
+            }
+            $this->omnibusses = $records;
+        }
+    }
+
     public function render(GroupheadService $headService, OmnibusService $omnibusService)
     {
         $heads = $headService->headList();
-        //$omnibusses = $omnibusService->list($this->page,$this->search);
-         //$omnibusses = $this->omnibusses;
+        //$omnibusses = $omnibusService->list($this->search);
+        //dd($omnibusses);
+        //$omnibusses = $this->omnibusses;
         return view('livewire.entries.ominbus',compact('heads'))->layout('layouts.app');
     }
 }

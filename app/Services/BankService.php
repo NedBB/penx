@@ -18,6 +18,10 @@ class BankService{
         return Account::search($search)->with('bank')->orderby('id','DESC')->paginate($page);
     }
 
+    public function listAccounts(){
+        return Account::get(['id','name']);
+    }
+
     public function list($page,$search){
         return Bank::search($search)
                     ->orderby('id','DESC')

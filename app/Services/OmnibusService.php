@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Livewire\Ominbus;
+//use App\Livewire\Ominbus;
 use App\Models\Omnibus;
 use Carbon\Carbon as carbon;
 
@@ -12,13 +12,13 @@ class OmnibusService {
         $start = date('Y').'-'.date('m').'-'.'01';
         $end = carbon::parse($start)->endOfMonth();
         return Omnibus::search($search)
-                ->with('subhead.head')
+                ->with('subhead')
                 ->orderby('created_at','ASC')
                 ->get();
     }
 
     public function getOmnibusByDateRange($date_1,$date_2){
-        return Omnibus::with('subhead.head')
+        return Omnibus::with('subhead')
                             ->whereBetween('created_at', [$date_1, $date_2])
                             ->get(['id','subhead_id','pvno','amount']);
     }
@@ -42,7 +42,7 @@ class OmnibusService {
 
     public function update($id,$data){
 
-        $ominbus = Ominbus::find($id);
+        $ominbus = Omnibus::find($id);
         $ominbus->subhead_id = $data['subhead_id'];
         $ominbus->pvno = $data['pvno'];
         $ominbus->amount = $data['amount'];
@@ -53,7 +53,7 @@ class OmnibusService {
     }
 
     public function delete($id){
-        return Ominbus::where('id',$id)->delete();
+        return Omnibus::where('id',$id)->delete();
     }
 
 

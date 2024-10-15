@@ -37,11 +37,11 @@
             <div class="col-sm-12 col-md-12 mt-3">
                 <div class="table-responsive text-nowrap"> 
                   <div class="dt-buttons">
-                    <a href="#" onclick="extractContentForPrinting(5,'expenditure')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <a href="#" onclick="extractContentForPrinting(4,'expenditure')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
                         <span><i class="ti ti-file-export me-sm-1"></i> </span>
                         <span class="d-none d-sm-inline-block">Print</span>
                     </a>
-                    <a href="#" onclick="extractContentForPrinting(9,10,'expenditure',null,[10],1)"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <a href="#" onclick="extractSelectionforPrinting(9,10,'expenditure',null,[10],1)"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
                         <span><i class="ti ti-file-export me-sm-1"></i> </span>
                         <span class="d-none d-sm-inline-block">Print Selection</span>
                     </a>
@@ -60,7 +60,7 @@
                 <table class="table table-hover table-bordered font-13 table-striped" id="result" style="border-collapse: collapse; table-layout: fixed; word-wrap: break-word;">
                     <thead>
                         <tr>
-                            <th width="50px" class="noExport"></th>
+                            <th width="50px" class="noExport remove"></th>
                             @php 
                                 $footercount = count($columns); 
                                 $count = 0; 
@@ -69,11 +69,12 @@
                                 <th 
                                     @if($count <= 1) width="50px"
                                     @elseif($count == 2) width="100px"
-                                    @elseif($count == 3) width="410px"
-                                    @else width="200px" 
+                                    @elseif($count == 3) width= "600px"
+                                    @else width="400px" 
                                     @endif
                                 >
-                                    {!! wordwrap($th, 20, '<br>', false) !!}
+                                    {{-- {!! wordwrap($th, 20, '<br>', false) !!} --}}
+                                    {{$th}}
                                 </th>
                                 @php ++$count; @endphp
                             @endforeach
@@ -110,7 +111,8 @@
                                         $advance_amount += $td['ADVANCE ALLOCATION'] ?? 0;
                                     @endphp --}}
                                     <td>
-                                        {!! wordwrap($td, 120, '<br>', false) !!}
+                                        {{-- {!! wordwrap($td, 120, '<br>', false) !!} --}}
+                                        {{$td}}
                                     </td>
                                 @endforeach
                             </tr>
@@ -122,7 +124,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="{{ count($columns) + 1 }}" class="text-right total">Total</td>
+                            <td colspan="5" class="text-right total">Total</td>
                             {{-- <td>{{ $federal_amount }}</td>
                             <td>{{ $state_amount }}</td>
                             <td>{{ $arrear_amount }}</td>
