@@ -154,7 +154,6 @@ class NationalStaff extends Component
     {
         $officers = $service->list($this->search);
         return view('livewire.entries.national-office', compact('officers'))->layout('layouts.app');
-
     }
 
    

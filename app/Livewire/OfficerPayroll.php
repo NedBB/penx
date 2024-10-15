@@ -15,7 +15,8 @@ class OfficerPayroll extends Component
     public $data;
     public $year;
     public $option;
-    public $page_title="National Officers Payroll";
+    public $title="National Officers Payroll";
+    public $page_title="";
     public $records = [];
     public $count = 0;
     public $salary = 0;
@@ -59,8 +60,10 @@ class OfficerPayroll extends Component
             'year' => 'required',
             'month' => 'required'
         ]);
-
-        $this->page_title = $this->page_title." for ". $this->monthrange[$this->month]." ".$this->year;
+       
+        $this->page_title = "";
+        $month = $this->monthrange[$this->month]." ".$this->year;
+        $this->page_title = $this->title." for ".$month;
 
         if(($validated['year']) && ($validated['month']) && !($validated['option'])){
            $this->records = $payrollService->getProfilePayroll($validated['month'],$validated['year'], 'nationaloffice');
