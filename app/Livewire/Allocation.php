@@ -148,7 +148,7 @@ class Allocation extends Component
 
         $this->reset(['amount','head_id','subhead_id',
         'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
-        'almanac','badges','legal','northen_dues','divisionpercent'
+        'almanac','badges','legal','northern_dues','divisionpercent'
     ]);
 
         if($response){
@@ -210,7 +210,7 @@ class Allocation extends Component
     }
 
     public function update(AllocationService $allocationService){
-
+       
         $validate =  $this->validate([
             "head_id"       => ['required'],
             "subhead_id"       => ['required'],
