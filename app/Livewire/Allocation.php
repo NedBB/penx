@@ -81,18 +81,28 @@ class Allocation extends Component
 
     #[On('selectionChanged')]
     public function getSubheads($value,GroupheadService $service){
+        $this->head_id = $value;
         $records = $service->getSubHeadByHeadid($value);
         $this->dispatch('messageSent', data:$records);
     }
 
     #[On('selectionSubhead')]
     public function updateSubhead($value){
-        $this->subhead_id = $value;
+        $this->subhead_id = (int)$value;
+        
+        if($this->head_id == 1 && $this->subhead_id == 72){
+            $this->allocation_field = 0;
+        }
+        else{
+            $this->allocation_field = 55;
+        }
     }
 
     public function getPercent($value){
         if($this->applypercent){
-            $this->divisionpercent = $value;
+            $this->divisionpercent = (int)$value;
+        }else{
+            $this->divisionpercent = (int)$value;
         }
     }
 
@@ -100,16 +110,21 @@ class Allocation extends Component
         $start_date = Carbon::create($this->year_1,$this->month_1,1)->startOfMonth();
         $end_date = Carbon::create($this->year_2,$this->month_2)->endOfMonth();
         $diffInMonths = $start_date->diffInMonths($end_date);
-        $this->gross_pay = ($diffInMonths * ($this->amount*($this->allocation_field/$this->divisionpercent)));
-        $deduct = $this->nlc + $this->arrears + $this->advance_allocation + $this->constitution 
-        + $this->northern_dues + $this->audit_fees + $this->legal + $this->almanac + $this->badges;
+        if($this->allocation_field > 0){
+            $this->gross_pay = ($diffInMonths * ((float)$this->amount*($this->allocation_field/$this->divisionpercent)));
+        }
+        else{
+            $this->gross_pay = (float)$this->amount;
+        }
+        $deduct = (float)$this->nlc + (float)$this->arrears + (float)$this->advance_allocation + (float)$this->constitution 
+        + (float)$this->northern_dues + (float)$this->audit_fees + (float)$this->legal + (float)$this->almanac + (float)$this->badges;
         $this->net_pay = $this->gross_pay - $deduct;
     }
 
     public function calculateTotals(){
-        $deduct = $this->nlc + $this->arrears + $this->advance_allocation + $this->constitution 
-        + $this->northern_dues + $this->audit_fees + $this->legal + $this->almanac + $this->badges;
-        $this->net_pay = $this->gross_pay - $deduct;
+        $deduct = (float)$this->nlc + (float)$this->arrears + (float)$this->advance_allocation + (float)$this->constitution 
+        + (float)$this->northern_dues + (float)$this->audit_fees + (float)$this->legal + (float)$this->almanac + (float)$this->badges;
+        $this->net_pay = (float)$this->gross_pay - (float)$deduct;
     }
 
     public function selectApply(){
@@ -123,6 +138,7 @@ class Allocation extends Component
             "subhead_id"       => ['required'],
             "amount"    => ['required'],
             "advance_allocation"       => ['required'],
+            
             "pvno"          => ['required'],
             "location_id"            => ['required'],
             "legal"            => ['required'],
