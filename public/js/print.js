@@ -309,6 +309,19 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
         return '<span style="text-transform:capitalize">'+ numberToEnglish(Number(arrKobo[0].replace(/[^0-9\.-]+/g,""))) + ' Naira,' + ' ' + koboWord +' only</span>';
     }
 
+    function printData(data){
+        
+        
+        $(function() {
+            $('.print').on('click', function(e) {
+                e.preventDefault()
+                $("#printable").print("#printable");
+            });
+    
+            $('.inWord').html(numberToEnglishKobo(data));
+        });
+    }
+
     function printTableTpl(newH1, newTable,currentDate, colspan, record = '', page, pvno =null) {
         let header;
         if(pvno != null && page == 'omnibus'){

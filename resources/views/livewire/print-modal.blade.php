@@ -1,0 +1,1 @@
+<a href="#" @click="$dispatch('{{$eventoption}}',{id:{{$id}} })" class="text-underline-dotted" data-bs-toggle="modal" data-bs-target="#printRecord"> <i class="fa-solid fa-receipt text-primary"></i></a>

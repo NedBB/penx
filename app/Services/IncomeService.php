@@ -24,6 +24,18 @@ class IncomeService{
         ]);
     }
 
+    public function update($id, $record){
+        $income = Income::find($id);
+        $income->incomeperc = $record['income'];
+        $income->description = $record['description'];
+        $income->location_id = $record['location_id'];
+        $income->account_id = $record['account_id']; 
+        $income->remittedamount = $record['amount'];
+        $income->totalincome = $record['total'];
+        $income->receiptno = $record['receipt'];
+        return $income->save();
+    }
+
     public function getRecords($from, $to){
       
         return Income::with('location')
@@ -55,6 +67,18 @@ class IncomeService{
                             }])->whereBetween('fromdate_at',[$from, $to])
                         ->where('location_id',$state)
                         ->get();
+    }
+
+    public function getById($id){
+        return Income::where('id',$id)->first();
+    }
+
+    public function getPrintRecord($id){
+        return Income::where('id',$id)->with('location')->first();
+    }
+
+    public function delete($id){
+        return Income::where('id',$id)->delete();
     }
 
 

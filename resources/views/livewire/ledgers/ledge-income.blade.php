@@ -78,12 +78,21 @@
                 @elseif($view == "detailed")
                     <x-ledger-income-detailed :records="$records"/>
                 @else
-                    <x-ledger-income-regular :records="$records"/>
+                    <x-ledger-income-regular :records="$records" :editevent="$editevent" :printevent="$printevent"/>
                 @endif
             </div> 
           @endif
         </div>
 
-        
        
+
+        @if($edit)
+          <x-edit-ledger-income :states="$states" :accounts="$accounts" 
+          />
+        @endif
+
+        @if($print)
+        <x-income-receipt  :income="$incomes"/>
+      @endif
+
 </div> 
