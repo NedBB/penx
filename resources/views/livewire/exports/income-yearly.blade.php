@@ -6,21 +6,18 @@
         <th>Total Amount</th>
     </tr>
     </thead>
+    @php $amount= 0; $total = 0;  @endphp
     <tbody>
-        @php $amount= 0; $total = 0;  @endphp
-            @forelse($data as $record)
+       
+        @forelse($data as $record)
                
                 <tr>
-                    <td class="remove">
-                        <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
-                      </td>
+                    
                     <td>
-                        <a href='#' data-href="" data-target='.bs-modal-lg' data-toggle='modal'>
                             {{$record->location->name}}
-                        </a>
                     </td>
-                    <td> {{format_currency($record->amount)}} </td>
-                    <td> {{format_currency($record->total)}} </td>
+                    <td> {{$record->amount}} </td>
+                    <td> {{$record->total}} </td>
                 </tr>
                         @php
                             $total += $record->total;
@@ -35,8 +32,8 @@
     <tfoot>
     <tr>
         <td colspan="1" style="text-align:right">Grand Total</td>
-        <td class="total_words" data-total={{$total}}>{{format_currency($amount)}}</td>
-        <td class="total_words" data-total={{$total}}>{{format_currency($total)}}</td>
+        <td>{{$amount}}</td>
+        <td>{{$total}}</td>
     
     </tr>
     </tfoot>

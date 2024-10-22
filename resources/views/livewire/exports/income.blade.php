@@ -31,7 +31,7 @@
                                 }
                                 
                             @endphp 
-                            {{format_money(($remitted))}}
+                            {{($remitted)}}
                         </td>
                         <td>
                             @php 
@@ -69,7 +69,7 @@
                                 $total +=  $rowTotal
                                 
                                 ?> 
-                            {{format_money($rowTotal)}}
+                            {{$rowTotal}}
                         </td>
 
                     </tr>
@@ -84,7 +84,7 @@
             <tr>
                 <td colspan="5" style="text-align:right">Total</td>
                 <td id="summarized_total">
-                    {{format_money($total)}}
+                    {{$total}}
                 </td>
             </tr>
             </tfoot>
@@ -97,7 +97,6 @@
     <table class="table table-hover table-bordered table-striped" id="result">
         <thead>
         <tr>
-            <td></td>
             <td>Sender</td>
             <td>Description</td>
             <td>Amount</td>
@@ -112,7 +111,6 @@
             @forelse($records as $groupname => $record)
 
                 <tr>
-                    <td></td>
                     <td>
                         {{$groupname}}
                     </td>
@@ -145,19 +143,17 @@
                         <td></td>
                         <td>
                             {{$row['description']}}
-                            <a href="#" class='removeIncome pull-right' >
-                                <i class='fa fa-trash text-danger'></i>
-                            </a>
+                            
                         </td>
                         <td>
-                            {{format_currency($row['remittedamount'])}}
+                            {{$row['remittedamount']}}
                         </td>
                         <td>
                             {{$row['incomeperc']}}
                         </td>
                         <td> {{date5($row['fromdate_at'])}} </td>
                         <td> {{date5($row['todate_at'])}} </td>
-                        <td> {{format_currency($row['totalincome'])}} </td>
+                        <td> {{$row['totalincome']}} </td>
                     </tr>
                 @endforeach
                 <tr>
@@ -166,11 +162,11 @@
                     <td style="text-align: right; font-weight: bold">
                         TOTAL
                     </td>
-                    <td>{{format_money($remitted)}}</td>
+                    <td>{{$remitted}}</td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{{format_money($subtotal)}}</td>
+                    <td>{{$subtotal}}</td>
                 </tr>
             @empty
                 <tr>
@@ -182,29 +178,29 @@
         <tr>
             <td colspan="7" style="text-align:right">GRAND TOTAL</td>
             <td>
-                {{format_money($total)}}
+                {{$total}}
             </td>
         </tr>
         </tfoot>
     </table>
     
-@else
+@elseif($view == 'all')
 
     <table class="table table-hover table-bordered table-striped" id="datatable-result">
         <thead>
-        <tr>
-            <th></td>
-            <th>Date Paid</th>
-            <th>Sender</th>
-            <th>Account</th>
-            <th>Description</th>
-            <th>Amount</th>
-            <th>Percent</th>
-            <th>Period From</th>
-            <th>Period To</th>
-            <th>Receipt No.</th>
-            <th>Total Amount</th>
-        </tr>
+            <tr>
+                <th></td>
+                <th>Date Paid</th>
+                <th>Sender</th>
+                <th>Account</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Percent</th>
+                <th>Period From</th>
+                <th>Period To</th>
+                <th>Receipt No.</th>
+                <th>Total Amount</th>
+            </tr>
         </thead>
         <tbody>
             @php  $total = 0;  @endphp
@@ -214,14 +210,10 @@
                     <tr>
                         <td></td>
                         <td>
-                            <a href='#' data-href="" class='' data-target='.bs-modal-lg' data-toggle='modal'>
                                 {{date5($record['fromdate_at'])}}
-                            </a>
                         </td>
                         <td>
-                            <a href='#' data-href="" data-target='.bs-modal-lg' data-toggle='modal'>
                                 {{$record['location']['name']}}
-                            </a>
                         </td>
                         <td>
                             @if($record['account'])
@@ -232,11 +224,9 @@
                         </td>
                         <td>
                             {{$record['description']}}
-                            <a href="#" class='removeIncome pull-right' >
-                                <i class='fa fa-trash text-danger'></i>
-                            </a>
+                            
                         </td>
-                        <td> {{format_currency($record['remittedamount'])}} </td>
+                        <td> {{$record['remittedamount']}} </td>
                         <td> {{$record['incomeperc']}} </td>
                         <td> {{date5($record['fromdate_at'])}} </td>
                         <td> {{date5($record['todate_at'])}} </td>
@@ -245,7 +235,7 @@
                             @php
                                 $total += $record['totalincome']
                             @endphp
-                            {{format_currency($record['totalincome'])}} </td>
+                            {{$record['totalincome']}} </td>
                     </tr>
                 @endforeach
             @empty
@@ -255,11 +245,11 @@
             @endforelse
         </tbody>
         <tfoot>
-        <tr>
-            <td colspan="10" style="text-align:right">Total</td>
-            <td>{{format_currency($total)}}</td>
-        </tr>
+            <tr>
+                <td colspan="10" style="text-align:right">Total</td>
+                <td>{{$total}}</td>
+            </tr>
         </tfoot>
     </table>
-
+@else
 @endif

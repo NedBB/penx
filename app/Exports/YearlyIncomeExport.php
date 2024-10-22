@@ -14,9 +14,7 @@ class YearlyIncomeExport implements FromView,ShouldAutoSize
 
     public function __construct($records )
     {
-        dd($records);
         $this->exports = $records;      
-      
     }
 
     public function view(): View

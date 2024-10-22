@@ -51,8 +51,10 @@
                     <td></td>
                     <td>
                         {{$row['description']}}
-                        <a href="#" class='removeIncome pull-right' >
-                            <i class='fa fa-trash text-danger'></i>
+                        <a class="removeIncome pull-right" 
+                           onclick="confirm('Are you sure you want to delete {{ $row['id'] }}?') ? '' : event.stopImmediatePropagation()" 
+                           wire:click="delete({{ $row['id'] }})">
+                            <i class="fa fa-trash text-danger"></i>
                         </a>
                     </td>
                     <td>

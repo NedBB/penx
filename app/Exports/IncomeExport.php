@@ -16,7 +16,7 @@ class IncomeExport implements FromView
     public function __construct($records, $view)
     {
         $this->records = $records;
-        $this->view = $view;
+        $this->view = $view;     
     }
 
     public function view(): View

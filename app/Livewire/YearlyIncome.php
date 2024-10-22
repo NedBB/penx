@@ -24,12 +24,11 @@ class YearlyIncome extends Component
         $startYear = Carbon::createFromDate($this->year, 1, 1);
         $endYear = Carbon::createFromDate($this->year, 12, 31); 
         $this->records = $incomeService->getYearlyIncome($startYear, $endYear);
-        dd($this->records);
+        session(['export_records' => $this->records]);
     }
 
     public function export(){
-        $data = $this->records;
-        dd($this->records);
+        $data = session('export_records', []);
         return Excel::download(new YearlyIncomeExport($data), 'income-annual.xlsx');
     }
 

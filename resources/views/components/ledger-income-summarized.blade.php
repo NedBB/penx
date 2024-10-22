@@ -32,7 +32,7 @@
                             }
                             
                         @endphp 
-                        {{format_money(($remitted))}}
+                        {{$remitted}}
                     </td>
                     <td>
                         @php 
@@ -70,7 +70,7 @@
                             $total +=  $rowTotal
                             
                             ?> 
-                        {{format_money($rowTotal)}}
+                        {{$rowTotal}}
                     </td>
 
                 </tr>
@@ -85,7 +85,7 @@
         <tr>
             <td colspan="4" style="text-align:right">Total</td>
             <td id="total_words" data-total={{$total}}>
-                {{format_money($total)}}
+                {{$total}}
             </td>
         </tr>
         </tfoot>
