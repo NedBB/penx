@@ -45,10 +45,6 @@ class LedgeIncome extends Component
         $this->states = $locationService->listState();
     }
 
-    // public function edit(){
-        
-    // }
-
     public function search(IncomeService $incomeService ){
 
         $validated = $this->validate([ 
@@ -172,7 +168,6 @@ class LedgeIncome extends Component
                         unset($records[$key][$index]);
                     }
                 }
-                
             }
            
             $this->records = $records;

@@ -59,6 +59,8 @@ class GroupheadService {
         //     }
         // }
 
+        //$data = $heads[5]['subheads'];
+        //dd($data);
         
         return $this->expenseArranged($heads);
     }
@@ -76,14 +78,14 @@ class GroupheadService {
                     'omnibuses' => 0
                 ];
 
-                if($subhead->name != "UNKNOWN"){
+                //if($subhead->name != "UNKNOWN"){
                     $totalAmounts['allocations'] += $subhead->allocations->sum('amount');
                     $totalAmounts['transportandtravels'] += $subhead->transportandtravels->sum('amount');
                     $totalAmounts['omnibuses'] += $subhead->omnibuses->sum('amount');
                     $total = $totalAmounts['allocations'] + $totalAmounts['transportandtravels'] + $totalAmounts['omnibuses'];
                     $subhead->amount = $total;
                     ++$count;
-                }
+                //}
                 $total = 0;
             }
             $head->cols = $count;
