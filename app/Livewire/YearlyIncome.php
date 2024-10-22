@@ -15,9 +15,17 @@ class YearlyIncome extends Component
     public $heads;
     public $year;
     public $records;
-    public $page_title = "Expenditure";
+    public $page_title = "Income";
     public $count = 0;
     public $show = false;
+
+    public function mount()
+    {
+        // Load records from session if available
+        if (session()->has('export_records')) {
+            $this->records = session('export_records');
+        }
+    }
 
     public function search(IncomeService $incomeService){
         $this->show = true;
@@ -28,8 +36,18 @@ class YearlyIncome extends Component
     }
 
     public function export(){
-        $data = session('export_records', []);
-        return Excel::download(new YearlyIncomeExport($data), 'income-annual.xlsx');
+        $this->dispatch('download-excel');
+        //$data = session('export_records', []);
+        //return Excel::download(new YearlyIncomeExport($data), 'income-annual.xlsx');
+    }
+
+    public function hydrate()
+    {
+        //Cache::put('export_records', $this->records, now()->addMinutes(10));
+        if (session()->has('export_records')) {
+            $this->records = session('export_records');
+        }
+
     }
 
     public function render()

@@ -36,6 +36,12 @@ use App\Livewire\TandT;
 use App\Livewire\YearlyExpenditure;
 use App\Livewire\QueryExpense;
 use App\Livewire\YearlyIncome;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\YearlyIncomeExport;
+use App\Exports\YearlyExpenditureExport;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +97,17 @@ Route::get('/ledger/expenditure', Expenditure::class)->middleware(['auth', 'veri
 Route::get('/ledger/year/expenditure', YearlyExpenditure::class)->middleware(['auth', 'verified'])->name('ledger-year-expenditure');
 Route::get('/ledger/year/income', YearlyIncome::class)->middleware(['auth', 'verified'])->name('ledger-year-income');
 
+// export routes
+Route::get('/yearly-income-export', function () {
+    $data = session('export_records', []);
+    return Excel::download(new YearlyIncomeExport($data), 'income-annual.xlsx');
+})->name('yearly-income-export');
+
+Route::get('/yearly-expenditure-export', function () {
+    $data = session('export_records', []);
+    $year = session('export_year');
+    return Excel::download(new YearlyExpenditureExport($data,$year), 'expenditure-annual.xlsx');
+})->name('yearly-expenditure-export');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

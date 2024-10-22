@@ -84,4 +84,12 @@
         </div>
       </div>
     </div>
+    <script>
+        document.addEventListener('download-excel', function () {
+            
+            let link = document.createElement('a');
+            link.href = "{{ route('yearly-income-export') }}";  // Assuming the export route
+            link.click();
+        });
+    </script>
 </div> 

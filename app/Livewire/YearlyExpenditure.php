@@ -7,6 +7,7 @@ use App\Exports\YearlyExpenditureExport;
 use App\Services\GroupheadService;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Cache;
 
 class YearlyExpenditure extends Component
 {
@@ -25,21 +26,37 @@ class YearlyExpenditure extends Component
     public $contri_amount=0;
     public $advance_amount=0;
 
+    public function mount()
+    {
+        // Load records from session if available
+        if (session()->has('export_records')) {
+            $this->records = session('export_records');
+            $this->year = session('export_year');
+        }
+    }
+
     public function search(GroupheadService $groupheadService){
-        //dd($this->year);
+       
         $this->show = true;
+    
         $result = $groupheadService->getExpenditureByYear($this->year);
 
        // $result = $this->expenseArranged($result);
        //dd($result[0]);
+        //session(['export_result' => $result, 'export_year' => $this->year]); 
+        
         $this->records = $result;
-        $this->data_record = $result;
+        //Cache::put('export_records', $this->records, now()->addMinutes(10));
+        session(['export_records' => $this->records, 'export_year'=>$this->year]);
+
+
         //session(['records' => $result]); 
         //dd($records[0]);
         // $data = $this->expenseArranged($result);
         // $this->records = $data['datas'];
         // $this->columns = $data['columns'];
-        
+
+             
     }
 
     private function expenseArranged($data)
@@ -69,10 +86,25 @@ class YearlyExpenditure extends Component
 
     }
 
+    public function hydrate()
+    {
+        //Cache::put('export_records', $this->records, now()->addMinutes(10));
+        if (session()->has('export_records')) {
+            $this->records = session('export_records');
+            $this->year = session('export_year');
+        }
+
+    }
+
     public function export(){
         //$data = session('records'); 
-        
-        return Excel::download(new YearlyExpenditureExport($this->data_record, $this->year), 'expenditures-annual.xlsx');
+        $this->dispatch('download-excel');
+     
+        //$data = Cache::get('export_records', []);
+        // Optionally clear the cache after export
+        //Cache::forget('export_records');
+       
+        //return Excel::download(new YearlyExpenditureExport($data, $this->year), 'expenditures-annual.xlsx');
     }
 
     public function render()
