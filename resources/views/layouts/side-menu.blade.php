@@ -211,14 +211,14 @@
             <div data-i18n="Expenditure">Expenditure</div>
             </a>
         </li>
-        {{-- <li class="menu-item">
-            <a href="{{route('ledger-expenditure')}}" class="menu-link">
-            <div data-i18n="Expenditure">Expenditure</div>
-            </a>
-        </li> --}}
         <li class="menu-item">
             <a href="{{route('ledger-year-expenditure')}}" class="menu-link">
             <div data-i18n="Yearly Expenditure">Yearly Expenditure</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{route('ledger-year-income')}}" class="menu-link">
+            <div data-i18n="Yearly Income">Yearly Income</div>
             </a>
         </li>
         </ul>

@@ -35,6 +35,7 @@ use App\Livewire\SystemUser;
 use App\Livewire\TandT;
 use App\Livewire\YearlyExpenditure;
 use App\Livewire\QueryExpense;
+use App\Livewire\YearlyIncome;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,7 @@ Route::get('/payroll/national/officers', OfficerPayroll::class)->middleware(['au
 Route::get('/legder/income', LedgeIncome::class)->middleware(['auth', 'verified'])->name('ledger-income');
 Route::get('/ledger/expenditure', Expenditure::class)->middleware(['auth', 'verified'])->name('ledger-expenditure');
 Route::get('/ledger/year/expenditure', YearlyExpenditure::class)->middleware(['auth', 'verified'])->name('ledger-year-expenditure');
+Route::get('/ledger/year/income', YearlyIncome::class)->middleware(['auth', 'verified'])->name('ledger-year-income');
 
 
 Route::middleware('auth')->group(function () {

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Income;
+use Illuminate\Support\Facades\DB;
 
 
 class IncomeService{
@@ -79,6 +80,16 @@ class IncomeService{
 
     public function delete($id){
         return Income::where('id',$id)->delete();
+    }
+    
+    public function getYearlyIncome($startYear,$endYear){
+        
+        return Income::whereBetween('fromdate_at', [$startYear, $endYear])
+             ->whereBetween('todate_at', [$startYear, $endYear])
+             ->with('location')
+             ->select('location_id',DB::raw('SUM(remittedamount) as amount'),DB::raw('SUM(totalincome) as total'))
+             ->groupBy('location_id')
+             ->get();
     }
 
 
