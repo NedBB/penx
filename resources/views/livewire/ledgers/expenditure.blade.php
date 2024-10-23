@@ -69,11 +69,10 @@
                                 <th 
                                     @if($count <= 1) width="50px"
                                     @elseif($count == 2) width="100px"
-                                    @elseif($count == 3) width= "600px"
+                                    @elseif($count == 3) width="600px"
                                     @else width="400px" 
                                     @endif
                                 >
-                                    {{-- {!! wordwrap($th, 20, '<br>', false) !!} --}}
                                     {{$th}}
                                 </th>
                                 @php ++$count; @endphp
@@ -82,38 +81,48 @@
                     </thead>
                     <tbody>
                         @php
+                            // Initialize sums for specific columns
                             $federal_amount = 0;
                             $state_amount = 0;
                             $arrear_amount = 0;
                             $contri_amount = 0;
                             $advance_amount = 0;
                         @endphp
+                
                         @forelse($records as $tr)
                             <tr>
                                 <td class="remove text-center">
-                                    <input type="checkbox" wire:model="{{time()}}">
+                                    <input type="checkbox" wire:model="{{ time() }}">
                                 </td>
-                                {{-- @php 
-                                    $federal_amount += $tr['ALLOCATION OF FUNDS FEDERAL'] ?? 0;
-                                    $state_amount += $tr['ALLOCATION OF FUNDS STATE'] ?? 0;
-                                    $arrear_amount += $tr['ARREARS OF ALLOCATION'] ?? 0;
-                                    $contri_amount += $tr['CONTRIBUTION TO NLC'] ?? 0;
-                                    $advance_amount += $tr['ADVANCE ALLOCATION'] ?? 0;
-                                @endphp --}}
-
-                                @foreach($tr as $td)
-                               
-                                    {{-- @php 
-                                        $federal_amount += $td['ALLOCATION OF FUNDS FEDERAL'] ?? 0;
-                                        $state_amount += $td['ALLOCATION OF FUNDS STATE'] ?? 0;
-                                        $arrear_amount += $td['ARREARS OF ALLOCATION'] ?? 0;
-                                        $contri_amount += $td['CONTRIBUTION TO NLC'] ?? 0;
-                                        $advance_amount += $td['ADVANCE ALLOCATION'] ?? 0;
-                                    @endphp --}}
+                
+                                @foreach($tr as $index => $td)
                                     <td>
-                                        {{-- {!! wordwrap($td, 120, '<br>', false) !!} --}}
                                         {{$td}}
                                     </td>
+                
+                                    @php
+                                        // Sum specific columns starting from index 5
+                                        if ($index >= 5) {
+                                            // Assuming the column names correspond to these amounts
+                                            switch ($columns[$index]) {
+                                                case 'ALLOCATION OF FUNDS FEDERAL':
+                                                    $federal_amount += is_numeric($td) ? (float)$td : 0;
+                                                    break;
+                                                case 'ALLOCATION OF FUNDS STATE':
+                                                    $state_amount += is_numeric($td) ? (float)$td : 0;
+                                                    break;
+                                                case 'ARREARS OF ALLOCATION':
+                                                    $arrear_amount += is_numeric($td) ? (float)$td : 0;
+                                                    break;
+                                                case 'CONTRIBUTION TO NLC':
+                                                    $contri_amount += is_numeric($td) ? (float)$td : 0;
+                                                    break;
+                                                case 'ADVANCE ALLOCATION':
+                                                    $advance_amount += is_numeric($td) ? (float)$td : 0;
+                                                    break;
+                                            }
+                                        }
+                                    @endphp
                                 @endforeach
                             </tr>
                         @empty
@@ -125,11 +134,6 @@
                     <tfoot>
                         <tr>
                             <td colspan="5" class="text-right total">Total</td>
-                            {{-- <td>{{ $federal_amount }}</td>
-                            <td>{{ $state_amount }}</td>
-                            <td>{{ $arrear_amount }}</td>
-                            <td>{{ $contri_amount }}</td>
-                            <td>{{ $advance_amount }}</td> --}}
                             <td>{{ number_format($federal_amount, 2) }}</td>
                             <td>{{ number_format($state_amount, 2) }}</td>
                             <td>{{ number_format($arrear_amount, 2) }}</td>
@@ -139,6 +143,7 @@
                     </tfoot>
                 </table>
                 
+            
             </div> 
           @endif
         </div>

@@ -26,7 +26,7 @@ class Expenditure extends Component
     public $arrear_amount=0;
     public $contri_amount=0;
     public $advance_amount=0;
-    //public $
+   
 
     public $monthrange = [
         '01'=>'January', '02'=>'February','03'=>'March','04'=>'April',
@@ -59,7 +59,7 @@ class Expenditure extends Component
 
     private function expenseArranged($data)
     {
-       // tt($data->subheads->count());
+       
         //check single subhead
         $isSingleSubhead = ($data->subheads->count() == 1) ? true : false;
         //First extract all subheads for existing records
@@ -77,8 +77,8 @@ class Expenditure extends Component
         }
 
         $subheadarr['columns'] = array_flip($subheadarr['columns']);
-
-        //tt($subheadarr);
+        
+        
         //arranging the data
         $counter = 0;
         $subheadarr['datas'] = [];
@@ -186,31 +186,18 @@ class Expenditure extends Component
                 }
             }
 
-
-            /*if($subhead->payrolls->isNotEmpty()){
-                foreach ($subhead->payrolls as $payroll) {
-                    $tempArr = $subheadarr['columns'];
-
-                    foreach($tempArr as $subarray=>$key){
-                        if($subarray === 'PVNO'){
-                            $pvExplode = explode('/', $payroll->pvno);
-                            $subheadarr['datas'][$counter]['Y'] = $pvExplode[2];
-                            $subheadarr['datas'][$counter]['M'] = $pvExplode[1];
-                            $subheadarr['datas'][$counter]['PVNO'] = $alloc->pvno;
-                            continue;
-                        }
-
-                        if($subarray === 'DESCRIPTION'){
-                            $subheadarr['datas'][$counter]['DESCRIPTION'] = strtolower($alloc->subhead->name).' for '.
-                                $alloc->location->name;
-                            continue;
-                        }   
-                    }
-                }
-            }*/
-
         }
+        // Sort datas by Y (Year) and M (Month)
+        usort($subheadarr['datas'], function ($a, $b) {
+            // Compare Year first (Y), then Month (M)
+            $yearComparison = $a['Y'] <=> $b['Y'];
+            if ($yearComparison !== 0) {
+                return $yearComparison;
+            }
+            return $a['M'] <=> $b['M']; 
+        });
 
+    
        return $subheadarr;
 
 
