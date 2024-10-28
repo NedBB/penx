@@ -274,8 +274,6 @@ class Allocation extends Component
             'month_1' => 'required',
             'month_2' => 'required'
         ]);
-
-        dd($validated);
        
         $this->allocations = $allocationsService->getRecords($validated);
     }
