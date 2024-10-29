@@ -78,7 +78,6 @@ class Expenditure extends Component
 
         $subheadarr['columns'] = array_flip($subheadarr['columns']);
         
-        
         //arranging the data
         $counter = 0;
         $subheadarr['datas'] = [];
@@ -197,10 +196,7 @@ class Expenditure extends Component
             return $a['M'] <=> $b['M']; 
         });
 
-
-    
        return $subheadarr;
-
 
     }
 
