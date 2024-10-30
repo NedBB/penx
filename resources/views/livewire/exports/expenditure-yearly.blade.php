@@ -31,21 +31,20 @@
                 @endphp
                 @foreach ($head->subheads as $subhead)
                     @php
-                        $total += $subhead->amount;
-                        $grand += $total;
+                        $grand = $subhead->amount + $grand;
                     @endphp
                     @if($subhead->name !== "UNKNOWN") 
-                        <td style="border: 1px solid #ccc; padding: 8px;">{{format_money($subhead->amount)}}</td>
+                        <td style="border: 1px solid #ccc; padding: 8px;">{{$subhead->amount}}</td>
                     @endif
                 @endforeach
-                <td>{{format_money($total)}}</td>
+                <td>{{$subhead->amount}}</td>
             </tr>
             @endif
         @empty
             <tr><td colspan="1" class="text-center text-danger"> No record exist at the moment</td></tr>
         @endforelse
             
-        <tr><td class="text-center text-danger"><strong>Grand Total</strong></td><td><strong>{{format_money($grand)}}</strong></td></tr>
+        <tr><td class="text-center text-danger"><strong>Grand Total</strong></td><td><strong>{{$grand}}</strong></td></tr>
 
     </tbody>
 </table>
