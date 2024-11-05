@@ -110,8 +110,15 @@ class Allocation extends Component
         $start_date = Carbon::create($this->year_1,$this->month_1,1)->startOfMonth();
         $end_date = Carbon::create($this->year_2,$this->month_2)->endOfMonth();
         $diffInMonths = $start_date->diffInMonths($end_date);
+        $diffInMonths = ($diffInMonths == 0) ? 1 : $diffInMonths;
+
         if($this->allocation_field > 0){
-            $this->gross_pay = ($diffInMonths * ((float)$this->amount*($this->allocation_field/$this->divisionpercent)));
+            $amount = (float)$this->amount;
+            $percent_division = $this->allocation_field/$this->divisionpercent;
+            $amount_multipled = $amount * $percent_division;
+            $gross_pay = $diffInMonths * $amount_multipled;
+            $this->gross_pay = round($gross_pay, 2);
+            
         }
         else{
             $this->gross_pay = (float)$this->amount;
