@@ -110,6 +110,6 @@
       </div>
     </div>
 
-    <x-add-omnibus :title="$title" :data="$head_id" :heads="$heads" :records="$subheads"/>
+    <x-add-omnibus :edit="$edit" :title="$title" :data="$head_id" :heads="$heads" :records="$subheads"/>
 
 </div>

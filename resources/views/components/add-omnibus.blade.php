@@ -11,7 +11,7 @@
         <div class="alert alert-danger" role="alert">{{session('failed')}}</div>
     @endif
 
-    <form id="editUserForm" class="row g-3" wire:submit='save'>
+    <form id="editUserForm" class="row g-3" wire:submit="@if($edit == false)save @else update @endif">
         @php
             $head_field = "head_id";
             $subhead_field = "subhead_id"
@@ -43,7 +43,7 @@
         
             <div class="col-12 col-md-6">
                 <label class="form-label" for="modalEditUserFirstName">Head</label>
-                <livewire:selection-change :records='$heads' :data="$data" :name="$head_field">
+                <livewire:selection-change :records='$heads' :edit="$edit" :data="$data" :name="$head_field">
                     <div>
                         @error('record_id') <span class="error">{{ $message }}</span> @enderror 
                     </div>

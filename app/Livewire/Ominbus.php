@@ -17,6 +17,7 @@ class Ominbus extends Component
     public $name;
     public $omnibus;
     public $page = 5;
+   // public $heads;
     public $description;
     public $subheads = [];
     public $pvno;
@@ -40,8 +41,8 @@ class Ominbus extends Component
     public $selection = [];
     public $id;
 
-    // public function boot(OmnibusService $omnibusService){
-    //     $this->omnibusService = $omnibusService;
+    // public function boot(){
+      
     // }
 
     public function selectData(){
@@ -96,12 +97,34 @@ class Ominbus extends Component
         $this->description = $this->omnibus->description;
         $this->subhead_id = $this->omnibus->subhead_id;
         $subhead = $groupheadService->getById($this->omnibus->subhead_id,'subhead');
+        
         $this->head_id = $subhead->head_id;
+        //$this->heads = $groupheadService->headList();
     
         $this->date = sqldate($this->omnibus->created_at);
         $this->pvno = $this->omnibus->pvno;
         $this->id = $this->omnibus->id;
        
+    }
+
+    public function update(OmnibusService $omnibusservice){
+
+        $validate =  $this->validate([
+            "subhead_id"       => ['required'],
+            "amount"    => ['required'],
+            "description"       => ['required'],
+            "pvno"          => ['required'],
+            "name"            => ['nullable']
+        ]);
+
+        $response = $omnibusservice->update($this->id,$validate);
+
+        if($response){
+            request()->session()->flash('success','Record has successfully been updated',array('timeout' => 3000));
+        }
+        else{
+            request()->session()->flash('failed','Record update failed',array('timeout' => 3000));
+        }
     }
 
     public function export(){
@@ -121,12 +144,17 @@ class Ominbus extends Component
         }
     }
 
-    public function render(GroupheadService $headService, OmnibusService $omnibusService)
+    public function render( OmnibusService $omnibusService, GroupheadService $headService)
     {
-        $heads = $headService->headList();
+        if($this->edit == true){
+            $omnibusses = $omnibusService->list($this->pvno_search);
+        }else{
+            $omnibusses = [];
+        }
         //$omnibusses = $omnibusService->list($this->search);
         //dd($omnibusses);
         //$omnibusses = $this->omnibusses;
-        return view('livewire.entries.ominbus',compact('heads'))->layout('layouts.app');
+        $heads = $headService->headList();
+        return view('livewire.entries.ominbus',compact('heads','omnibusses'))->layout('layouts.app');
     }
 }

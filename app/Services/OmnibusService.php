@@ -47,7 +47,7 @@ class OmnibusService {
         $ominbus->pvno = $data['pvno'];
         $ominbus->amount = $data['amount'];
         $ominbus->description = $data['description'];
-        $ominbus->profile = $data['profile'];
+        $ominbus->profile = $data['name'];
 
         return $ominbus->save();
     }

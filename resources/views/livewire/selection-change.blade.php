@@ -3,11 +3,18 @@
       
     @if (is_array($records))
         @foreach ($records as $key => $record)
-            <option value="{{$key}}" class="text-capitalize">{{$record}}</option>
+            <option value="{{$key}}" @if($key == $data) selected @endif class="text-capitalize" class="text-capitalize">{{$record}}</option>
         @endforeach
     @else
+        
+        
         @foreach ($records as $record)
-            <option value="{{$record->id}}" @if($record->id == $data) selected @endif class="text-capitalize">{{$record->name}}</option>
+        
+            @if ($data)
+                <option value="{{$record->id}}" @if($record->id == $data) selected @endif class="text-capitalize">{{$record->name}}</option>
+            @else
+                <option value="{{$record->id}}" class="text-capitalize">{{$record->name}}</option>
+            @endif
         @endforeach
     @endif
     
