@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 use Livewire\Attributes\On;
 use App\Exports\OmnibusExport;
 use Maatwebsite\Excel\Facades\Excel;
+//use function Livewire\emit;
 
 class Ominbus extends Component
 {
@@ -40,6 +41,9 @@ class Ominbus extends Component
     public $selected;
     public $selection = [];
     public $id;
+    protected $listeners = [
+        'refreshOmnibusRecords' => 'searchrecords'
+    ];
 
     // public function boot(){
       
@@ -120,6 +124,8 @@ class Ominbus extends Component
         $response = $omnibusservice->update($this->id,$validate);
 
         if($response){
+            $this->dispatch('refreshOmnibusRecords');
+
             request()->session()->flash('success','Record has successfully been updated',array('timeout' => 3000));
         }
         else{
@@ -146,15 +152,17 @@ class Ominbus extends Component
 
     public function render( OmnibusService $omnibusService, GroupheadService $headService)
     {
-        if($this->edit == true){
-            $omnibusses = $omnibusService->list($this->pvno_search);
-        }else{
-            $omnibusses = [];
-        }
+        // if($this->edit == true){
+        //     $omnibusses = $omnibusService->list($this->pvno_search);
+        // }else{
+        //     $omnibusses = [];
+        // }
         //$omnibusses = $omnibusService->list($this->search);
         //dd($omnibusses);
         //$omnibusses = $this->omnibusses;
+        //$this->on('refreshOmnibusRecords', fn() => $this->searchrecords($omnibusService));
+
         $heads = $headService->headList();
-        return view('livewire.entries.ominbus',compact('heads','omnibusses'))->layout('layouts.app');
+        return view('livewire.entries.ominbus',compact('heads'))->layout('layouts.app');
     }
 }
