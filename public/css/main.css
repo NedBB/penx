@@ -97,3 +97,11 @@ div.card-datatable [class*="col-md-"] {
 .align-right{
   text-align: right !important;
 }
+
+@media print and (orientation: portrait) {
+  .col-md-3 {
+      width: 23%;
+      display: inline-block;
+      margin-bottom: 10px;
+  }
+}
