@@ -106,6 +106,32 @@ class Allocation extends Component
         }
     }
 
+    public function handleKeypress($value){
+        $amount = (float)$value;
+        $this->amount = $amount;
+
+        $start_date = Carbon::create($this->year_1,$this->month_1,1)->startOfMonth();
+        $end_date = Carbon::create($this->year_2,$this->month_2)->endOfMonth();
+        $diffInMonths = $start_date->diffInMonths($end_date);
+        $diffInMonths = ($diffInMonths == 0) ? 1 : $diffInMonths;
+
+        if($this->allocation_field > 0){
+            
+            $percent_division = $this->allocation_field/$this->divisionpercent;
+            $amount_multipled = $amount * $percent_division;
+            $gross_pay = $diffInMonths * $amount_multipled;
+            $this->gross_pay = round($gross_pay, 2);
+            
+        }
+        else{
+            $this->gross_pay = $amount;
+        }
+        $deduct = (float)$this->nlc + (float)$this->arrears + (float)$this->advance_allocation + (float)$this->constitution 
+        + (float)$this->northern_dues + (float)$this->audit_fees + (float)$this->legal + (float)$this->almanac + (float)$this->badges;
+        $this->net_pay = $this->gross_pay - $deduct;
+    }
+
+
     public function getPay(){
         $start_date = Carbon::create($this->year_1,$this->month_1,1)->startOfMonth();
         $end_date = Carbon::create($this->year_2,$this->month_2)->endOfMonth();
@@ -171,7 +197,7 @@ class Allocation extends Component
 
         $this->reset(['amount','head_id','subhead_id',
         'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
-        'almanac','badges','legal','northern_dues','divisionpercent'
+        'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
     ]);
 
         if($response){

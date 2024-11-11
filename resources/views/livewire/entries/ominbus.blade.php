@@ -23,7 +23,7 @@
             <div class="col-md-6 mt-3">
               <div class="table-responsive text-nowrap"> 
                 <div class="dt-buttons">
-                  <a href="#" onclick="extractContentForPrinting(4,'omnibus','{{$pvno_search}}')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                  <a href="#" onclick="extractContentForPrinting(2,'omnibus','{{$pvno_search}}')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
                     <span><i class="ti ti-file-export me-sm-1"></i> </span>
                     <span class="d-none d-sm-inline-block">Print</span>
                   </a>
@@ -54,7 +54,7 @@
                   <th>Sub Head</th>
                   <th>Description</th>
                   <th>Amount</th>
-                  <th class="change">Action</th>
+                  <th class="change remove">Action</th>
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">
@@ -81,7 +81,7 @@
                         <td data-amount={{$omni->amount}} >
                             {{format_money($omni->amount)}}
                         </td>
-                        <td class="change">
+                        <td class="change remove">
                           <livewire:edit-anchor :record="$omni" :eventoption="$editevent" wire:key='{{time().$omni->id}}' > 
                             &nbsp;
                           <a href="#" onclick="confirm('Are you sure you want to delete {{$omni->name}} ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$omni->id}})'>

@@ -161,8 +161,10 @@
                 <div class="col-4 col-md-4">
                     <label class="form-label">Amount Received</label>
                     <input
-                        wire:model='amount'
-                        wire:blur="getPay"
+                        {{-- wire:model='amount' --}}
+                        {{-- wire:blur="getPay" --}}
+                        {{-- wire:model.defer="amount" --}}
+                        wire:model="amount" wire:keyup="handleKeypress($event.target.value)"
                         type="text"
                         name="amount"
                         class="form-control" 
@@ -203,6 +205,7 @@
                     <label class="form-label">NLC</label>
                     <input
                         wire:model='nlc'
+                        {{-- wire:keyup="calculateTotals($event.target.value)" --}}
                         wire:blur="calculateTotals"
                         type="number"
                         name="nlc"
@@ -218,6 +221,7 @@
                     <input
                         wire:model='constitution'
                         wire:blur="calculateTotals"
+                        {{-- wire:keyup="calculateTotals($event.target.value)" --}}
                         type="number"
                         name="constitution"
                         class="form-control" 
@@ -232,6 +236,8 @@
                         wire:model='advance_allocation'
                         type="number"
                         name="advance_allocation"
+                        wire:blur="calculateTotals"
+                        {{-- wire:keyup="calculateTotals($event.target.value)" --}}
                         class="form-control" 
                     />
                     <div>
@@ -244,6 +250,7 @@
                     <label class="form-label">Arrears</label>
                     <input
                         wire:model='arrears'
+                        {{-- wire:keyup="calculateTotals($event.target.value)" --}}
                         wire:blur="calculateTotals"
                         type="number"
                         name="arrears"
@@ -273,6 +280,8 @@
                         wire:model='audit_fees'
                         type="number"
                         name="audit_fees"
+                        {{-- wire:keyup="calculateTotals($event.target.value)" --}}
+                        wire:blur="calculateTotals"
                         class="form-control" 
                     />
                     <div>
