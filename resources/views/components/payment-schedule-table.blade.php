@@ -15,9 +15,7 @@
         @if($sort)
             @foreach($sort as $lists)
                 @foreach($lists as $value)
-
-                    @if( ($pvno == $value['pvno'] && $tablename == $value['tablename']) || ($tablename =='' && $pvno
-                    == ''))
+                    @if( ($pvno == $value['pvno'] && $tablename == $value['tablename']) || ($tablename =='' && $pvno == ''))
                         @php 
                             $pvno = $value['pvno']; $tablename = $value['tablename']; $netpay += $value['amount'];
                             $total += $value['amount']
@@ -50,7 +48,8 @@
                         </tr>
 
                         <tr>
-                            <td class="remove"></td>
+                            <td class="remove"><input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
+                            </td>
                             <td class="remove">{{++$count}}</td>
                             <td>{{($value['tablename'] == 'allocation')?$value['subhead']['name'].' for '
                             .$value['location']['name']

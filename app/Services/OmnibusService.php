@@ -12,7 +12,7 @@ class OmnibusService {
         $start = date('Y').'-'.date('m').'-'.'01';
         $end = carbon::parse($start)->endOfMonth();
         return Omnibus::search($search)
-                ->with('subhead')
+                ->with('subhead.head')
                 ->orderby('created_at','ASC')
                 ->get();
     }

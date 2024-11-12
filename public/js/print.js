@@ -6,6 +6,9 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
         
         header = header.replace("/", "");
 
+        document.getElementsByClassName("change")[0].textContent = "Sign";
+
+
         let total = Array.from({ length: $('table.table thead th').length }).map(() => 0);
 
         let currentDate = new Date().toLocaleDateString('en-GB');
@@ -69,6 +72,8 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
     function extractContentForPrinting(colspan,page, pvno_data=null){
         let header = $(window.document.body).find('h4').html();
         header = header.replace("/", "");
+
+        document.getElementsByClassName("change")[0].textContent = "Sign";
 
         let record = $("#total_words").data("total");
         let total_in_words = '';
@@ -326,12 +331,18 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
         let header;
         if(pvno != null && page == 'omnibus'){
            header  = `<div class="mb-3">Date: ${currentDate}</div>
-            <div class="float-start">P.V No: ${pvno}</div>
-            <div class="float-end">Cheque No: ............</div>`
+            
+            <div class="d-flex justify-content-between">
+                <div>P.V No: ${pvno}</div>
+                <div style="width:150px">Cheque No: .............................................</div>
+            </div>
+            `
         }
         else{
-            header = `<div class="float-start">Date: ${currentDate}</div>
-            <div class="float-end">Cheque No: ............</div>`
+            header = `<div class="d-flex justify-content-between">
+            <div>Date: ${currentDate}</div>
+            <div style="width:150px">Cheque No: <div style="width:150px">Cheque No: .............................................</div>
+            </div>`
         }
         
 
@@ -469,13 +480,21 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
         if(page == 'omnibus'){
             //var total = numberToEnglishKobo(amount)
             var record = `<div class='mb-2'>Date:${currentDate}</div>
-                            <div class="float-start">P.V No: ${pvno}</div>
-                            <div class="float-end">Cheque No: ............</div>`;
+                            <div class="d-flex justify-content-between">
+                <div>P.V No: ${pvno}</div>
+                <div style="width:150px">Cheque No: .............................................</div>
+            </div>`;
+                            // <div class="float-start">P.V No: ${pvno}</div>
+                            // <div class="float-end">Cheque No:  .....................</div>
         }
         else{
            // var total = (amount !== null) ? numberToEnglishKobo(amount) : '';
-            var record = `<div class='float-start'>Date:${currentDate}</div>
-                            <div class="float-end">Cheque No: ............</div>`;
+            // var record = `<div class='float-start'>Date:${currentDate}</div>
+            //                 <div class="float-end">Cheque No:  ......................</div>`;
+            record = `<div class="d-flex justify-content-between">
+            <div>Date: ${currentDate}</div>
+            <div style="width:150px">Cheque No: <div style="width:150px">Cheque No: .............................................</div>
+            </div>`
         }
      
         newWindow.document.write(`

@@ -55,6 +55,7 @@ class Ominbus extends Component
 
     public function searchrecords(OmnibusService $omnibusService){
         $this->omnibusses = $omnibusService->list($this->pvno_search);
+        
     }
 
     #[On('selectionChanged')]

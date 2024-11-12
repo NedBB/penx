@@ -54,7 +54,7 @@
                   <th>Sub Head</th>
                   <th>Description</th>
                   <th>Amount</th>
-                  <th class="change remove">Action</th>
+                  <th class="change">Action</th>
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">
@@ -73,10 +73,10 @@
                             <span class="fw-medium">{{sqldate($omni->created_at)}}</span>
                         </td>
                         <td class="text-capitalize">
-                            <span class="fw-medium">{{$omni->subhead->name}}</span>
+                            <span class="fw-medium">{{$omni->subhead->head->slug}}-{{$omni->subhead->name}}</span>
                         </td>
                         <td>
-                            <span class="fw-medium">{{$omni->description}}</span>
+                            <span class="fw-medium" style="text-transform: lowercase">{{$omni->description}}</span>
                         </td>
                         <td data-amount={{$omni->amount}} >
                             {{format_money($omni->amount)}}
