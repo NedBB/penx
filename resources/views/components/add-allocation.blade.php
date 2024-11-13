@@ -146,10 +146,10 @@
                     <label class="form-label">Date</label>
                     <input
                         wire:model='date_record'
-                        type="text"
+                        type="date"
                         name="date_record"
                         value="{{date('Y-m-d')}}"
-                        readonly
+                        
                         class="form-control" 
                     />
                     <div>
