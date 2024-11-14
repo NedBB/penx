@@ -6,7 +6,9 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
         
         header = header.replace("/", "");
 
-        document.getElementsByClassName("change")[0].textContent = "Sign";
+        if (document.getElementsByClassName("change").length > 0){
+            document.getElementsByClassName("change")[0].textContent = "Sign";
+        }
 
 
         let total = Array.from({ length: $('table.table thead th').length }).map(() => 0);
@@ -73,7 +75,9 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
         let header = $(window.document.body).find('h4').html();
         header = header.replace("/", "");
 
-        document.getElementsByClassName("change")[0].textContent = "Sign";
+        if (document.getElementsByClassName("change").length > 0){
+            document.getElementsByClassName("change")[0].textContent = "Sign";
+        }
 
         let record = $("#total_words").data("total");
         let total_in_words = '';
@@ -341,7 +345,7 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
         else{
             header = `<div class="d-flex justify-content-between">
             <div>Date: ${currentDate}</div>
-            <div style="width:150px">Cheque No: <div style="width:150px">Cheque No: .............................................</div>
+            <div style="width:150px">Cheque No: .............................................</div>
             </div>`
         }
         
@@ -493,7 +497,7 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
             //                 <div class="float-end">Cheque No:  ......................</div>`;
             record = `<div class="d-flex justify-content-between">
             <div>Date: ${currentDate}</div>
-            <div style="width:150px">Cheque No: <div style="width:150px">Cheque No: .............................................</div>
+            <div style="width:150px">Cheque No: .............................................</div>
             </div>`
         }
      

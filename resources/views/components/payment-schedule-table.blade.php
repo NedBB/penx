@@ -31,7 +31,7 @@
                             <td>{{$value['pvno']}}</td>
                             <td class="remove">{{$value['tablename']}}</td>
                             <td>{{format_money($value['amount'])}}</td>
-                            <td>&nbsp;</td>
+                            {{-- <td class="remove">&nbsp;</td> --}}
                         </tr>
                     @else
                     @php
@@ -41,9 +41,9 @@
                             <td style="visibility: hidden; border-top: 1px solid #fc0"></td>
                             <td style="border-right: 0"></td>
                             <td style="border-right: 0"></td>
-                            <td style="border-right: 0"></td>
-                            <td style="border-right: 0"></td>
-                            <td style=""></td>
+                            <td class="remove"></td>
+                            <td class="remove"></td>
+                            <td class="remove"></td>
                             <td class="bold">{{format_money($netpay)}}</td>
                         </tr>
 
@@ -57,7 +57,7 @@
                             <td>{{$value['pvno']}}</td>
                             <td  class="remove">{{$value['tablename']}}</td>
                             <td>{{format_money($value['amount'])}}</td>
-                            <td>&nbsp;</td>
+                            {{-- <td>&nbsp;</td> --}}
                         </tr>
                         @php $pvno = $value['pvno']; $tablename = $value['tablename']; $netpay = $value['amount'] @endphp
                     @endif
@@ -80,15 +80,15 @@
                 <td>Contribution</td>
                 <td>Pension</td>
                 <td>{{format_money($pension)}}</td>
-                <td></td>
+                {{-- <td></td> --}}
             </tr>
             <tr>
                 <td style="visibility: hidden"></td>
                 <td style="border-right: 0"></td>
                 <td style="border-right: 0"></td>
-                <td style="border-right: 0"></td>
-                <td style="border-right: 0"></td>
-                <td style=""></td>
+                <td class="remove"></td>
+                <td class="remove"></td>
+                <td class="remove"></td>
                 <td class="bold">{{format_money($pension)}}</td>
             </tr>
         @endif
@@ -106,15 +106,15 @@
                 <td>Payroll</td>
                 <td>NOF Payroll</td>
                 <td>{{format_money($nationpayroll)}}</td>
-                <td></td>
+                {{-- <td></td> --}}
             </tr>
             <tr>
                 <td style="visibility: hidden"></td>
                 <td style="border-right: 0"></td>
                 <td style="border-right: 0"></td>
-                <td style="border-right: 0"></td>
-                <td style="border-right: 0"></td>
-                <td style=""></td>
+                <td class="remove"></td>
+                <td class="remove"></td>
+                <td class="remove"></td>
                 <td class="bold">{{format_money($nationpayroll)}}</td>
             </tr>
 
@@ -132,27 +132,32 @@
                 <td class="remove">Payroll</td>
                 <td  class="remove">Staff Payroll</td>
                 <td>{{format_money($staffpayroll)}}</td>
-                <td></td>
+                {{-- <td></td> --}}
             </tr>
             <tr>
                 <td style="visibility: hidden" class="check"></td>
                 <td style="border-right: 0"></td>
                 <td style="border-right: 0"></td>
-                <td style="border-right: 0"></td>
-                <td style="border-right: 0"></td>
-                <td style=""></td>
+                <td class="remove"></td>
+                <td class="remove"></td>
+                <td class="remove"></td>
                 <td class="bold">{{format_money($staffpayroll)}}</td>
             </tr>
         @endif
     </tbody>
     <tfoot>
         <tr>
-            <td style="border-right:0"></td>
-            <td style="border-right:0"></td>
-            <td style="border-right:0"></td>
-            <td style="border-right:0"></td>
-            <td style="border-right:0"></td>
+            <td class="remove"></td>
+            <td class="remove"></td>
+            <td class="remove"></td>
+            <td class="remove"></td>
+            <td class="remove"></td>
             <td class="bold" style="text-align:right">Total</td>
+            <td ></td>
+            <td ></td>
+            {{-- <td ></td>
+            <td ></td>
+            <td ></td> --}}
             <td id="total" class="bold">{{format_money($total)}}</td>
         </tr>
     </tfoot>
