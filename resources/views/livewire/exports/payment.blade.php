@@ -11,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-        @php $count = 0; $tablename=''; $pvno=''; $netpay = 0;  @endphp
+        @php $count = 0; $tablename=''; $pvno=''; $netpay = 0; $total = 0;  @endphp
         @if($sort)
             @foreach($sort as $lists)
                 @foreach($lists as $value)
@@ -33,6 +33,9 @@
                             <td>&nbsp;</td>
                         </tr>
                     @else
+                    @php
+                    $total += $value['amount']
+                @endphp
                         <tr>
                             <td style="visibility: hidden; border-top: 1px solid #fc0"></td>
                             <td style="border-right: 0"></td>
@@ -63,6 +66,9 @@
         @endif
 
         @if($pension)
+        @php
+               $total += $pension
+           @endphp
             <tr>
                 <td></td>
                 <td>{{++$count}}</td>
@@ -83,6 +89,9 @@
             </tr>
         @endif
         @if($nationpayroll)
+            @php
+               $total += $nationpayroll
+            @endphp
             <tr>
                 <td></td>
                 <td>{{++$count}}</td>
@@ -104,6 +113,9 @@
 
         @endif
         @if($staffpayroll)
+        @php
+               $total += $staffpayroll
+           @endphp
             <tr>
                 <td></td>
                 <td>{{++$count}}</td>
@@ -132,7 +144,7 @@
             <td style="border-right:0"></td>
             <td style="border-right:0"></td>
             <td class="bold" style="text-align:right">Total</td>
-            <td id="total" class="bold"></td>
+            <td id="total" class="bold">{{format_money($total)}}</td>
         </tr>
     </tfoot>
     
