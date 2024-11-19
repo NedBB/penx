@@ -30,13 +30,13 @@
                             :$value['description']}}</td>
                             <td>{{$value['pvno']}}</td>
                             <td class="remove">{{$value['tablename']}}</td>
-                            <td>{{format_money($value['amount'])}}</td>
+                            <td class="amount">{{format_money($value['amount'])}}</td>
                             {{-- <td class="remove">&nbsp;</td> --}}
                         </tr>
                     @else
-                    @php
-                    $total += $value['amount']
-                @endphp
+                        @php
+                            $total += $value['amount']
+                        @endphp
                         <tr>
                             <td style="visibility: hidden; border-top: 1px solid #fc0"></td>
                             <td style="border-right: 0"></td>
@@ -56,7 +56,7 @@
                             :$value['description']}}</td>
                             <td>{{$value['pvno']}}</td>
                             <td  class="remove">{{$value['tablename']}}</td>
-                            <td>{{format_money($value['amount'])}}</td>
+                            <td class="amount">{{format_money($value['amount'])}}</td>
                             {{-- <td>&nbsp;</td> --}}
                         </tr>
                         @php $pvno = $value['pvno']; $tablename = $value['tablename']; $netpay = $value['amount'] @endphp
@@ -79,10 +79,10 @@
                 <td>Staff Contributory pension</td>
                 <td>Contribution</td>
                 <td>Pension</td>
-                <td>{{format_money($pension)}}</td>
+                <td class="amount">{{format_money($pension)}}</td>
                 {{-- <td></td> --}}
             </tr>
-            <tr>
+            <tr >
                 <td style="visibility: hidden"></td>
                 <td style="border-right: 0"></td>
                 <td style="border-right: 0"></td>
@@ -105,7 +105,7 @@
                 <td>Payroll for nationa officers</td>
                 <td>Payroll</td>
                 <td>NOF Payroll</td>
-                <td>{{format_money($nationpayroll)}}</td>
+                <td class="amount">{{format_money($nationpayroll)}}</td>
                 {{-- <td></td> --}}
             </tr>
             <tr>
@@ -131,7 +131,7 @@
                 <td>Payroll for staff</td>
                 <td class="remove">Payroll</td>
                 <td  class="remove">Staff Payroll</td>
-                <td>{{format_money($staffpayroll)}}</td>
+                <td class="amount">{{format_money($staffpayroll)}}</td>
                 {{-- <td></td> --}}
             </tr>
             <tr>

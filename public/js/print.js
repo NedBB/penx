@@ -70,6 +70,87 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
 
         printSelection(header,clonedTable.html(),currentDate,page, pvno, total_amount)
     }
+
+    function extractSelectionforPrintingPS(colspan, total_index,page, pvno, td_arry,col_remove){
+        let header = $(window.document.body).find('h4').html();
+        
+        header = header.replace("/", "");
+
+        if (document.getElementsByClassName("change").length > 0){
+            document.getElementsByClassName("change")[0].textContent = "Sign";
+        }
+
+
+        let total = Array.from({ length: $('table.table thead th').length }).map(() => 0);
+        let totalAmount = 0;
+        let currentDate = new Date().toLocaleDateString('en-GB');
+        currentDate = currentDate.replace(/\//g, "-");
+
+        const clonedHeading = $('table.table thead').clone();
+
+        // Create a new table to hold the cloned heading and selected rows
+        const clonedTable = $('<table class="table"></table>');
+
+        // Append the cloned heading to the new table
+        clonedTable.append(clonedHeading);
+        
+        $('table.table tbody tr').each(function() {
+            // Check if the checkbox in the current row is checked
+
+            if ($(this).find('input[type="checkbox"]').prop('checked')) {
+                // Clone the selected row
+
+                const clonedRow = $(this).clone();
+                clonedTable.append(clonedRow);
+
+                td_arry.forEach(value => {
+                    //amount = clonedRow.find('td').eq(value).text();
+                    amount = clonedRow.find('td.amount').text();
+                    
+                    const tdValue = parseFloat(amount.replace(/,/g, ''));
+                    //console.log(tdValue);
+                    
+                    if (!isNaN(tdValue)) {
+                        totalAmount += tdValue;
+                    }
+
+                    
+                    
+                })
+                
+            }
+        });
+        
+        const clonedFooter = $('table.table tfoot').clone();
+
+        totalAmount = totalAmount / 2;
+
+        let total_format = new Intl.NumberFormat('en-US').format(totalAmount);
+
+        new_total = total.slice(colspan);
+        let footer = $(`<tr><td colspan="${colspan - col_remove}" class="align-right">Total</td><td>${total_format}</td><td>${total_format}</td></tr>`);
+        let tds;
+
+        // new_total.forEach(function(value, index) {
+        //     if(value == 0){
+        //        tds = `<td></td>`;
+        //        footer.append(tds);
+        //     }
+        //     else{
+        //         tds = `<td>${totalAmount.toLocaleString()}</td>`;
+        //         footer.append(tds);
+        //     }
+         
+        // });
+        clonedFooter.empty()
+        clonedFooter.append(footer);
+        clonedTable.append(clonedFooter);
+        let total_amount = total[total_index - 1];
+        //console.log(totalAmount);
+        
+
+        printSelection(header,clonedTable.html(),currentDate,page, pvno, totalAmount)
+    }
     
     function extractContentForPrinting(colspan,page, pvno_data=null){
         let header = $(window.document.body).find('h4').html();
