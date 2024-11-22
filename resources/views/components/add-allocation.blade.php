@@ -148,7 +148,7 @@
                         wire:model='date_record'
                         type="date"
                         name="date_record"
-                        value="{{date('Y-m-d')}}"
+                        {{-- value="{{date('Y-m-d')}}" --}}
                         
                         class="form-control" 
                     />
