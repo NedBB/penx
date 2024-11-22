@@ -38,6 +38,7 @@ class Allocation extends Component
     public $net_pay = 0;
     public $gross_pay = 0;
     public $constitution = 0;
+    public $date_record;
     public $id;
     public $arrears = 0;
     public $nlc = 0;
@@ -50,7 +51,7 @@ class Allocation extends Component
     public $audit_fees = 0;
     public $badges = 0;
     public $northern_dues = 0;
-    public $amount;
+    public $amount = '';
     public $title = "Add Allocations";
     public $edittitle = "Edit Allocations";
     public $addevent= "add-allocations";
@@ -106,9 +107,39 @@ class Allocation extends Component
         }
     }
 
+    public function updatedAmount($value)
+    {
+        // Validate input: allow numbers and a single decimal
+        if (preg_match('/^\d*\.?\d*$/', $value)) {
+            $this->amount = $value;
+        } else {
+            // Reset or sanitize invalid input
+            $this->amount = preg_replace('/[^\d.]/', '', $value);
+        }
+    }
+
+    public function getFormattedAmountProperty()
+    {
+        return number_format((float) $this->amount, 2, '.', '');
+    }
+
     public function handleKeypress($value){
-        $amount = (float)$value;
+        logger('Keypress value:', ['value' => $value]); // Log value for debugging
+
+        // Allow only numbers and a single dot
+        if (preg_match('/^\d*\.?\d*$/', $value)) {
+            $this->amount = $value;
+            //$this->updateDependentField();
+        } else {
+            // Reset or sanitize invalid input
+            $this->amount = preg_replace('/[^\d.]/', '', $value);
+        }
+
+
+        $amount = (float)$this->amount;
         $this->amount = $amount;
+
+        //dd($this->amount);
 
         $start_date = Carbon::create($this->year_1,$this->month_1,1)->startOfMonth();
         $end_date = Carbon::create($this->year_2,$this->month_2)->endOfMonth();
@@ -196,9 +227,9 @@ class Allocation extends Component
         $response = $allocationService->createRecord($validate);
 
         $this->reset(['amount','head_id','subhead_id',
-        'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
-        'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
-    ]);
+            'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
+            'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
+        ]);
 
         if($response){
             request()->session()->flash('success','Record has successfully been created',array('timeout' => 3000));
@@ -219,6 +250,15 @@ class Allocation extends Component
             }
             $this->allocations = $records;
         }
+    }
+
+    #[On('add-allocation')]
+    public function add(){
+        $this->reset(['amount','head_id','subhead_id',
+        'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
+        'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
+    ]);        $this->edit = false;
+        $this->title = "Add Allocation";
     }
 
     #[On('edit-allocation')]
@@ -243,6 +283,7 @@ class Allocation extends Component
         $this->month_2 = $records->month_2;
         $this->month_1 = $records->month_1;
         $this->audit_fees = $records->auditfee;
+        $this->date_record = Carbon::parse($records->created_at)->toDateString();
         $this->northern_dues = $records->magazine;
         $this->legal = $records->legal;
         $this->advance_allocation = $records->advanceallocation;

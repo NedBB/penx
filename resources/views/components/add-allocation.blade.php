@@ -164,11 +164,22 @@
                         {{-- wire:model='amount' --}}
                         {{-- wire:blur="getPay" --}}
                         {{-- wire:model.defer="amount" --}}
-                        wire:model="amount" wire:keyup="handleKeypress($event.target.value)"
+                       
+                        {{-- oninput="this.setAttribute('value', this.value)" 
+                        wire:model.defer="amount" 
+                        wire:keyup="handleKeypress($event.target.value)" --}}
                         type="text"
                         name="amount"
-                        class="form-control" 
-                    />
+                        class="form-control"
+                        wire:model.defer="amount" {{-- Delay synchronization until the user finishes input --}}
+                        wire:keyup="handleKeypress($event.target.value)" {{-- Trigger backend logic on keypress --}}
+                        type="text"
+                        name="amount"
+                        class="form-control"
+                        oninput="delayedSync(event)"
+                        />
+
+                        
                     <div>
                         @error('amount') <span class="error">{{ $message }}</span> @enderror 
                     </div>

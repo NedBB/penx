@@ -48,6 +48,7 @@ class OmnibusService {
         $ominbus->amount = $data['amount'];
         $ominbus->description = $data['description'];
         $ominbus->profile = $data['name'];
+        $ominbus->created_at = $data['date'];
 
         return $ominbus->save();
     }

@@ -147,7 +147,7 @@ class GroupheadService {
     }
 
     public function getSubHeadByHeadid($id){
-        return Subhead::where('head_id',$id)->get();
+        return Subhead::where('head_id',$id)->with('head')->get();
     }
 
     public function updateHead($id,$data){

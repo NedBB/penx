@@ -55,7 +55,7 @@ div.card-datatable [class*="col-md-"] {
 }
 
 .table th, .table td {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 12px !important;
   letter-spacing: 1px !important;
   padding-top: 4px !important;
@@ -105,3 +105,4 @@ div.card-datatable [class*="col-md-"] {
       margin-bottom: 10px;
   }
 }
+

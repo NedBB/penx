@@ -1,5 +1,5 @@
 let fullUrl = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "") + "/";
-    
+let timeout;
 
     function extractSelectionforPrinting(colspan, total_index,page, pvno, td_arry,col_remove){
         let header = $(window.document.body).find('h4').html();
@@ -150,6 +150,35 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
         
 
         printSelection(header,clonedTable.html(),currentDate,page, pvno, totalAmount)
+    }
+
+    function delayedSync(event) {
+        // Clear any previous timeout to ensure only the latest input triggers the sync
+        clearTimeout(timeout);
+
+        // Set a new timeout to delay syncing with Livewire (5 seconds)
+        timeout = setTimeout(function() {
+            // Emit the value to Livewire after 5 seconds
+            //@this.set('amount', event.target.value); // Directly update Livewire property
+            Livewire.find('{{ $this->id }}').set('amount', event.target.value);
+        }, 5000); // 5000 ms = 5 seconds
+    }
+
+    function updateInputValue(event) {
+         // Get current input value
+         let inputValue = event.target.value;
+
+         // If the value is a valid number with a decimal
+         if (/^\d*\.?\d*$/.test(inputValue)) {
+             event.target.setAttribute('value', inputValue); // Ensure value stays in input
+         }
+ 
+         // Handle cursor placement when typing (fix any issues with cursor jumping)
+         const cursorPosition = event.target.selectionStart;
+         setTimeout(function() {
+             event.target.selectionStart = cursorPosition;
+             event.target.selectionEnd = cursorPosition;
+         }, 0);
     }
     
     function extractContentForPrinting(colspan,page, pvno_data=null){

@@ -11,9 +11,9 @@
         @foreach ($records as $record)
         
             @if ($data)
-                <option value="{{$record->id}}" @if($record->id == $data) selected @endif class="text-capitalize">{{$record->name}}</option>
+                <option value="{{$record->id}}" @if($record->id == $data) selected @endif class="text-capitalize">{{$record->slug}}-{{$record->name}}</option>
             @else
-                <option value="{{$record->id}}" class="text-capitalize">{{$record->name}}</option>
+                <option value="{{$record->id}}" class="text-capitalize">{{$record->slug}}-{{$record->name}}</option>
             @endif
         @endforeach
     @endif

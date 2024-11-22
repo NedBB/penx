@@ -51,7 +51,7 @@
                 <tr>
                   <th class="remove"></th>
                   <th class="remove">Date</th>
-                  <th>Sub Head</th>
+                  <th>Group Head</th>
                   <th>Description</th>
                   <th>Amount</th>
                   <th class="change">Action</th>
@@ -76,7 +76,7 @@
                             <span class="fw-medium">{{$omni->subhead->head->slug}}-{{$omni->subhead->name}}</span>
                         </td>
                         <td>
-                            <span class="fw-medium" style="text-transform: lowercase">{{$omni->description}}</span>
+                            <span class="fw-medium">{{$omni->description}}</span>
                         </td>
                         <td data-amount={{$omni->amount}} >
                             {{format_money($omni->amount)}}

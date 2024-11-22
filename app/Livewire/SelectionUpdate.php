@@ -10,6 +10,7 @@ class SelectionUpdate extends Component
     public $records;
     public $recordx_id;
     public $name;
+    public $type;
 
    
     #[On('messageSent')] 

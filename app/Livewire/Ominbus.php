@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 use Livewire\Attributes\On;
 use App\Exports\OmnibusExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 //use function Livewire\emit;
 
 class Ominbus extends Component
@@ -91,6 +92,13 @@ class Ominbus extends Component
         }
     }
 
+    #[On('add-omnibus')]
+    public function add(){
+        $this->reset(['amount','head_id','pvno','description','name','description','date']);
+        $this->edit = false;
+        $this->title = "Add Omnibus";
+    }
+
     #[On('edit-omnibus')]
     public function edit($id, OmnibusService $omnibusservice, GroupheadService $groupheadService){
       
@@ -99,6 +107,7 @@ class Ominbus extends Component
         $this->omnibus = $omnibusservice->getById($id);
         $this->name = $this->omnibus->name;
         $this->amount = $this->omnibus->amount;
+        $this->date = Carbon::parse($this->omnibus->created_at)->toDateString();
         $this->description = $this->omnibus->description;
         $this->subhead_id = $this->omnibus->subhead_id;
         $subhead = $groupheadService->getById($this->omnibus->subhead_id,'subhead');
@@ -119,6 +128,7 @@ class Ominbus extends Component
             "amount"    => ['required'],
             "description"       => ['required'],
             "pvno"          => ['required'],
+            "date"         => ['required'],
             "name"            => ['nullable']
         ]);
 

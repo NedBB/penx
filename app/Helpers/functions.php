@@ -8,6 +8,20 @@ if(! function_exists('icarbon')){
     }
 }
 
+if (!function_exists('toSentenceCase')) {
+    function toSentenceCase($text)
+    {
+        $text = strtolower($text);
+
+        // Use a regular expression to match sentences and capitalize the first letter
+        $text = preg_replace_callback('/(^\s*\w|[.!?]\s*\w)/', function ($matches) {
+            return strtoupper($matches[0]);
+        }, $text);
+
+        return $text;
+    }
+}
+
 if(! function_exists('sqldatetime') ){
     function sqldatetime($time='now'){
         $format = 'Y\-m\-d H\:i\:s';
