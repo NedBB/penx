@@ -85,6 +85,7 @@ let timeout;
         let totalAmount = 0;
         let currentDate = new Date().toLocaleDateString('en-GB');
         currentDate = currentDate.replace(/\//g, "-");
+        let count = 0;
 
         const clonedHeading = $('table.table thead').clone();
 
@@ -102,33 +103,41 @@ let timeout;
 
                 const clonedRow = $(this).clone();
                 clonedTable.append(clonedRow);
-
+                
                 td_arry.forEach(value => {
                     //amount = clonedRow.find('td').eq(value).text();
                     amount = clonedRow.find('td.amount').text();
                     
                     const tdValue = parseFloat(amount.replace(/,/g, ''));
-                    //console.log(tdValue);
+                    
                     
                     if (!isNaN(tdValue)) {
                         totalAmount += tdValue;
                     }
 
                     
-                    
                 })
                 
             }
         });
-        
+     
         const clonedFooter = $('table.table tfoot').clone();
 
-        totalAmount = totalAmount / 2;
+        if(page == "payment"){
+             totalAmount = totalAmount / 2;
+        }
 
-        let total_format = new Intl.NumberFormat('en-US').format(totalAmount);
+        let total_format = new Intl.NumberFormat('en-US',{
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(totalAmount);
 
         new_total = total.slice(colspan);
-        let footer = $(`<tr><td colspan="${colspan - col_remove}" class="align-right">Total</td><td>${total_format}</td><td>${total_format}</td></tr>`);
+
+        amount = (page == "payment") ? total_format : ""
+
+        let footer = $(`<tr><td colspan="${colspan - col_remove}" class="align-right">Total</td><td>${total_format}</td><td>${amount}</td></tr>`);
+
         let tds;
 
         // new_total.forEach(function(value, index) {
@@ -443,7 +452,10 @@ let timeout;
 
     function printTableTpl(newH1, newTable,currentDate, colspan, record = '', page, pvno =null) {
         let header;
-        if(pvno != null && page == 'omnibus'){
+        console.log(record);
+        
+        //if(pvno != null && page == 'omnibus'){
+        if ((pvno != null) && (page == 'omnibus' || page == 'allocation')){
            header  = `<div class="mb-3">Date: ${currentDate}</div>
             
             <div class="d-flex justify-content-between">
@@ -591,7 +603,7 @@ let timeout;
        
         let total = (amount != null) ? numberToEnglishKobo(amount) : ''
 
-        if(page == 'omnibus'){
+        if((pvno != null) && (page == 'omnibus' || page == 'allocation')){
             //var total = numberToEnglishKobo(amount)
             var record = `<div class='mb-2'>Date:${currentDate}</div>
                             <div class="d-flex justify-content-between">

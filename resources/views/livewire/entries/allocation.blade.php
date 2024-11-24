@@ -96,11 +96,11 @@
           <div class="col-md-6 mt-3">
             <div class="table-responsive text-nowrap"> 
               <div class="dt-buttons">
-                <a href="#" onclick="extractContentForPrinting(1,'allocation','{{$pvno_search}}')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                <a href="#" onclick="extractContentForPrinting(12,'allocation','{{$pvno_search}}')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
                   <span><i class="ti ti-file-export me-sm-1"></i> </span>
                   <span class="d-none d-sm-inline-block">Print</span>
                 </a>
-                <a href="#" onclick="extractSelectionforPrinting(1,5,'allocation','{{$pvno_search}}',[4],2)"  id="print-selection" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                <a href="#" onclick="extractSelectionforPrintingPS(14,5,'allocation','{{$pvno_search}}',[4],2)"  id="print-selection" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
                   <span><i class="ti ti-file-export me-sm-1"></i> </span>
                   <span class="d-none d-sm-inline-block">Print Selection</span>
                 </a>
@@ -141,9 +141,13 @@
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                
+                @php
+                   $total = 0;
+                @endphp
                 @forelse ($allocations as $list)
-                  
+                     @php
+                        $total += $list->netpay;
+                     @endphp
                     <tr wire:key='{{$list->id}}'>
                       <td class="remove">
                         <input id="{{time()}}" type="checkbox" class="checkbox"/>
@@ -190,9 +194,7 @@
                       <td class="text-capitalize">
                           <span class="fw-medium">{{format_money($list->auditfee)}}</span>
                       </td>
-                      <td class="text-capitalize">
-                        <span class="fw-medium">{{format_money($list->netpay)}}</span>
-                    </td>
+                      <td class="text-capitalize amount">{{format_money($list->netpay)}} </td>
                       <td class="change">
                         
                         <a href="#" onclick="confirm('Are you sure you want to delete ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$list->id}})'>
@@ -204,7 +206,13 @@
                     <tr><td colspan="16" class="text-center text-danger">No data exist at the moment</td></tr>
                 @endforelse
             </tbody>
-            
+            <tfoot class="footer">
+              <tr>
+                  <td colspan="14" class="align-right">Total</td>
+                  <td id="total_words" data-total={{$total}}>{{format_money($total)}}</td>
+                  <td class=""></td>
+              </tr>
+          </tfoot>
           </table>
         </div>
 
