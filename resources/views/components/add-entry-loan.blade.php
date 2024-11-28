@@ -49,7 +49,8 @@
           <label class="form-label">Interest Rate</label>
           <input
               wire:model='interestrate'
-              type="text"
+              type="number"
+              step="0.01"
               name="interestrate"
               class="form-control" 
               disabled
@@ -65,6 +66,7 @@
           <input
               wire:model='principal'
               type="number"
+              step="0.01"
               name="principal"
               class="form-control" /> 
               <div>
@@ -116,6 +118,7 @@
           <input
               wire:model='payable'
               type="number"
+              step="0.01"
               name="payable"
               class="form-control" 
               disabled

@@ -51,10 +51,10 @@ class Allocation extends Component
     public $audit_fees = 0;
     public $badges = 0;
     public $northern_dues = 0;
-    public $amount = '';
+    public $amount;
     public $title = "Add Allocations";
     public $edittitle = "Edit Allocations";
-    public $addevent= "add-allocations";
+    public $addevent= "add-allocation";
     public $editevent = "edit-allocation";
     public $edit = false;
     public $search = '';
@@ -68,6 +68,10 @@ class Allocation extends Component
     public $year_1;
     public $year_2;
 
+    protected $listeners = [
+        'refreshAllocationRecords' => 'searchs'
+    ];
+
     public $monthrange = [
         '01'=>'January', '02'=>'February','03'=>'March','04'=>'April',
         '05'=>'May','06'=>'June','07'=>'July','08'=>'August',
@@ -78,6 +82,7 @@ class Allocation extends Component
         $this->heads = $head->headList();
         $this->subhead_field_lists = $headService->getSubHeadByHeadid(1);
         $this->locations = $locations->listState();
+        $this->amount = number_format($this->amount, 2, '.', '');
     }
 
     #[On('selectionChanged')]
@@ -124,16 +129,36 @@ class Allocation extends Component
     }
 
     public function handleKeypress($value){
-        logger('Keypress value:', ['value' => $value]); // Log value for debugging
+        //logger('Keypress value:', ['value' => $value]); // Log value for debugging
 
         // Allow only numbers and a single dot
-        if (preg_match('/^\d*\.?\d*$/', $value)) {
-            $this->amount = $value;
+
+       // if (preg_match('/^\d*\.?\d*$/', $value)) {
+          //  $this->amount = $value;
             //$this->updateDependentField();
-        } else {
+       // } else {
             // Reset or sanitize invalid input
-            $this->amount = preg_replace('/[^\d.]/', '', $value);
+        //    $this->amount = preg_replace('/[^\d.]/', '', $value);
+        //}
+
+        // Allow only numbers and a single decimal point
+        $sanitizedValue = preg_replace('/[^0-9.]/', '', $value);
+
+        // Prevent multiple decimal points
+        $parts = explode('.', $sanitizedValue);
+        if (count($parts) > 2) {
+            $sanitizedValue = $parts[0] . '.' . implode('', array_slice($parts, 1));
         }
+
+        // Optionally, enforce two decimal places
+        if (strpos($sanitizedValue, '.') !== false) {
+            $sanitizedValue = preg_replace('/(\.\d{2})\d+/', '$1', $sanitizedValue);
+        }
+
+        // Assign the sanitized value back to the Livewire property
+        $this->amount = $sanitizedValue;
+
+        //$this->amount = preg_replace('/[^0-9.]/', '', $value);
 
 
         $amount = (float)$this->amount;
@@ -257,7 +282,8 @@ class Allocation extends Component
         $this->reset(['amount','head_id','subhead_id',
         'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
         'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
-    ]);        $this->edit = false;
+        ]);        
+       $this->edit = false;
         $this->title = "Add Allocation";
     }
 
@@ -312,6 +338,7 @@ class Allocation extends Component
             "almanac" => ["required"],
             "audit_fees" => ["required"],
             "nlc"            => ['required'],
+            "date_record"    => ['required'],
             "arrears"            => ['required'],
             "badges"            => ['required'],
             "gross_pay"            => ['required'],
@@ -331,6 +358,7 @@ class Allocation extends Component
         $response = $allocationService->updateRecord($this->id,$validate);
 
         if($response){
+            $this->dispatch('refreshAllocationRecords');
             request()->session()->flash('success','Record has successfully been updated',array('timeout' => 3000));
         }
         else{

@@ -128,6 +128,7 @@
               <input
                   wire:model='basicsalary'
                   type="number"
+                  step="0.01"
                   name="basicsalary"
                   class="form-control" /> 
                   <div>

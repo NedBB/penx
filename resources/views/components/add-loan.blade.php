@@ -19,7 +19,7 @@
         </div>
         <div class="col-12 col-md-12">
           <label class="form-label">Interest Rate</label>
-          <input type="text" name="interestrate"  wire:model="interestrate" class="form-control"/>
+          <input type="number" step="0.01" name="interestrate"  wire:model="interestrate" class="form-control"/>
           <div>
             @error('interestrate') <span class="error">{{ $message }}</span> @enderror 
           </div>

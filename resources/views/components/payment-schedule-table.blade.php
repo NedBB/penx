@@ -158,7 +158,7 @@
             {{-- <td ></td>
             <td ></td>
             <td ></td> --}}
-            <td id="total" class="bold">{{format_money($total)}}</td>
+            <td  id="total_words" data-total={{$total}} class="bold">{{format_money($total)}}</td>
         </tr>
     </tfoot>
     

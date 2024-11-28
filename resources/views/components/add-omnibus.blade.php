@@ -71,7 +71,8 @@
             <div class="col-12 col-md-6">
                 <label class="form-label">Amount</label>
                 <input wire:model='amount'
-                    type="text"
+                    type="number"
+                    step="0.01"
                     name="amount"
                     class="form-control"
                     placeholder="amount" />

@@ -36,7 +36,8 @@
                 <label class="form-label">Remitted Amount</label>
                 <input
                     wire:model.live='amount'
-                    type="text"
+                    type="number"
+                    step="0.01"
                     name="amount"
                     class="form-control"
                     required
@@ -50,7 +51,8 @@
                     <label class="form-label">Income Percent</label>
                     <input
                         wire:model='income'
-                        type="text"
+                        type="number"
+                        step="0.01"
                         name="incomeperc"
                         class="form-control"
                         required
@@ -134,7 +136,8 @@
                     <label class="form-label">Total</label>
                     <input disabled
                         wire:model='amount'
-                        type="text"
+                        type="number"
+                        step="0.01"
                         name="total"
                         class="form-control"
                         required

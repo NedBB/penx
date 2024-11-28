@@ -29,6 +29,7 @@
             <input
                 wire:model='baseamount'
                 type="number"
+                step="0.01"
                 id="baseamount"
                 name="baseamount"
                 class="form-control"
@@ -40,6 +41,7 @@
             <input
                 wire:model='incrementrate'
                 type="number"
+                step="0.01"
                 id="incrementrate"
                 name="incrementrate"
                 class="form-control"

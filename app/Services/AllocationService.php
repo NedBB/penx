@@ -128,6 +128,7 @@ class AllocationService {
             $record->month_2 = $data['month_2'];
             $record->year_2 = $data['year_2'];
             $record->year_1 = $data['year_1'];
+            $record->created_at = $data["date_record"];
 
             return $record->save();
     }

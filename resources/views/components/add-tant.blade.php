@@ -62,6 +62,7 @@
                 <label class="form-label">Transport</label>
                 <input wire:model='transport'
                     type="number"
+                    step="0.01"
                     name="transport"
                     class="form-control"
                     placeholder="transport" />
@@ -74,9 +75,8 @@
                 <label class="form-label">Date</label>
                 <input
                     wire:model='date_record'
-                    type="text"
+                    type="date"
                     name="date_record"
-                    readonly
                     class="form-control" 
                 />
                 <div>
@@ -102,6 +102,7 @@
                         wire:model='house'
                         wire:blur="calculateTotals"
                         type="number"
+                        step="0.01"
                         name="house"
                         class="form-control" 
                     />
@@ -144,6 +145,7 @@
                         wire:model='food'
                         wire:blur="calculateTotals"
                         type="number"
+                        step="0.01"
                         name="food"
                         class="form-control" 
                     />
@@ -185,6 +187,7 @@
                     <input
                         wire:model='outstation'
                         wire:blur="calculateTotals"
+                        step="0.01"
                         type="number"
                         name="outstation"
                         class="form-control" 
@@ -228,6 +231,7 @@
                         wire:model='seating'
                         wire:blur="calculateTotals"
                         type="number"
+                        step="0.01"
                         name="seating"
                         class="form-control" 
                     />

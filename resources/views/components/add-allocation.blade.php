@@ -168,15 +168,15 @@
                         {{-- oninput="this.setAttribute('value', this.value)" 
                         wire:model.defer="amount" 
                         wire:keyup="handleKeypress($event.target.value)" --}}
+                        pattern="[0-9]+([\.][0-9]{1,2})?"
                         type="text"
                         name="amount"
                         class="form-control"
-                        wire:model.defer="amount" {{-- Delay synchronization until the user finishes input --}}
-                        wire:keyup="handleKeypress($event.target.value)" {{-- Trigger backend logic on keypress --}}
-                        type="text"
-                        name="amount"
+                        wire:model.lazy="amount" {{-- Delay synchronization until the user finishes input --}}
+                        wire:keyup.debounce.800ms="handleKeypress($event.target.value)" {{-- Trigger backend logic on keypress --}}
+                       
                         class="form-control"
-                        oninput="delayedSync(event)"
+                        
                         />
 
                         
@@ -189,7 +189,7 @@
                     <label class="form-label">Allocation %</label>
                     <input
                         wire:model='allocation_field'
-                        type="number"
+                        type="text"
                         name="allocation_field"
                         class="form-control" 
                     />
@@ -202,6 +202,7 @@
                     <input
                         wire:model='gross_pay'
                         type="number"
+                        step="0.01"
                         name="gross_pay"
                         class="form-control" 
                         disabled
@@ -219,6 +220,7 @@
                         {{-- wire:keyup="calculateTotals($event.target.value)" --}}
                         wire:blur="calculateTotals"
                         type="number"
+                        step="0.01"
                         name="nlc"
                         class="form-control" 
                     />
@@ -234,6 +236,7 @@
                         wire:blur="calculateTotals"
                         {{-- wire:keyup="calculateTotals($event.target.value)" --}}
                         type="number"
+                        step="0.01"
                         name="constitution"
                         class="form-control" 
                     />
@@ -246,6 +249,7 @@
                     <input
                         wire:model='advance_allocation'
                         type="number"
+                        step="0.01"
                         name="advance_allocation"
                         wire:blur="calculateTotals"
                         {{-- wire:keyup="calculateTotals($event.target.value)" --}}
@@ -265,6 +269,7 @@
                         wire:blur="calculateTotals"
                         type="number"
                         name="arrears"
+                        step="0.01"
                         class="form-control" 
                     />
                     <div>
@@ -278,6 +283,7 @@
                         wire:model='northern_dues'
                         wire:blur="calculateTotals"
                         type="number"
+                        step="0.01"
                         name="northern_dues"
                         class="form-control" 
                     />
@@ -290,6 +296,7 @@
                     <input
                         wire:model='audit_fees'
                         type="number"
+                        step="0.01"
                         name="audit_fees"
                         {{-- wire:keyup="calculateTotals($event.target.value)" --}}
                         wire:blur="calculateTotals"
@@ -307,6 +314,7 @@
                         wire:model='legal'
                         wire:blur="calculateTotals"
                         type="number"
+                        step="0.01"
                         name="legal"
                         class="form-control" 
                     />
@@ -321,6 +329,7 @@
                         wire:model='almanac'
                         wire:blur="calculateTotals"
                         type="number"
+                        step="0.01"
                         name="almanac"
                         class="form-control" 
                     />
@@ -333,6 +342,7 @@
                     <input
                         wire:model='badges'
                         type="number"
+                        step="0.01"
                         name="badges"
                         class="form-control" 
                     />
@@ -346,6 +356,7 @@
                     <input
                         wire:model='net_pay'
                         type="number"
+                        step="0.01"
                         name="net_pay"
                         class="form-control" 
                         disabled

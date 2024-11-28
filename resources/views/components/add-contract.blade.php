@@ -55,7 +55,8 @@
             <label class="form-label">Cost</label>
             <input
               wire:model='cost'
-              type="text"
+              type="number"
+              step="0.01"
               name="cost"
               class="form-control" 
             /> 
@@ -69,6 +70,7 @@
           <input
               wire:model='payment'
               type="number"
+              step="0.01"
               name="payment"
               class="form-control"
           /> 

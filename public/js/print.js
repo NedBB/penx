@@ -66,9 +66,13 @@ let timeout;
         clonedFooter.append(footer);
         clonedTable.append(clonedFooter);
         let total_amount = total[total_index - 1];
-    
-
-        printSelection(header,clonedTable.html(),currentDate,page, pvno, total_amount)
+        console.log(page);
+        
+        if(page =='payment'){
+            printTablePaymentSchedule(header,clonedTable.html(),currentDate,page, pvno, totalAmount);
+        }else{
+         printSelection(header,clonedTable.html(),currentDate,page, pvno, total_amount)
+        }
     }
 
     function extractSelectionforPrintingPS(colspan, total_index,page, pvno, td_arry,col_remove){
@@ -156,9 +160,13 @@ let timeout;
         clonedTable.append(clonedFooter);
         let total_amount = total[total_index - 1];
         //console.log(totalAmount);
-        
-
-        printSelection(header,clonedTable.html(),currentDate,page, pvno, totalAmount)
+        console.log(page);
+        if(page =='payment'){
+            printTablePaymentSchedule(header,clonedTable.html(),currentDate,totalAmount,page, pvno);
+        }
+        else{
+            printSelection(header,clonedTable.html(),currentDate,page, pvno, totalAmount);
+        }
     }
 
     function delayedSync(event) {
@@ -199,6 +207,11 @@ let timeout;
         }
 
         let record = $("#total_words").data("total");
+        if(record == undefined){
+            
+        }
+        console.log(record);
+        
         let total_in_words = '';
         if(record != null){
             total_in_words = numberToEnglishKobo(record);
@@ -212,10 +225,16 @@ let timeout;
         var $footer = table.find('tfoot');
         $footer.find('td:first').attr('colspan', colspan);
 
-        var newTable = $(window.document.body).find('table').html();                        
+        var newTable = $(window.document.body).find('table').html();  
+        console.log(page+" - "+record);
+                              
         if(page == "plain"){
             printPlainTable(header, newTable);
-        }else{
+        }
+        else if(page =='payment'){
+            printTablePaymentSchedule(header,newTable,currentDate, record, page, pvno_data);
+        }
+        else{
             printTableTpl(header, newTable,currentDate, colspan, total_in_words, page, pvno_data);
         }
     }
@@ -541,7 +560,7 @@ let timeout;
             </div>
         `);
     
-     }
+    }
 
     function printPlainTable(newH1, newTable) {
 
@@ -692,5 +711,81 @@ let timeout;
                 </div>
             </div>
         `);
+    }
+
+    function printTablePaymentSchedule(newH1, newTable,currentDate, amount, record = '', page, pvno =null) {
+        let header;
+        
+           header  = `<div class="mb-3">Date: ${currentDate}</div>
+            `
+        let total = (amount != null) ? numberToEnglishKobo(amount) : ''
+        
+        var newWindow = window.open("", "_blank");
+        newWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+
+                <title>${newH1}</title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
+                <link rel="stylesheet" href="${fullUrl}css/main.css?v=${Date.now()}" />
+                <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        font-family: 'Ubuntu', sans-serif !important;
+                        color: #666;
+                    }
+                    th,td{
+                        color #666 !important
+                    }
+                    .table{
+                        color: #666 !important;
+                    }
+
+                    .remove{
+                        display: none !important;
+                    }
+                </style>
+            </head>
+            <body>
+                
+            </body>
+            </html>
+        `);
+        $(newWindow.document.body).css('background-color', '#fff').prepend(`
+            <div class="container-fluid print-view">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1 text-center">
+                        <div class="print-header" style="padding: 0px 10px 7px; background-color:#009688 !important;-webkit-print-color-adjust: exact; display:inline-block">
+                            <div class="text-uppercase text-center m" style="text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;">Nigerian Union Of Pensioners</div>
+                            <div class="text-uppercase s" style="text-align:right">National HeadQuarter</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <h2 class="text-center mt-2" style="font-size:25px; font-weight:500">${newH1}</h2><br>
+                        ${header}
+                        
+                    </div>
+                    <div class="col-lg-12 mt-3">
+                        <table class="table table-hover table-bordered font-13 nowrap dataTable" id="print_table">
+                            ${newTable}
+                        </table><br>
+                        <div class="row">
+                        <div class="col-md-12 mb-2">
+                                ${total}
+                            </div>
+                        
+                        </div><br><br>
+                        <div class="row">
+                            <div class="col-md-3">CASH/CHEQUE NO:......................</div>
+                            <div class="col-md-3">LISTED:.................</div>
+                            <div class="col-md-3">SIGNATURE........................</div>
+                            <div class="col-md-3">DATE.........................</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+    
     }
     

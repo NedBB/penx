@@ -53,10 +53,10 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2" class="align-right"><strong>Total</strong></td>
+                    <td colspan="3" class="align-right"><strong>Total</strong></td>
                     <td><strong>{{format_currency($employers)}}</strong></td>
                     <td><strong>{{format_currency($employee)}}</strong></td>
-                    <td><strong>{{format_currency($total)}}</strong></td>
+                    <td class="amount" id="total_words"><strong>{{format_currency($total)}}</strong></td>
                 </tr>
             </tfoot>
         @else
@@ -112,7 +112,7 @@
             <tfoot>
                 <tr>
                     <td colspan="3" class="align-right"><strong>Total</strong></td>
-                    <td id="total_words" data-total={{$total}}>{{format_currency($total)}}</td>
+                    <td class="amount" id="total_words" data-total={{$total}}>{{format_currency($total)}}</td>
                 </tr>
             </tfoot>
         @endif
