@@ -82,7 +82,7 @@ class Allocation extends Component
         $this->heads = $head->headList();
         $this->subhead_field_lists = $headService->getSubHeadByHeadid(1);
         $this->locations = $locations->listState();
-        $this->amount = number_format($this->amount, 2, '.', '');
+        
     }
 
     #[On('selectionChanged')]
@@ -220,6 +220,8 @@ class Allocation extends Component
         $this->applypercent = true;
     }
 
+    
+
     public function save(AllocationService $allocationService)
     {
         $validate =  $this->validate([
@@ -227,7 +229,7 @@ class Allocation extends Component
             "subhead_id"       => ['required'],
             "amount"    => ['required'],
             "advance_allocation"       => ['required'],
-            
+            "date_record" => ['required'],
             "pvno"          => ['required'],
             "location_id"            => ['required'],
             "legal"            => ['required'],
@@ -251,7 +253,7 @@ class Allocation extends Component
 
         $response = $allocationService->createRecord($validate);
 
-        $this->reset(['amount','head_id','subhead_id',
+        $this->reset(['amount','head_id','subhead_id','date_record',
             'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
             'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
         ]);
@@ -279,7 +281,7 @@ class Allocation extends Component
 
     #[On('add-allocation')]
     public function add(){
-        $this->reset(['amount','head_id','subhead_id',
+        $this->reset(['amount','head_id','subhead_id','date_record',
         'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
         'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
         ]);        

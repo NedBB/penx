@@ -91,10 +91,17 @@
                     @error('description') <span class="error">{{ $message }}</span> @enderror 
                 </div>
             </div>
-            
-            <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-            </div>
+            {{$edit}}
+            @if($edit == true)
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Edit</button>
+                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Save as New</button>
+                </div>
+            @else
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+                </div>
+            @endif
     </form>
 
 </x-my-modal>

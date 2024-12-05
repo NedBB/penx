@@ -69,6 +69,7 @@ class AllocationService {
             'month_2' => $data['month_2'],
             'year_2' => $data['year_2'],
             'year_1' => $data['year_1'],
+            'created_at' => $data['date_record']
         ]);
     }
 

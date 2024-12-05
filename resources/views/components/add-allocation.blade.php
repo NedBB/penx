@@ -173,7 +173,7 @@
                         name="amount"
                         class="form-control"
                         wire:model.lazy="amount" {{-- Delay synchronization until the user finishes input --}}
-                        wire:keyup.debounce.800ms="handleKeypress($event.target.value)" {{-- Trigger backend logic on keypress --}}
+                        wire:keyup.debounce.900ms="handleKeypress($event.target.value)" {{-- Trigger backend logic on keypress --}}
                        
                         class="form-control"
                         
