@@ -21,6 +21,7 @@ class Ominbus extends Component
     public $page = 5;
    // public $heads;
     public $description;
+    public $record_id, $recordx_id;
     public $subheads = [];
     public $pvno;
     public $subhead_id;
@@ -77,9 +78,10 @@ class Ominbus extends Component
             "amount"    => ['required'],
             "description"       => ['required'],
             "pvno"          => ['required'],
-            "name"            => ['nullable']
+            "name"            => ['nullable'],
+            "date" => ['required']
         ]);
-
+        $validate['created_at'] = $validate['date'];
         $response = $service->create($validate);
 
         $this->reset(['amount','head_id','pvno','description','name','description','date']);
@@ -94,7 +96,7 @@ class Ominbus extends Component
 
     #[On('add-omnibus')]
     public function add(){
-        $this->reset(['amount','head_id','pvno','description','name','description','date']);
+        $this->reset(['amount','record_id','recordx_id','pvno','description','name','description','date']);
         $this->edit = false;
         $this->title = "Add Omnibus";
     }
