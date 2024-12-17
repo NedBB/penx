@@ -109,6 +109,9 @@
       <!-- Drag Target Area To SlideIn Menu On Small Screens -->
             <div class="drag-target"></div>
         </div>
+
+        @livewireScripts
+
         <script src="{{asset('libs/jquery/jquery.js')}}"></script>
         <script src="{{asset('libs/popper/popper.js')}}"></script>
         {{-- <script src="{{asset('libs/datatables-bs5/datatables-bootstrap5.js')}}"></script> --}}
@@ -139,6 +142,7 @@
         <script src="{{asset('js/forms-tagify.js')}}"></script>
         <script src="{{asset('js/forms-typeahead.js')}}"></script>
 
+        
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}"></script>
         <script src="{{asset('js/jquery.div.print.js')}}"></script>
@@ -147,6 +151,6 @@
 {{--         
         <script src="{{asset('js/tables-datatables-basic.js')}}"></script> --}}
 
-        @livewireScripts
+        
     </body>
 </html>

@@ -1,6 +1,27 @@
 let fullUrl = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "") + "/";
 let timeout;
 
+
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Livewire loaded successfully.');
+
+        const input = document.getElementById('amountInput');
+        let debounceTimer;
+
+        // Listen for the 'keyup' event
+        input.addEventListener('keyup', function (event) {
+            clearTimeout(debounceTimer);
+
+            debounceTimer = setTimeout(() => {
+                const value = event.target.value; // Get the input value
+                console.log('Keyup detected. Emitting value:', value); // Debugging
+
+                // Emit event to Livewire
+                window.Livewire.dispatch('amountUpdated', { value: value });
+            }, 500); // Debounce time in milliseconds
+        });
+    });
+
     function extractSelectionforPrinting(colspan, total_index,page, pvno, td_arry,col_remove){
         let header = $(window.document.body).find('h4').html();
         

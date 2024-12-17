@@ -161,7 +161,8 @@
                 <div class="col-4 col-md-4">
                     <label class="form-label">Amount Received</label>
                     <input
-                        {{-- wire:model='amount' --}}
+                        id="amountInput"
+                        wire:model='amount'
                         {{-- wire:blur="getPay" --}}
                         {{-- wire:model.defer="amount" --}}
                        
@@ -172,10 +173,10 @@
                         type="text"
                         name="amount"
                         class="form-control"
-                        wire:model.lazy="amount" {{-- Delay synchronization until the user finishes input --}}
-                        wire:keyup.debounce.900ms="handleKeypress($event.target.value)" {{-- Trigger backend logic on keypress --}}
-                       
-                        class="form-control"
+                        {{-- wire:model.lazy="amount" 
+                        wire:keyup.debounce.900ms="handleKeypress($event.target.value)"  Trigger backend logic on keypress --}}
+                      
+                        {{-- class="form-control" --}}
                         
                         />
 

@@ -69,8 +69,13 @@ class Allocation extends Component
     public $year_2;
 
     protected $listeners = [
-        'refreshAllocationRecords' => 'searchs'
+        'refreshAllocationRecords' => 'searchs',
+        'amountUpdated' => 'handleKeypress',
     ];
+    
+    // protected $listeners = [
+    //     'amountUpdated' => 'handleAmountUpdate',
+    // ];
 
     public $monthrange = [
         '01'=>'January', '02'=>'February','03'=>'March','04'=>'April',
@@ -129,6 +134,7 @@ class Allocation extends Component
     }
 
     public function handleKeypress($value){
+       
         //logger('Keypress value:', ['value' => $value]); // Log value for debugging
 
         // Allow only numbers and a single dot
