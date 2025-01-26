@@ -25,7 +25,7 @@
                 >
                 <option value="">Month 1</option>
                 @foreach($monthrange as $key => $value)
-                        <option value="{{$key}}">{{$value}}</option>
+                        <option value="{{$key}}" @if($month1 == $key) selected @endif>{{$value}}</option>
                     @endforeach
             </select>
             </div>
@@ -40,7 +40,7 @@
                     $reverse = array_reverse(range(1990, date('Y')));
                 @endphp
                 @foreach($reverse as $i)
-                        <option value="{{$i}}">{{$i}}</option>
+                        <option value="{{$i}}" @if($year1 == $i) selected @endif>{{$i}}</option>
                     @endforeach
             </select>
             </div>
@@ -52,7 +52,7 @@
                 >
                 <option value="">Month 2</option>
                 @foreach($monthrange as $key => $value)
-                        <option value="{{$key}}">{{$value}}</option>
+                        <option value="{{$key}}" @if($month2 == $key) selected @endif>{{$value}}</option>
                     @endforeach
             </select>
             </div>
@@ -66,7 +66,7 @@
                     $reverse = array_reverse(range(1990, date('Y')));
                 @endphp
                 @foreach($reverse as $i)
-                        <option value="{{$i}}">{{$i}}</option>
+                        <option value="{{$i}}" @if($year2 == $i) selected @endif>{{$i}}</option>
                     @endforeach
             </select>
         

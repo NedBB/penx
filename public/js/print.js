@@ -3,7 +3,6 @@ let timeout;
 
 
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('Livewire loaded successfully.');
 
         const input = document.getElementById('amountInput');
         let debounceTimer;
@@ -14,7 +13,6 @@ let timeout;
 
             debounceTimer = setTimeout(() => {
                 const value = event.target.value; // Get the input value
-                console.log('Keyup detected. Emitting value:', value); // Debugging
 
                 // Emit event to Livewire
                 window.Livewire.dispatch('amountUpdated', { value: value });

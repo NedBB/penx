@@ -96,6 +96,7 @@ class GroupheadService {
     }
 
     public function getExpenditure($id,$from, $to){
+        
         return  Head::where('id',$id)
         ->with([
         'subheads'=>function($h) use($from, $to){

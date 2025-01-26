@@ -135,19 +135,6 @@ class Allocation extends Component
 
     public function handleKeypress($value){
        
-        //logger('Keypress value:', ['value' => $value]); // Log value for debugging
-
-        // Allow only numbers and a single dot
-
-       // if (preg_match('/^\d*\.?\d*$/', $value)) {
-          //  $this->amount = $value;
-            //$this->updateDependentField();
-       // } else {
-            // Reset or sanitize invalid input
-        //    $this->amount = preg_replace('/[^\d.]/', '', $value);
-        //}
-
-        // Allow only numbers and a single decimal point
         $sanitizedValue = preg_replace('/[^0-9.]/', '', $value);
 
         // Prevent multiple decimal points
@@ -164,13 +151,8 @@ class Allocation extends Component
         // Assign the sanitized value back to the Livewire property
         $this->amount = $sanitizedValue;
 
-        //$this->amount = preg_replace('/[^0-9.]/', '', $value);
-
-
         $amount = (float)$this->amount;
         $this->amount = $amount;
-
-        //dd($this->amount);
 
         $start_date = Carbon::create($this->year_1,$this->month_1,1)->startOfMonth();
         $end_date = Carbon::create($this->year_2,$this->month_2)->endOfMonth();
@@ -190,6 +172,7 @@ class Allocation extends Component
         }
         $deduct = (float)$this->nlc + (float)$this->arrears + (float)$this->advance_allocation + (float)$this->constitution 
         + (float)$this->northern_dues + (float)$this->audit_fees + (float)$this->legal + (float)$this->almanac + (float)$this->badges;
+       
         $this->net_pay = $this->gross_pay - $deduct;
     }
 

@@ -222,7 +222,7 @@
       </div>
     </div>
   </div>
-
-  <x-add-allocation :title="$title" :locations="$locations" :monthrange="$monthrange" :month_1="$month_1" :month_2="$month_2" :year_2="$year_2" :year_1="$year_1" :data="$head_id" :heads="$heads" :records="$subheads" :edit="$edit"/>
+{{$head_id}}
+  <x-add-allocation :title="$title" :locations="$locations" :monthrange="$monthrange" :month1="$month_1" :month2="$month_2" :year2="$year_2" :year1="$year_1" :data="$head_id" :heads="$heads" :records="$subheads" :edit="$edit"/>
 
 </div>

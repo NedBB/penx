@@ -7,6 +7,7 @@ use App\Services\GroupheadService;
 use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class Expenditure extends Component
 {
@@ -36,9 +37,12 @@ class Expenditure extends Component
 
     public function search(GroupheadService $groupheadService){
         $this->show = true;
+        $this->end_date = Carbon::parse($this->end_date)->endOfDay(); 
+        $this->start_date = Carbon::parse($this->start_date)->startOfDay(); 
         $result = $groupheadService->getExpenditure($this->head_id, $this->start_date, $this->end_date);
-        
+       
         $data = $this->expenseArranged($result);
+        //dd($data);
         $this->records = $data['datas'];
         $this->columns = $data['columns'];
         
@@ -53,7 +57,6 @@ class Expenditure extends Component
     }
 
     public function export(){
-     
         return Excel::download(new ExpenditureExport($this->records, $this->columns), 'expenditure.xlsx');
     }
 
@@ -65,6 +68,8 @@ class Expenditure extends Component
         //First extract all subheads for existing records
 
         $subheadarr = ['columns' => ['Y', 'M', 'PVNO','DESCRIPTION']];
+
+        
 
         foreach($data->subheads as $subhead){
             if( $subhead->name === 'UNKNOWN'){
@@ -92,6 +97,7 @@ class Expenditure extends Component
                             $pvExplode = explode('/', $omni->pvno);
                             $subheadarr['datas'][$counter]['Y'] = $pvExplode[2];
                             $subheadarr['datas'][$counter]['M'] = $pvExplode[1];
+                            $subheadarr['datas'][$counter]['D'] = $pvExplode[0];
                            $subheadarr['datas'][$counter]['PVNO'] = $omni->pvno;
                            continue;
                        }
@@ -126,6 +132,7 @@ class Expenditure extends Component
                                 $pvExplode = explode('/', $alloc->pvno);
                                 $subheadarr['datas'][$counter]['Y'] = $pvExplode[2];
                                 $subheadarr['datas'][$counter]['M'] = $pvExplode[1];
+                                $subheadarr['datas'][$counter]['D'] = $pvExplode[0];
                                 $subheadarr['datas'][$counter]['PVNO'] = $alloc->pvno;
                                 continue;
                             }
@@ -162,6 +169,7 @@ class Expenditure extends Component
                             $pvExplode = explode('/', $trans->pvno);
                             $subheadarr['datas'][$counter]['Y'] = $pvExplode[2];
                             $subheadarr['datas'][$counter]['M'] = $pvExplode[1];
+                            $subheadarr['datas'][$counter]['D'] = $pvExplode[0];
                             $subheadarr['datas'][$counter]['PVNO'] = $trans->pvno;
                             continue;
                         }
@@ -186,15 +194,39 @@ class Expenditure extends Component
             }
 
         }
+
+        //dd($subheadarr);
         // Sort datas by Y (Year) and M (Month)
+        // usort($subheadarr['datas'], function ($a, $b, $c) {
+        //     // Compare Year first (Y), then Month (M)
+        //     $yearComparison = $a['Y'] <=> $b['Y'];
+        //     if ($yearComparison !== 0) {
+        //         return $yearComparison;
+        //     }
+        //     return $a['M'] <=> $b['M']; 
+        // });
+
         usort($subheadarr['datas'], function ($a, $b) {
-            // Compare Year first (Y), then Month (M)
+            // Compare Year first (Y)
             $yearComparison = $a['Y'] <=> $b['Y'];
             if ($yearComparison !== 0) {
                 return $yearComparison;
             }
-            return $a['M'] <=> $b['M']; 
+        
+            // If Year is the same, compare Month (M)
+            $monthComparison = $a['M'] <=> $b['M'];
+            if ($monthComparison !== 0) {
+                return $monthComparison;
+            }
+        
+            // If Year and Month are the same, compare Day (D)
+            return $a['D'] <=> $b['D'];
         });
+
+        $subheadarr['datas'] = array_map(function ($item) {
+            unset($item['D']);
+            return $item;
+        }, $subheadarr['datas']);
 
        return $subheadarr;
 

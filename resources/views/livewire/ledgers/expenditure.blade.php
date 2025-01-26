@@ -57,19 +57,20 @@
           @if($show)
             <div class="table-responsive text-nowrap"> 
 
-                <table class="table table-hover table-bordered font-13 table-striped" id="result" style="border-collapse: collapse; table-layout: fixed; word-wrap: break-word;">
-                    <thead>
-                        <tr>
-                            <th width="50px" class="noExport remove"></th>
-                            @php 
+                <table class="table table-hover table-bordered font-13 table-striped" id="result" style="border-collapse: collapse; word-wrap: break-word;">
+                    @php 
                                 $footercount = count($columns); 
                                 $count = 0; 
-                            @endphp
+                     @endphp
+                    <thead>
+                        <tr style="text-wrap: auto">
+                            <th width="50px" class="noExport remove"></th>
+                            
                             @foreach($columns as $th => $key)
                                 <th 
                                     @if($count <= 1) width="50px"
                                     @elseif($count == 2) width="100px"
-                                    @elseif($count == 3) width= "600px"
+                                    @elseif($count == 3) width= "350px"
                                     @else width="400px" 
                                     @endif
                                 >
@@ -127,16 +128,19 @@
                     <tfoot>
                         <tr>
                             <td colspan="5" class="text-right total">Total</td>
+                            @foreach ( as )
+                                
+                            @endforeach
                             {{-- <td>{{ $federal_amount }}</td>
                             <td>{{ $state_amount }}</td>
                             <td>{{ $arrear_amount }}</td>
                             <td>{{ $contri_amount }}</td>
                             <td>{{ $advance_amount }}</td> --}}
-                            <td>{{ number_format($federal_amount, 2) }}</td>
+                            {{-- <td>{{ number_format($federal_amount, 2) }}</td>
                             <td>{{ number_format($state_amount, 2) }}</td>
                             <td>{{ number_format($arrear_amount, 2) }}</td>
                             <td>{{ number_format($contri_amount, 2) }}</td>
-                            <td>{{ number_format($advance_amount, 2) }}</td>
+                            <td>{{ number_format($advance_amount, 2) }}</td> --}}
                         </tr>
                     </tfoot>
                 </table>
