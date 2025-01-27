@@ -96,24 +96,24 @@
 
                                 @foreach($tr as $td)
                                     
-                                    @if($counter >= 4)
+                                    {{-- @if($counter >= 4)
                                         @php
                                             $this->processFooter($td, $x - 4);
                                         @endphp
-                                    @endif
+                                    @endif --}}
                                
                                     <td>
                                         {{-- {!! wordwrap($td, 120, '<br>', false) !!} --}}
                                         {{$td}}
                                     </td>
 
-                                    @php ++$counter; ++$x; @endphp
+                                    {{-- @php ++$counter; ++$x; @endphp --}}
 
                                 @endforeach
                             </tr>
-                            @php
+                            {{-- @php
                                 $counter = 0; $x = 0;// Reset column counter for each row
-                            @endphp
+                            @endphp --}}
                         @empty
                             <tr>
                                 <td colspan="{{ count($columns) + 1 }}" class="text-center text-danger">No record exists at the moment</td>

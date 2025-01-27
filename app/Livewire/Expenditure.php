@@ -52,8 +52,11 @@ class Expenditure extends Component
 
     public function processFooter($value, $key)
     {
+        
         // Convert value to a float or set to 0 if empty
         $data = empty($value) ? 0 : (float)str_replace(',', '', $value);
+
+        $key = intval($key);
 
         // Initialize footer key if it doesn't exist
         if (!isset($this->footer[$key])) {
@@ -255,7 +258,20 @@ class Expenditure extends Component
 
     public function render()
     {
-        
+        $this->footer = [];
+
+        // Process records to calculate footer values
+        $counter = 0; $x = 0;
+        foreach ($this->records as $record) {
+            foreach ($record as $value) {
+                // Only process the relevant columns (adjust index as needed)
+                if ($counter >= 4) {
+                    $this->processFooter($value, $x - 4);
+                }
+                ++$counter; ++$x;
+            }
+            $counter = 0; $x = 0;
+        }
         return view('livewire.ledgers.expenditure')->layout('layouts.app');
     }
 }
