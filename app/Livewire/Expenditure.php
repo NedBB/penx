@@ -18,6 +18,7 @@ class Expenditure extends Component
     public $head_id;
     public $records = [];
     public $columns = [];
+    public $footer = [];
     public $event = '';
     public $data;
     public $count = 0;
@@ -37,15 +38,31 @@ class Expenditure extends Component
 
     public function search(GroupheadService $groupheadService){
         $this->show = true;
-        $this->end_date = Carbon::parse($this->end_date)->endOfDay(); 
-        $this->start_date = Carbon::parse($this->start_date)->startOfDay(); 
-        $result = $groupheadService->getExpenditure($this->head_id, $this->start_date, $this->end_date);
+        $end_date = Carbon::parse($this->end_date)->endOfDay(); 
+        $start_date = Carbon::parse($this->start_date)->startOfDay(); 
+        $result = $groupheadService->getExpenditure($this->head_id, $start_date, $end_date);
        
         $data = $this->expenseArranged($result);
         //dd($data);
         $this->records = $data['datas'];
+        //dd($this->records);
         $this->columns = $data['columns'];
         
+    }
+
+    public function processFooter($value, $key)
+    {
+        // Convert value to a float or set to 0 if empty
+        $data = empty($value) ? 0 : (float)str_replace(',', '', $value);
+
+        // Initialize footer key if it doesn't exist
+        if (!isset($this->footer[$key])) {
+            $this->footer[$key] = 0;
+        }
+
+        // Add value to the footer column
+        $this->footer[$key] += $data;
+  
     }
 
     public function exportPdf(){
@@ -238,6 +255,7 @@ class Expenditure extends Component
 
     public function render()
     {
+        
         return view('livewire.ledgers.expenditure')->layout('layouts.app');
     }
 }
