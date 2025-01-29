@@ -46,6 +46,7 @@ class YearlyExpenditure extends Component
         //session(['export_result' => $result, 'export_year' => $this->year]); 
         
         $this->records = $result;
+        
         //Cache::put('export_records', $this->records, now()->addMinutes(10));
         session(['export_records' => $this->records, 'export_year'=>$this->year]);
 

@@ -60,9 +60,11 @@
                                 </tr>
                                 <tr>
                                     @foreach ($head->subheads as $subhead)
-                                        @if($subhead->name !== "UNKNOWN") 
+                                       
+                
+                                        {{-- @if($subhead->name !== "UNKNOWN")  --}}
                                             <td style="border: 1px solid #ccc; padding: 8px;">{{$subhead->name}}</td>
-                                        @endif
+                                        {{-- @endif --}}
                                     @endforeach
                                     <td>Total</td>
                                 </tr>
@@ -72,18 +74,23 @@
                                         $total = 0;
                                     @endphp
                                     @foreach ($head->subheads as $subhead)
-                                        @php
+                                        {{-- @php
                                             //$total += $subhead->amount;
                                             $grand = $subhead->amount + $grand;
                                            
+                                        @endphp --}}
+                                        @php
+                                            $total += $subhead->amount; // Add each subhead's amount
+                                            $grand += $subhead->amount; // Add to grand total
                                         @endphp
                                       
-                                        @if($subhead->name !== "UNKNOWN") 
+                                        {{-- @if($subhead->name !== "UNKNOWN")  --}}
                                             <td style="border: 1px solid #ccc; padding: 8px;">{{format_money($subhead->amount)}}</td>
-                                        @endif
+                                        {{-- @endif --}}
                                     @endforeach
                                     
-                                    <td>{{format_money($subhead->amount)}}</td>
+                                    {{-- <td>{{format_money($subhead->amount)}}</td> --}}
+                                    <td><strong>{{format_money($total)}}</strong></td> 
                                 </tr>
                             @endif
                         @empty

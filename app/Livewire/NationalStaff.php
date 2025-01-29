@@ -61,8 +61,10 @@ class NationalStaff extends Component
     }
 
     public function update(NationalofficeService $service){
+
+       
         $validate =  $this->validate([
-            "dutystation_id"       => ['required'],
+            
             "paymentmethod_id"    => ['required'],
             "title_id"    => ['required'],
             "bank_id"    => ['required'],
@@ -76,6 +78,8 @@ class NationalStaff extends Component
             "firstname"    => ['required'],
             "middlename"    => ['required'],
         ]);
+
+        dd($validate);
 
         $response = $service->update($this->id,$validate);
 
