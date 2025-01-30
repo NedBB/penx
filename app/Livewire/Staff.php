@@ -56,6 +56,7 @@ class Staff extends Component
     public $department_id;
     public $departments;
     public $steps;
+    public $step;
     
     public $nhfpin;
     public $search = '';
@@ -84,29 +85,30 @@ class Staff extends Component
 
     }
 
-    public function update(StaffprofileService $service){
+    public function update(StaffprofileService $service, ConpossService $conposses){
         $validate =  $this->validate([
             "dutystation_id"       => ['required'],
             "paymentmethod_id"    => ['required'],
             "title_id"    => ['required'],
             "bank_id"    => ['required'],
-            "baseamount"       => ['required'],
+            "step" => ['required'],
             "uniqueid"          => ['required'],
-            "conposs_id" => ['required'],
+            "gradelevel_id" => ['required'],
             "department_id"            => ['required'],
             "entertainment"    => ['required'],
             "utility"    => ['required'],
             "accountno"    => ['required'],
             "surname"    => ['required'],
             "firstname"    => ['required'],
-            "middlename"    => ['required'],
-            "partofpension" => ['required'],
-            "step_id" => ['required'],
-            "partofnhf" => ['required'],
-            "pensionpin" => ['required'],
-            "taxpin" => ['required'],
-            "nhfpin" => ['required']
+            "middlename"    => ['nullable'],
+            "partofpension" => ['nullable'],
+            "partofnhf" => ['nullable'],
+            "pensionpin" => ['nullable'],
+            "taxpin" => ['nullable'],
+            "nhfpin" => ['nullable']
         ]);
+
+        $validate['conposs_id'] = $conposses->getConpossWithStep($validate['step'], $validate['gradelevel_id']);
 
         $response = $service->update($this->id,$validate);
 
@@ -126,6 +128,7 @@ class Staff extends Component
         $this->staffdetail = $service->getById($id);
 
         $this->id = $this->staffdetail->id;
+        $this->gradelevel_id = $this->staffdetail->gradelevel_id;
         $this->surname = $this->staffdetail->surname;
         $this->firstname = $this->staffdetail->firstname;
         $this->middlename = $this->staffdetail->middlename;
@@ -155,15 +158,21 @@ class Staff extends Component
             "paymentmethod_id"    => ['required'],
             "title_id"    => ['required'],
             "bank_id"    => ['required'],
-            "basicsalary"       => ['required'],
+            "step" => ['required'],
+            "baseamount"       => ['required'],
             "uniqueid"          => ['required'],
-            "honours"            => ['required'],
+            "department_id"            => ['required'],
             "entertainment"    => ['required'],
             "utility"    => ['required'],
             "accountno"    => ['required'],
             "surname"    => ['required'],
             "firstname"    => ['required'],
-            "middlename"    => ['required'],
+            "middlename"    => ['nullable'],
+            "partofpension" => ['nullable'],
+            "partofnhf" => ['nullable'],
+            "pensionpin" => ['nullable'],
+            "taxpin" => ['nullable'],
+            "nhfpin" => ['nullable']
         ]);
 
         $response = $service->create($validate);

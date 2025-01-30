@@ -46,7 +46,7 @@
                   name="honours"
                   class="form-control" /> 
                   <div>
-                      @error('honour') <span class="error">{{ $message }}</span> @enderror 
+                      @error('honours') <span class="error">{{ $message }}</span> @enderror 
                   </div> 
             </div>
 

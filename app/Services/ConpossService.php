@@ -13,6 +13,11 @@ class ConpossService{
         return Conposs::create($data);
     }
 
+    public function getConpossWithStep($step, $gradelevel_id){
+        $record =  Conposs::where(['step' => $step, 'gradelevel_id' => $gradelevel_id])->first('id');
+        return $record->id;
+    }
+
     public function getById($id){
         return Conposs::find($id);
     }

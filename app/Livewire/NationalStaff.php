@@ -70,16 +70,15 @@ class NationalStaff extends Component
             "bank_id"    => ['required'],
             "basicsalary"       => ['required'],
             "uniqueid"          => ['required'],
-            "honours"            => ['required'],
+            "honours"            => ['nullable'],
             "entertainment"    => ['required'],
+            "dutystation_id" => ['required'],
             "utility"    => ['required'],
             "accountno"    => ['required'],
             "surname"    => ['required'],
             "firstname"    => ['required'],
             "middlename"    => ['required'],
         ]);
-
-        dd($validate);
 
         $response = $service->update($this->id,$validate);
 

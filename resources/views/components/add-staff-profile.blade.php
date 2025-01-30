@@ -148,7 +148,7 @@
 
         <div class="col-12 col-md-6">
           <label class="form-label">Grade Level</label>
-          <select class="form-control" wire:model='dutystation_id' name="dutystation_id">
+          <select class="form-control" wire:model='gradelevel_id' name="gradelevel_id">
             <option value="">-- Select Grade Level--</option>
             @foreach($gradelevels as $list)
                 <option value="{{$list->id}}">Level {{$list->level}}</option>
@@ -165,7 +165,7 @@
               wire:model='baseamount'
               type="text"
               name="baseamount"
-              class="form-control" readonly /> 
+              class="form-control" readonly disabled/> 
               <div>
                   @error('baseamount') <span class="error">{{ $message }}</span> @enderror 
               </div> 
@@ -173,14 +173,14 @@
 
         <div class="col-12 col-md-6">
           <label class="form-label">Step</label>
-          <select class="form-control" wire:model='step_id' name="step_id">
-            <option value="">-- Select Grade--</option>
+          <select class="form-control" wire:model='step' name="step">
+            <option value="">-- Select step--</option>
             @foreach($steps as $list)
-                <option value="{{$list->id}}">{{$list->name}}</option>
+                <option value="{{$list->name}}">{{$list->name}}</option>
             @endforeach
           </select> 
           <div>
-              @error('step_id') <span class="error">{{ $message }}</span> @enderror 
+              @error('step') <span class="error">{{ $message }}</span> @enderror 
           </div>
         </div>
 

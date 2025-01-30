@@ -71,8 +71,7 @@ class StaffprofileService {
         $officer = Staffprofile::find($id);
 
         $officer->accountno = $data['accountno'];
-        $officer->honours = $data['honours'];
-        $officer->basicsalary = $data['basicsalary'];
+        // $officer->honours = $data['honours'];
         $officer->utility = $data['utility'];
         $officer->entertainment = $data['entertainment'];
         $officer->surname = $data['surname'];

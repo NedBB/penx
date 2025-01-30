@@ -18,9 +18,9 @@
             </tr>
             <tr>
                 @foreach ($head->subheads as $subhead)
-                @if($subhead->name !== "UNKNOWN") 
+                {{-- @if($subhead->name !== "UNKNOWN")  --}}
                         <td style="border: 1px solid #ccc; padding: 8px;">{{$subhead->name}}</td>
-                    @endif
+                    {{-- @endif --}}
                 @endforeach
                 <td>Total</td>
             </tr>
@@ -31,13 +31,14 @@
                 @endphp
                 @foreach ($head->subheads as $subhead)
                     @php
-                        $grand = $subhead->amount + $grand;
+                        $total += $subhead->amount; // Add each subhead's amount
+                        $grand += $subhead->amount; // Add to grand total
                     @endphp
-                    @if($subhead->name !== "UNKNOWN") 
+                    {{-- @if($subhead->name !== "UNKNOWN")  --}}
                         <td style="border: 1px solid #ccc; padding: 8px;">{{$subhead->amount}}</td>
-                    @endif
+                    {{-- @endif --}}
                 @endforeach
-                <td>{{$subhead->amount}}</td>
+                <td>{{$total}}</td>
             </tr>
             @endif
         @empty

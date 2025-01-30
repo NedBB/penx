@@ -103,8 +103,8 @@
       </div>
     </div>
     
-    <x-add-staff-profile :title="$title" :edit="$edit" :titles="$titles" :dutystations="$dutystations"
-     :payments="$payments" :banks="$banks" :steps="$steps" :departments="$departments" :gradelevels="$gradelevels"/>
+    <x-add-staff-profile :title="$title"  :edit="$edit" :titles="$titles" :dutystations="$dutystations"
+     :payments="$payments" :banks="$banks" :steps="$steps" :detail="$staffdetail" :departments="$departments" :gradelevels="$gradelevels"/>
 
 
 
