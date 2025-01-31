@@ -69,7 +69,7 @@
                 
                 <div class="col-lg-12" style="margin-bottom: 30px; margin-top: 30px">
                     <div class="text-center">
-                        <span class="inWord"></span>
+                        <span class="inWord"></span>{{convertNumberToWords($income->totalincome)}}
                     </div>
                 </div>
                 
@@ -86,7 +86,7 @@
 
     </div>
     <div class="modal-footer">
-        <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+        {{-- <button data-dismiss="modal" class="btn btn-default" type="button">Close</button> --}}
         <button class="btn btn-primary edit-national text-white print" onclick='printData({{$income->totalincome}})'>Print</button>
     </div>
 

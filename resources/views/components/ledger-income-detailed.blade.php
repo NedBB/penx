@@ -12,9 +12,11 @@
     </tr>
     </thead>
     <tbody>
-        <?php $total = 0; $remitted = 0; $subtotal = 0; ?>
+        @php
+            $total = 0;
+        @endphp
         @forelse($records as $groupname => $record)
-
+            @php $remitted = 0; $subtotal = 0; @endphp
             <tr>
                 {{-- <td class="remove">
                     <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
@@ -44,7 +46,7 @@
                  @php   
                         $remitted += $row['remittedamount'];
                         $subtotal += $row['totalincome'];
-                        $total += $subtotal;
+                        // $total += $subtotal;
                  @endphp
                 <tr>
                     {{-- <td></td> --}}
@@ -80,6 +82,10 @@
                 <td></td>
                 <td>{{format_money($subtotal)}}</td>
             </tr>
+
+            @php
+                $total += $subtotal; // Move this outside the loop so it's correct
+            @endphp
         @empty
             <tr>
                 <td colspan="8" class="text-center text-danger">No data exist at the moment</td>

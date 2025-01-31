@@ -146,3 +146,77 @@ if(! function_exists('format_currency')){
 		return $cur.$money;
 	}
 }
+if(! function_exists('convertNumberToWords')){
+    function convertNumberToWords($number) {
+        $number = (float)str_replace(',', '', $number);
+       
+        $words = array(
+            '0' => 'Zero', '1' => 'One', '2' => 'Two', '3' => 'Three', '4' => 'Four',
+            '5' => 'Five', '6' => 'Six', '7' => 'Seven', '8' => 'Eight', '9' => 'Nine',
+            '10' => 'Ten', '11' => 'Eleven', '12' => 'Twelve', '13' => 'Thirteen', '14' => 'Fourteen',
+            '15' => 'Fifteen', '16' => 'Sixteen', '17' => 'Seventeen', '18' => 'Eighteen', '19' => 'Nineteen',
+            '20' => 'Twenty', '30' => 'Thirty', '40' => 'Forty', '50' => 'Fifty', '60' => 'Sixty',
+            '70' => 'Seventy', '80' => 'Eighty', '90' => 'Ninety'
+        );
+    
+        $units = array('', 'Hundred', 'Thousand', 'Million', 'Billion', 'Trillion');
+        
+        if ($number == 0) {
+            return $words[0];
+        }
+    
+        $number = number_format($number, 2, '.', ''); // Format number to 2 decimals
+        list($whole, $decimal) = explode('.', $number);
+        
+        $whole = (int)$whole;
+        $decimal = (int)$decimal;
+    
+        $word = convertWholeNumberToWords($whole, $words, $units);
+        $word .= ' and ' . convertWholeNumberToWords($decimal, $words, $units) . ' Cents';
+        
+        return $word;
+    }
+}
+if(! function_exists('convertWholeNumberToWords')){
+
+    function convertWholeNumberToWords($number, $words, $units) {
+        if ($number == 0) {
+            return '';
+        }
+    
+        $result = '';
+        $unitIndex = 0;
+    
+        while ($number > 0) {
+            if ($number % 1000 != 0) {
+                $result = convertHundreds($number % 1000, $words) . ' ' . $units[$unitIndex] . ' ' . $result;
+            }
+            $number = (int)($number / 1000);
+            $unitIndex++;
+        }
+    
+        return trim($result);
+    }
+}
+if(! function_exists('convertHundreds')){
+
+    function convertHundreds($number, $words) {
+        $result = '';
+    
+    if ($number > 99) {
+        $result .= $words[(int)($number / 100)] . ' Hundred ';
+        $number = $number % 100;
+    }
+
+    if ($number > 20) {
+        $result .= $words[(int)($number / 10) * 10] . ' ';
+        $number = $number % 10;
+    }
+
+    if ($number > 0) {
+        $result .= $words[$number] . ' ';
+    }
+
+    return $result;
+    }
+}

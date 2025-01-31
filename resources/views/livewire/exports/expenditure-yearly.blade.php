@@ -1,5 +1,5 @@
 
-<table style="width: 100%; table-layout: auto; border-collapse: collapse;" class="table table-hover table-bordered font-13 table-striped" id="result">
+<table style="width: 100%; table-layout: auto; border-collapse: collapse;"  id="result">
                    
     <tbody>
         <tr><td><strong>{{$year}} EXPENDITURE</strong></td></tr>
@@ -19,7 +19,7 @@
             <tr>
                 @foreach ($head->subheads as $subhead)
                 {{-- @if($subhead->name !== "UNKNOWN")  --}}
-                        <td style="border: 1px solid #ccc; padding: 8px;">{{$subhead->name}}</td>
+                        <td>{{$subhead->name}}</td>
                     {{-- @endif --}}
                 @endforeach
                 <td>Total</td>
@@ -35,7 +35,7 @@
                         $grand += $subhead->amount; // Add to grand total
                     @endphp
                     {{-- @if($subhead->name !== "UNKNOWN")  --}}
-                        <td style="border: 1px solid #ccc; padding: 8px;">{{$subhead->amount}}</td>
+                        <td>{{$subhead->amount}}</td>
                     {{-- @endif --}}
                 @endforeach
                 <td>{{$total}}</td>

@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\Exports\IncomeExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Livewire\Attributes\On;
+use Carbon\Carbon;
 
 class LedgeIncome extends Component
 {
@@ -41,11 +42,18 @@ class LedgeIncome extends Component
     public $incomeService;
     public $id;
 
+    protected $listeners = [
+        'refreshRecords' => 'search'
+    ];
+
     public function boot(LocationService $locationService,){
         $this->states = $locationService->listState();
     }
 
     public function search(IncomeService $incomeService ){
+
+        $end_date = Carbon::parse($this->end_date)->endOfDay(); 
+        $start_date = Carbon::parse($this->start_date)->startOfDay(); 
 
         $validated = $this->validate([ 
             'state' => 'nullable',
@@ -58,12 +66,12 @@ class LedgeIncome extends Component
         if($this->report_type === 'summarized' || $this->report_type === 'detailed') {
 
        
-            $income = $incomeService->getRecords($this->start_date, $this->end_date);
+            $income = $incomeService->getRecords($start_date, $end_date);
 
 
             if($this->state && $this->state !== 'all') {
               
-                $income = $incomeService->getRecordWithLocation($this->start_date, $this->end_date, $this->state);
+                $income = $incomeService->getRecordWithLocation($start_date, $end_date, $this->state);
             }
 
             $income = $income->sortBy('location.name', SORT_NATURAL | SORT_FLAG_CASE)
@@ -79,11 +87,11 @@ class LedgeIncome extends Component
      
         elseif($this->report_type == "all") {
         
-            $income = $incomeService->getRecordsOrder($this->start_date, $this->end_date);
+            $income = $incomeService->getRecordsOrder($start_date, $end_date);
             
 
             if($this->state && $this->state !== 'all') {
-                $income = $incomeService->getRecordsOrderWithLocation($this->start_date, $this->end_date, $this->state);
+                $income = $incomeService->getRecordsOrderWithLocation($start_date, $end_date, $this->state);
             }
 
             $income = $income->sortBy('location.name', SORT_NATURAL | SORT_FLAG_CASE)
@@ -147,6 +155,7 @@ class LedgeIncome extends Component
         //$this->reset(['location_id','account_id','amount','income','receipt','description','date_from','date_to','total']);
         
         if($response){
+            $this->dispatch('refreshRecords');
             request()->session()->flash('success','Record has successfully been updated',array('timeout' => 3000));
         }
         else{

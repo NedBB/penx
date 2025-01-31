@@ -47,6 +47,7 @@
                            wire:click="delete({{ $record['id'] }})">
                             <i class="fa fa-trash text-danger"></i>
                         </a>
+                        
                     </td>
                     <td>
                         <a href='#' data-href="" data-target='.bs-modal-lg' data-toggle='modal'>

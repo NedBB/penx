@@ -20,6 +20,20 @@ let timeout;
         });
     });
 
+    $('#printRecord').on('shown.bs.modal', function () {
+        console.log("laded");
+        
+    });
+
+    document.getElementById('printRecord').addEventListener('shown.bs.modal', function() {
+        alert("hello");
+    });
+
+    if (isModalLoaded()) {
+        let income = document.getElementById('elementID').getAttribute('data-income');
+        printData(income);
+    }
+
     function extractSelectionforPrinting(colspan, total_index,page, pvno, td_arry,col_remove){
         let header = $(window.document.body).find('h4').html();
         
@@ -473,6 +487,11 @@ let timeout;
             koboWord = numberToEnglish(arrKobo[1])+' kobo';
         }
         return '<span style="text-transform:capitalize">'+ numberToEnglish(Number(arrKobo[0].replace(/[^0-9\.-]+/g,""))) + ' Naira,' + ' ' + koboWord +' only</span>';
+    }
+
+    function isModalLoaded() {
+        let modal = document.getElementById('printable');
+        return modal.classList.contains('show'); // 'show' class means it's visible
     }
 
     function printData(data){

@@ -77,7 +77,7 @@ class Expenditure extends Component
     }
 
     public function export(){
-        return Excel::download(new ExpenditureExport($this->records, $this->columns), 'expenditure.xlsx');
+        return Excel::download(new ExpenditureExport($this->records, $this->columns, $this->footer), 'expenditure.xlsx');
     }
 
     private function expenseArranged($data)

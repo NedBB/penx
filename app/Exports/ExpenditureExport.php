@@ -11,12 +11,14 @@ class ExpenditureExport implements FromView
     
     public $records;
     public $columns;
+    public $footer;
     public $count = 0;
 
-    public function __construct($records, $columns)
+    public function __construct($records, $columns, $footer)
     {
         $this->records = $records;
         $this->columns = $columns;
+        $this->footer = $footer;
     }
 
     public function view(): View
@@ -24,6 +26,7 @@ class ExpenditureExport implements FromView
         return view('livewire.exports.expenditure', [
             'records' => $this->records,
             'columns' => $this->columns,
+            'footer' => $this-> footer,
             'count' => $this->count
         ]);
     }
