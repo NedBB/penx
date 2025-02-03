@@ -23,7 +23,7 @@
                     <td class="remove">
                         <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
                       </td>
-                    {{-- <td>
+                    <td>
                         {{date5($record['fromdate_at'])}}
 
                         <livewire:edit-anchor :record="$record" :eventoption="$editevent" wire:key='{{time().  $record['id']}}' /> 
@@ -34,25 +34,23 @@
                         <a class='removeIncome pull-right' onclick="confirm('Are you sure you want to delete {{$record['id']}} ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$record['id']}})' >
                             <i class='fa fa-trash text-danger'></i>
                         </a>
-                    </td> --}}
+                    </td>
                     <td>
                         {{ date5($record['fromdate_at']) }} &nbsp;
                     
-                        <livewire:edit-anchor :record="(object)$record" :eventoption="$editevent" wire:key="{{ time() . $record['id'] }}" /> 
                     
                         <livewire:print-modal :id="$record['id']" :eventoption="$printevent" wire:key="{{ time() . $record['id'] }}" /> 
                     
-                        <a class="removeIncome pull-right" 
-                           onclick="confirm('Are you sure you want to delete {{ $record['id'] }}?') ? '' : event.stopImmediatePropagation()" 
-                           wire:click="delete({{ $record['id'] }})">
-                            <i class="fa fa-trash text-danger"></i>
-                        </a>
+                        
                         
                     </td>
                     <td>
-                        <a href='#' data-href="" data-target='.bs-modal-lg' data-toggle='modal'>
-                            {{$record['location']['name']}}
-                        </a>
+                        {{$record['location']['name']}}
+                        <livewire:edit-anchor :record="(object)$record" :eventoption="$editevent" wire:key="{{ time() . $record['id'] }}" />
+
+                        {{-- <a href='#' data-href="" data-target='.bs-modal-lg' data-toggle='modal'>
+                            
+                    </a>  --}}
                     </td>
                     <td>
                         @if($record['account'])
@@ -62,7 +60,12 @@
                         @endif
                     </td>
                     <td>
-                        {{$record['description']}}
+                        {{$record['description']}} 
+                        {{-- <a class="removeIncome pull-right" 
+                        onclick="confirm('Are you sure you want to delete {{ $record['id'] }}?') ? '' : event.stopImmediatePropagation()" 
+                        wire:click="delete({{ $record['id'] }})">
+                         <i class="fa fa-trash text-danger"></i>
+                     </a> --}}
                         
                     </td>
                     <td> {{format_currency($record['remittedamount'])}} </td>

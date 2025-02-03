@@ -69,7 +69,9 @@
                 
                 <div class="col-lg-12" style="margin-bottom: 30px; margin-top: 30px">
                     <div class="text-center">
-                        <span class="inWord"></span>{{convertNumberToWords($income->totalincome)}}
+                        @php $words = convertAmountToWord($income->totalincome); @endphp
+
+                        <span class="inWord">{{$words}}</span>
                     </div>
                 </div>
                 
@@ -87,19 +89,11 @@
     </div>
     <div class="modal-footer">
         {{-- <button data-dismiss="modal" class="btn btn-default" type="button">Close</button> --}}
-        <button class="btn btn-primary edit-national text-white print" onclick='printData({{$income->totalincome}})'>Print</button>
+        <button class="btn btn-primary edit-national text-white print" onclick='printData()'>Print</button>
     </div>
 
     <script type='text/javascript'>
-        // $(function() {
-        //     $('.print').on('click', function(e) {
-        //         e.preventDefault()
-        //         $("#printable").print("#printable");
-        //     });
-
-        //     $('.inWord').html(numberToMoney("{{$income->totalincome}}"));
-        // });
-
+       
 
     </script> 
 

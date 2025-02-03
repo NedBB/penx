@@ -220,3 +220,87 @@ if(! function_exists('convertHundreds')){
     return $result;
     }
 }
+
+if(!function_exists('convertAmountToWord')){
+    function convertAmountToWord(string $number)
+{
+    $number = (float)$number;
+    
+    // Split integer and decimal parts
+    $integerPart = floor($number);
+    $decimalPart = round(($number - $integerPart) * 100);
+
+    $words = [
+        0 => '', 1 => 'One', 2 => 'Two', 3 => 'Three', 4 => 'Four', 
+        5 => 'Five', 6 => 'Six', 7 => 'Seven', 8 => 'Eight', 9 => 'Nine',
+        10 => 'Ten', 11 => 'Eleven', 12 => 'Twelve', 13 => 'Thirteen', 
+        14 => 'Fourteen', 15 => 'Fifteen', 16 => 'Sixteen', 17 => 'Seventeen', 
+        18 => 'Eighteen', 19 => 'Nineteen', 20 => 'Twenty',
+        30 => 'Thirty', 40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
+        70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety'
+    ];
+
+    $digits = ['', 'Thousand', 'Million', 'Billion', 'Trillion'];
+
+    $result = [];
+    $i = 0;
+
+    while ($integerPart > 0) {
+        $numberPart = $integerPart % 1000;  // Get the last three digits
+        if ($numberPart > 0) {
+            $result[] = convertThreeDigits($numberPart, $words) . ' ' . $digits[$i];
+        }
+        $integerPart = floor($integerPart / 1000);
+        $i++;
+    }
+
+    $naira = implode(' ', array_reverse($result)) . ' Naira';
+
+    // Handle decimal part (Kobo)
+    $kobo = '';
+    if ($decimalPart > 0) {
+        $kobo = ', ' . convertTwoDigits($decimalPart, $words) . ' Kobo';
+    }
+    //dd(trim($naira . $kobo));
+    return trim($naira . $kobo. ' Only');
+}
+}
+if(!function_exists('convertThreeDigits')){
+// Helper function to convert three-digit numbers
+function convertThreeDigits($num, $words)
+{
+    $hundred = floor($num / 100);
+    $remainder = $num % 100;
+
+    $result = '';
+    if ($hundred > 0) {
+        $result .= $words[$hundred] . ' Hundred';
+        if ($remainder > 0) {
+            $result .= ' and ';
+        }
+    }
+
+    if ($remainder > 0) {
+        $result .= convertTwoDigits($remainder, $words);
+    }
+
+    return $result;
+}
+}
+
+if(!function_exists('convertTwoDigits')){
+
+
+// Helper function to convert numbers less than 100
+function convertTwoDigits($num, $words)
+{
+    if ($num <= 20) {
+        return $words[$num];
+    } else {
+        $tens = floor($num / 10) * 10;
+        $units = $num % 10;
+        return $words[$tens] . ($units > 0 ? ' ' . $words[$units] : '');
+    }
+}
+
+}
