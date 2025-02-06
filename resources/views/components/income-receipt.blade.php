@@ -1,6 +1,8 @@
 <x-my-print-modal>
 
 
+        
+   
     <div class="modal-body" id="printable">
 
         <div style="font-size:13px">
@@ -14,7 +16,7 @@
 
             <div class="text-center">
                 <h5> 
-                    {{$income->location->name}} - RECEIPT
+                    {{$income->location->name ?? ''}} - RECEIPT
                 </h5>
             </div>
 
@@ -24,7 +26,7 @@
                     <table style="border:0; width: 100%; font-size:13px">
                         <tr>
                             <td style="width: 50%">Receipt No.</td>
-                            <td>{{$income->receiptno}}</td>
+                            <td>{{$income->receiptno ?? ''}}</td>
                         </tr>
                         <tr>
                             <td>From:</td>
@@ -47,20 +49,20 @@
                         <table class="table table-responsive table-bordered">
                             <tr>
                                 <td>Description</td>
-                                <td>{{$income->description}}</td>
+                                <td>{{$income->description ?? ''}}</td>
                             </tr>
                             <tr>
                                 <td>Income Percent %</td>
-                                <td>{{$income->incomeperc}}</td>
+                                <td>{{$income->incomeperc ?? ''}}</td>
                             </tr>
                             <tr>
                                 <td>Remitted Amount</td>
-                                <td>{{format_money($income->remittedamount)}}</td>
+                                <td>{{format_money($income->remittedamount) ?? ''}}</td>
                             </tr>
                             
                             <tr>
                                 <td>Total</td>
-                                <td>{{format_currency($income->totalincome)}}</td>
+                                <td>{{format_currency($income->totalincome) ?? ''}}</td>
                             </tr>
                         </table>
                     </div>
@@ -71,7 +73,7 @@
                     <div class="text-center">
                         @php $words = convertAmountToWord($income->totalincome); @endphp
 
-                        <span class="inWord">{{$words}}</span>
+                        <span class="inWord">{{$words ?? ''}}</span>
                     </div>
                 </div>
                 

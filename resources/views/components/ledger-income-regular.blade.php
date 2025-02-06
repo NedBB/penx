@@ -1,4 +1,5 @@
 <table class="table table-hover table-bordered table-striped" id="datatable-result">
+    @props(['records', 'editevent' => null, 'printevent' => null])
     <thead>
     <tr>
         <th class="remove"></td>
@@ -16,9 +17,12 @@
     </thead>
     <tbody>
         @php  $total = 0;  @endphp
-        @forelse($records as $groupname => $groupdata)
-            @foreach($groupdata as $record)
-               
+        {{-- @forelse($records as $groupname => $groupdata) --}}
+        
+            {{-- @foreach($groupdata as $record) --}}
+              @foreach (collect($records)->flatten(1) as $record)
+                  
+              
                 <tr>
                     <td class="remove">
                         <input id="{{time()}}" type="checkbox" class="checkbox text-center"/>
@@ -26,9 +30,9 @@
                     <td>
                         {{date5($record['fromdate_at'])}}
 
-                        <livewire:edit-anchor :record="$record" :eventoption="$editevent" wire:key='{{time().  $record['id']}}' /> 
+                        {{-- <livewire:edit-anchor :record="$record" :eventoption="$editevent" wire:key='{{time().  $record['id']}}' /> 
 
-                        <livewire:print-modal :id="$record['id']" :eventoption="$printevent" wire:key='{{time(). $record['id']}}' /> 
+                        <livewire:print-modal :id="$record['id']" :eventoption="$printevent" wire:key='{{time(). $record['id']}}' />  --}}
 
                        
                         <a class='removeIncome pull-right' onclick="confirm('Are you sure you want to delete {{$record['id']}} ?') ? '' : event.stopImmediatePropagation()" wire:click='delete({{$record['id']}})' >
@@ -40,9 +44,6 @@
                     
                     
                         <livewire:print-modal :id="$record['id']" :eventoption="$printevent" wire:key="{{ time() . $record['id'] }}" /> 
-                    
-                        
-                        
                     </td>
                     <td>
                         {{$record['location']['name']}}
@@ -80,11 +81,11 @@
                         {{format_currency($record['totalincome'])}} </td>
                 </tr>
             @endforeach
-        @empty
+        {{-- @empty
             <tr>
                 <td colspan="11" class="text-danger text-center">No data exist at the moment</td>
             </tr>
-        @endforelse
+        @endforelse --}}
     </tbody>
     <tfoot>
     <tr>
@@ -92,4 +93,5 @@
         <td class="total_words" data-total={{$total}}>{{format_currency($total)}}</td>
     </tr>
     </tfoot>
+    
 </table>

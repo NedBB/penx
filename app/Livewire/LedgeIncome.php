@@ -24,8 +24,8 @@ class LedgeIncome extends Component
     public $start_date;
     public $view = '';
     public $report_type;
-    public $editevent = "edit-income";
-    public $printevent = "print-modal";
+    public $editevent;
+    public $printevent;
     public $end_date;
     public $component;
     public $income;
@@ -41,13 +41,17 @@ class LedgeIncome extends Component
     public $records = [];
     public $incomeService;
     public $id;
+   
 
     protected $listeners = [
         'refreshRecords' => 'search'
     ];
 
-    public function boot(LocationService $locationService,){
+    public function boot(LocationService $locationService,BankService $account){
         $this->states = $locationService->listState();
+        $this->accounts = $account->listAccounts();
+        $this->editevent = "edit-income";
+        $this->printevent = "print-modal";
     }
 
     public function search(IncomeService $incomeService ){
@@ -108,16 +112,17 @@ class LedgeIncome extends Component
     public function printReceipt($id,IncomeService $incomeservice){
         $this->print = true;
         $this->incomes = $incomeservice->getPrintRecord($id);
+       
     }
 
     #[On('edit-income')]
-    public function edit($id, IncomeService $incomeservice,BankService $account){
+    public function edit($id, IncomeService $incomeservice){
        
         $this->title = "edit ledger income";
         $this->edit = true;
         $this->id = $id;
         $this->incomes = $incomeservice->getById($id);
-        $this->accounts = $account->listAccounts();
+        
         $this->date_from = $this->incomes->fromdate_at;
         $this->date_to = $this->incomes->todate_at;
        
@@ -189,6 +194,7 @@ class LedgeIncome extends Component
 
     public function render()
     {
+        
         return view('livewire.ledgers.ledge-income')->layout('layouts.app');
     }
 }
