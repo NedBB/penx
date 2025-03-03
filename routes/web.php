@@ -39,9 +39,7 @@ use App\Livewire\YearlyIncome;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\YearlyIncomeExport;
 use App\Exports\YearlyExpenditureExport;
-
-
-
+use App\Livewire\EditExpenditure;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +94,10 @@ Route::get('/legder/income', LedgeIncome::class)->middleware(['auth', 'verified'
 Route::get('/ledger/expenditure', Expenditure::class)->middleware(['auth', 'verified'])->name('ledger-expenditure');
 Route::get('/ledger/year/expenditure', YearlyExpenditure::class)->middleware(['auth', 'verified'])->name('ledger-year-expenditure');
 Route::get('/ledger/year/income', YearlyIncome::class)->middleware(['auth', 'verified'])->name('ledger-year-income');
+
+//Edit Expenditures with unknowm subhead
+Route::get('/edit/expenditure', EditExpenditure::class)->middleware(['auth', 'verified'])->name('edit-expenditures');
+
 
 // export routes
 Route::get('/yearly-income-export', function () {

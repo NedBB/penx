@@ -58,7 +58,7 @@ class Allocation extends Component
     public $editevent = "edit-allocation";
     public $edit = false;
     public $search = '';
-    public $page_title = 'List of Allocations';
+    public $page_title = 'Payment Voucher for Allocation of Funds to Branches';
     public $selected;
     public $selection = [];
     public $subhead_field_lists;

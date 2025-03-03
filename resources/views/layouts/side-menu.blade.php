@@ -221,6 +221,12 @@
             <div data-i18n="Yearly Income">Yearly Income</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('edit-expenditures')}}" class="menu-link">
+                <div data-i18n="Edit Expenditures">Edit Expenditures</div>
+                </a>
+            
+        </li>
         </ul>
     </li>
    

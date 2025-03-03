@@ -17,6 +17,21 @@ class OmnibusService {
                 ->get();
     }
 
+    public function updateSubhead($id,$subhead_id){
+       
+        $ominbus = Omnibus::find($id);
+        $ominbus->subhead_id = $subhead_id;
+        return $ominbus->save();
+    }
+
+    public function getRecordWithUnknownSubhead($startOfYear,$endOfYear,$subhead_id){
+
+        return Omnibus::with('subhead')
+                            ->where('subhead_id', $subhead_id)
+                            ->whereBetween('created_at', [$startOfYear, $endOfYear])
+                            ->get(['id','subhead_id','pvno','description','amount','created_at']);
+    }
+
     public function getOmnibusByDateRange($date_1,$date_2){
         return Omnibus::with('subhead')
                             ->whereBetween('created_at', [$date_1, $date_2])

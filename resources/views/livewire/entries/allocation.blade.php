@@ -123,8 +123,8 @@
             <thead>
               <tr>
                 <th class="remove"></th>
-                <th class="remove">Date</th>
-                <th>Subhead</th>
+                <th>Date</th>
+                <th class="remove">Subhead</th>
                 <th>State</th>
                 <th>Total Check-off</th>
                 <th>Gross Pay</th>
@@ -152,10 +152,10 @@
                       <td class="remove">
                         <input id="{{time()}}" type="checkbox" class="checkbox"/>
                       </td>
-                      <td class="remove">
-                          <span class="fw-medium">{{sqldate($list->created_at)}}</span>
-                      </td>
                       <td>
+                          <span class="fw-medium">{{date5($list->created_at)}}</span>
+                      </td>
+                      <td class="remove">
                           <span class="fw-medium">{{$list->subhead->name}}</span>
                           <livewire:edit-anchor :record="$list" :eventoption="$editevent" wire:key='{{time().$list->id}}' class="remove" > 
                           &nbsp;

@@ -7,7 +7,7 @@ use Livewire\Attributes\On;
 
 class SelectionUpdate extends Component
 {
-    public $records;
+    public $records = [];
     public $recordx_id;
     public $name;
     public $type;
@@ -16,6 +16,7 @@ class SelectionUpdate extends Component
     #[On('messageSent')] 
     public function receiveMessage($data)
     {
+       
         $this->records = $data;
     }
 

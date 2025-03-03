@@ -58,8 +58,8 @@ div.card-datatable [class*="col-md-"] {
   /* text-transform: uppercase; */
   font-size: 12px !important;
   letter-spacing: 1px !important;
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
   padding-left: 5px !important;
 }
 
@@ -75,12 +75,12 @@ div.card-datatable [class*="col-md-"] {
 
 
 .print-view, .print-view .table th{
-  font-size: 12px !important;
+  font-size: 9px !important;
   color: #666 !important;
 
 }
 .print-view .table td{
-  font-size: 12px !important;
+  font-size: 9px !important;
   color: #666 !important;
 }
 
@@ -104,5 +104,8 @@ div.card-datatable [class*="col-md-"] {
       display: inline-block;
       margin-bottom: 10px;
   }
+}
+.dt-print-view {
+  background-color: #fff !important;
 }
 

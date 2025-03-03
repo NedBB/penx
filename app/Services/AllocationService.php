@@ -7,6 +7,21 @@ use App\Models\Allocation;
 class AllocationService {
 
 
+    public function getRecordWithUnknownSubhead($startOfYear,$endOfYear,$subhead_id){
+
+        return Allocation::with('subhead')
+                            ->where('subhead_id', $subhead_id)
+                            ->whereBetween('created_at', [$startOfYear, $endOfYear])
+                            ->get(['id','subhead_id','pvno','remittedamount AS amount','created_at']);
+    }
+
+    public function updateSubhead($id,$subhead_id){
+        $allocation = Allocation::find($id);
+        $allocation->subhead_id = $subhead_id;
+        return $allocation->save();
+    }
+
+
     public function getAllocationSchedule($date1, $date2)
     {
         return Allocation::with(['location','subhead'])

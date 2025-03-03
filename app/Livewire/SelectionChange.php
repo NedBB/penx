@@ -12,10 +12,13 @@ class SelectionChange extends Component
     public $data;
     public $edit;
 
+
+   
     
     
     public function render()
     {
+      
         return view('livewire.selection-change');
     }
 }

@@ -543,7 +543,7 @@ let timeout;
                     }
                 </style>
             </head>
-            <body>
+            <body class="dt-print-view">
                 
             </body>
             </html>

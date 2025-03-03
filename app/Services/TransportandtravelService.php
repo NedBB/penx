@@ -6,6 +6,22 @@ use App\Models\Transportandtravel;
 
 class TransportandtravelService{
 
+
+    public function getRecordWithUnknownSubhead($startOfYear,$endOfYear,$subhead_id){
+
+        return Transportandtravel::with('subhead')
+                            ->where('subhead_id', $subhead_id)
+                            ->whereBetween('created_at', [$startOfYear, $endOfYear])
+                            ->get(['id','subhead_id','pvno','description','totalamount AS amount','created_at']);
+    }
+
+
+    public function updateSubhead($id,$subhead_id){
+        $tant = Transportandtravel::find($id);
+        $tant->subhead_id = $subhead_id;
+        return $tant->save();
+    }
+
     public function getTransportSchedule($first, $end)
     {
         return Transportandtravel::with('subhead')
