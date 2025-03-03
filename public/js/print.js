@@ -198,7 +198,7 @@ let timeout;
             // Emit the value to Livewire after 5 seconds
             //@this.set('amount', event.target.value); // Directly update Livewire property
             Livewire.find('{{ $this->id }}').set('amount', event.target.value);
-        }, 5000); // 5000 ms = 5 seconds
+        }, 6000); // 5000 ms = 5 seconds
     }
 
     function updateInputValue(event) {
@@ -615,7 +615,7 @@ let timeout;
                     }
                 </style>
             </head>
-            <body>
+            <body class="dt-print-view">
                 
             </body>
             </html>
@@ -695,7 +695,7 @@ let timeout;
                     }
                 </style>
             </head>
-            <body>
+            <body class="dt-print-view">
                 
             </body>
             </html>
@@ -772,7 +772,7 @@ let timeout;
                     }
                 </style>
             </head>
-            <body>
+            <body class="dt-print-view">
                 
             </body>
             </html>

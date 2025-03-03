@@ -18,6 +18,7 @@ class EditExpenditure extends Component
     public $omnibusService;
     public $allocationService;
     public $records;
+    public $old_subhead_id;
     public $id;
     public $response;
     public $title = "Edit Records Subhead";
@@ -45,7 +46,14 @@ class EditExpenditure extends Component
 
     #[On('selectionSubhead')]
     public function updateSubhead($value){
-        $this->subhead_id = $value;
+
+        if(isset($old_subhead_id)){
+            $this->subhead_id = $value;
+            $this->old_subhead_id = $value;
+        }else{
+            $this->subhead_id = $value;
+        }
+        
     }
 
     public function update(OmnibusService $omnibusService, AllocationService $allocationService, TransportandtravelService $transportandtravelService){
@@ -85,15 +93,18 @@ class EditExpenditure extends Component
         $startOfYear = Carbon::create($this->year, 1, 1, 0, 0, 0); 
         $endOfYear = Carbon::create($this->year, 12, 31, 23, 59, 59);
        
+
+        $subhead_id =  $this->old_subhead_id;
+        //dd($subhead_id);
         switch ($this->record) {
             case "omnibus":
-                $this->results = $omnibusService->getRecordWithUnknownSubhead($startOfYear,$endOfYear, $this->subhead_id);
+                $this->results = $omnibusService->getRecordWithUnknownSubhead($startOfYear,$endOfYear, $subhead_id);
                 break;
             case "allocation":
-                $this->results = $allocationService->getRecordWithUnknownSubhead($startOfYear,$endOfYear, $this->subhead_id);
+                $this->results = $allocationService->getRecordWithUnknownSubhead($startOfYear,$endOfYear, $subhead_id);
                 break;
             case "tandt":
-                $this->results = $transportandtravelService->getRecordWithUnknownSubhead($startOfYear,$endOfYear, $this->subhead_id);
+                $this->results = $transportandtravelService->getRecordWithUnknownSubhead($startOfYear,$endOfYear, $subhead_id);
                 break;
             default:
                 break;
