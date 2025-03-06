@@ -62,7 +62,7 @@
               <div class="col-md-6">
                 <div class="table-responsive text-nowrap"> 
                   <div class="dt-buttons">
-                    <a href="#" onclick="extractContentForPrinting(5,'officer-payroll')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <a href="#" onclick="extractContentForPrinting(3,'officer-payroll')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
                       <span><i class="ti ti-file-export me-sm-1"></i> </span>
                       <span class="d-none d-sm-inline-block">Print</span>
                     </a>
@@ -87,9 +87,9 @@
                           <th width="50px">#</th>
                           <th width="200px">Names</th>
                           <th width="230px">Position</th>
-                          <th width="100px">Acct.No</th>
-                          <th width="200px">Bank</th>
-                          <th width="120px">Basic Salary</th>
+                          <th width="100px" class="remove">Acct.No</th>
+                          <th width="200px" class="remove">Bank</th>
+                          <th width="180px">Basic Salary</th>
                           <th width="100px">Rent</th>
                           <th width="100px">Transport</th>
                           <th width="100px">Meal</th>
@@ -139,8 +139,8 @@
                                 </td>
                                 <td>{{$record->profile->dutystation->name}}</td>
                                 <td>{{$record->profile->accountno}}</td>
-                                <td>{{($record->profile->bank) ? $record->profile->bank->name: 'UNKNOWN BANK'}}</td>
-                                <td>{{format_currency($record->basicsalary)}}</td>
+                                <td class="remove">{{($record->profile->bank) ? $record->profile->bank->name: 'UNKNOWN BANK'}}</td>
+                                <td class="remove">{{format_currency($record->basicsalary)}}</td>
                                 <td>{{format_currency($record->rent)}}</td>
                                 <td>{{format_currency($record->transport)}}</td>
                                 <td>{{format_currency($record->meal)}}</td>

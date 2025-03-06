@@ -160,26 +160,30 @@
             <div class="clearfix"></div>
                 <div class="col-4 col-md-4">
                     <label class="form-label">Amount Received</label>
-                    <input
+                    {{-- <input type="text" x-data="{ price: '' }" x-model="price" @input.debounce="price = $event.target.value"> --}}
+                    {{-- <input
                         id="amountInput"
                         wire:model='amount'
-                        {{-- wire:blur="getPay" --}}
-                        {{-- wire:model.defer="amount" --}}
-                       
-                        {{-- oninput="this.setAttribute('value', this.value)" 
-                        wire:model.defer="amount" 
-                        wire:keyup="handleKeypress($event.target.value)" --}}
+                        step="0.02"
                         pattern="[0-9]+([\.][0-9]{1,2})?"
                         type="text"
                         name="amount"
                         class="form-control"
-                        {{-- wire:model.lazy="amount" 
-                        wire:keyup.debounce.900ms="handleKeypress($event.target.value)"  Trigger backend logic on keypress --}}
-                      
-                        {{-- class="form-control" --}}
                         
-                        />
-
+                        
+                        /> --}}
+                        <div x-data="{ amount: '{{ $amount ?? '' }}' }">
+                            <input 
+                            id="amountInput"
+                                type="text" 
+                                x-model="amount" 
+                                @input.debounce="
+                                    amount = $event.target.value;
+                                    $wire.set('amount', amount);
+                                "
+                                placeholder="Enter Amount"
+                            >
+                        </div>
                         
                     <div>
                         @error('amount') <span class="error">{{ $message }}</span> @enderror 
@@ -193,6 +197,7 @@
                         type="text"
                         name="allocation_field"
                         class="form-control" 
+                        wire:keyup="updatePercentage($event.target.value)"
                     />
                     <div>
                         @error('allocation_field') <span class="error">{{ $message }}</span> @enderror 

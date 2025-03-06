@@ -62,11 +62,11 @@
               <div class="col-md-6">
                 <div class="table-responsive text-nowrap"> 
                   <div class="dt-buttons">
-                    <a href="#" onclick="extractContentForPrinting(6,'staff-payroll')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <a href="#" onclick="extractContentForPrinting(4,'staff-payroll')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
                       <span><i class="ti ti-file-export me-sm-1"></i> </span>
                       <span class="d-none d-sm-inline-block">Print</span>
                     </a>
-                    <a href="#" onclick="extractSelectionforPrinting(7,22,'staff',null,[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],1)"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
+                    <a href="#" onclick="extractSelectionforPrinting(5,22,'staff',null,[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],1)"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
                       <span><i class="ti ti-file-export me-sm-1"></i> </span>
                       <span class="d-none d-sm-inline-block">Print Selection</span>
                     </a>
@@ -86,9 +86,9 @@
                         <th width="200px">Names</th>
                         <th width="150px">G.level</th>
                         <th width="80x">Step</th>
-                        <th width="100px">Acct.No</th>
-                        <th width="180px">Bank</th>
-                        <th width="100px">Basic Salary</th>
+                        <th width="100px" class="remove">Acct.No</th>
+                        <th width="180px" class="remove">Bank</th>
+                        <th width="200px">Basic Salary</th>
                         <th width="100px">Rent</th>
                         <th width="100px">Transport</th>
                         <th width="100px">Meal</th>
@@ -132,10 +132,10 @@
                               <td>
                                   <a href="#" wire:click.prevent='payslip({{$record->id}})' class="text-underline-dotted" data-bs-toggle="modal" data-bs-target="#editUser">{{$record->profile->fullname()}}</a>
                               </td>
-                              <td>{{$record->profile->gradelevel->gradelevelname->name.' '.$record->profile->gradelevel->level}}</td>
+                              <td>{{$record->profile->gradelevel->gradelevelname->name.''.$record->profile->gradelevel->level}}</td>
                               <td>{{$record->profile->step}}</td>
-                              <td>{{$record->profile->accountno}}</td>
-                              <td>{{($record->profile->bank) ? $record->profile->bank->name: 'UNKNOWN BANK'}}</td>
+                              <td class="remove">{{$record->profile->accountno}}</td>
+                              <td class="remove">{{($record->profile->bank) ? $record->profile->bank->name: 'UNKNOWN BANK'}}</td>
                               <td>{{format_currency($record->basicsalary)}}</td>
                               <td>{{format_currency($record->rent)}}</td>
                               <td>{{format_currency($record->transport)}}</td>

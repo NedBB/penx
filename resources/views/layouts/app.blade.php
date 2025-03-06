@@ -117,11 +117,11 @@
         {{-- <script src="{{asset('libs/datatables-bs5/datatables-bootstrap5.js')}}"></script> --}}
 
         <script src="{{asset('js/bootstrap.js')}}"></script>
-        <script src="{{asset('libs/node-waves/node-waves.js')}}"></script>
+        {{-- <script src="{{asset('libs/node-waves/node-waves.js')}}"></script> --}}
         <script src="{{asset('libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
-        <script src="{{asset('libs/hammer/hammer.js')}}"></script>
+        {{-- <script src="{{asset('libs/hammer/hammer.js')}}"></script> --}}
         <script src="{{asset('libs/i18n/i18n.js')}}"></script>
-        <script src="{{asset('libs/typeahead-js/typeahead.js')}}"></script>
+        {{-- <script src="{{asset('libs/typeahead-js/typeahead.js')}}"></script> --}}
         <script src="{{asset('js/menu.js')}}"></script>
 
         <!-- endbuild -->
@@ -142,7 +142,7 @@
         <script src="{{asset('js/forms-tagify.js')}}"></script>
         <script src="{{asset('js/forms-typeahead.js')}}"></script>
 
-        
+        {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}"></script>
         <script src="{{asset('js/jquery.div.print.js')}}"></script>

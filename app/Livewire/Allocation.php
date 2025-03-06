@@ -42,7 +42,7 @@ class Allocation extends Component
     public $id;
     public $arrears = 0;
     public $nlc = 0;
-    public $allocation_field = 55;
+    public $allocation_field = 0;
     public $divisionpercent;
     public $applypercent = false;
     public $legal = 0;
@@ -51,7 +51,7 @@ class Allocation extends Component
     public $audit_fees = 0;
     public $badges = 0;
     public $northern_dues = 0;
-    public $amount;
+    public $amount = '';
     public $title = "Add Allocations";
     public $edittitle = "Edit Allocations";
     public $addevent= "add-allocation";
@@ -72,6 +72,14 @@ class Allocation extends Component
         'refreshAllocationRecords' => 'searchs',
         'amountUpdated' => 'handleKeypress',
     ];
+
+    // protected $rules = [
+    //     'amount' => 'required|numeric|between:0,999999.99',
+    // ];
+
+    // protected $casts = [
+    //     'amount' => 'decimal:2',
+    // ];
     
     // protected $listeners = [
     //     'amountUpdated' => 'handleAmountUpdate',
@@ -131,6 +139,15 @@ class Allocation extends Component
     public function getFormattedAmountProperty()
     {
         return number_format((float) $this->amount, 2, '.', '');
+    }
+
+    public function updatePercentage($percent){
+        $this->allocation_field = $percent;
+        
+        if(isset($this->amount)){
+            $this->handleKeypress($this->amount);
+        }
+        
     }
 
     public function handleKeypress($value){
