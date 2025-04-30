@@ -164,15 +164,10 @@ class Allocation extends Component
             "year_2"            => ['required'],
             "divisionpercent" => ['required']
         ]);
-
         $response = $allocationService->createRecord($validate);
+     
         if($response){
-            $this->edit = false;
             $this->dispatch('refreshAllocationRecords');
-            $this->reset(['amount','head_id','subhead_id','date_record',
-            'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
-            'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
-        ]);
             request()->session()->flash('success','Record has successfully been created',array('timeout' => 3000));
         }
         else{
