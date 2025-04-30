@@ -146,7 +146,7 @@
         @endif
     </tbody>
     <tfoot>
-        <tr>
+        <tr class="total-cell">
             <td class="remove"></td>
             <td class="remove"></td>
             <td class="remove"></td>

@@ -121,7 +121,7 @@
                         @endforelse
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <tr class="total-cell">
                             <td colspan="5" class="text-right total">Total</td>
                             @foreach ($footer as $item)
                                 <td>{{format_currency($item)}}</td>

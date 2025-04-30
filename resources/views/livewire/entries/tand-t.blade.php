@@ -154,7 +154,7 @@
                   @endforelse
               </tbody>
               <tfoot class="footer">
-                  <tr>
+                  <tr class="total-cell">
                       <td colspan="3" class="align-right">Total</td>
                       <td id="total_words">{{format_money($sum_transport)}}</td>
                       <td id="total_words">{{format_money($sum_house)}}</td>

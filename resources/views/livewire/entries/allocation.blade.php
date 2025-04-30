@@ -207,8 +207,8 @@
                 @endforelse
             </tbody>
             <tfoot class="footer">
-              <tr>
-                  <td colspan="14" class="align-right">Total</td>
+              <tr class="total-cell">
+                  <td colspan="14" class="align-right total-cell">Total</td>
                   <td id="total_words" data-total={{$total}}>{{format_money($total)}}</td>
                   <td class=""></td>
               </tr>

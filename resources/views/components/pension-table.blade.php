@@ -48,7 +48,7 @@
                 @endforelse
             </tbody>
             <tfoot>
-                  <tr>
+                  <tr class="total-cell">
                     <td class="align-right" style="font-weght: bold" colspan="3" width="60%"><strong>Total</strong></td>
                     <td>{{format_currency($employer)}}</td>
                     <td>{{format_currency($employee)}}</td>

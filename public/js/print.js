@@ -2,6 +2,9 @@ let fullUrl = window.location.protocol + "//" + window.location.hostname + (wind
 let timeout;
 
 
+
+
+
     document.addEventListener('DOMContentLoaded', () => {
 
         const input = document.getElementById('amountInput');

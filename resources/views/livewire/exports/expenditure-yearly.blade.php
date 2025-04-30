@@ -45,7 +45,7 @@
             <tr><td colspan="1" class="text-center text-danger"> No record exist at the moment</td></tr>
         @endforelse
             
-        <tr><td class="text-center text-danger"><strong>Grand Total</strong></td><td><strong>{{$grand}}</strong></td></tr>
+        <tr class="total-cell"><td class="text-center text-danger"><strong>Grand Total</strong></td><td><strong>{{$grand}}</strong></td></tr>
 
     </tbody>
 </table>

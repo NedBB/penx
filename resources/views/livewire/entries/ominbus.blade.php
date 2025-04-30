@@ -95,7 +95,7 @@
               </tbody>
               <tfoot class="footer">
                   <tr>
-                      <td colspan="4" class="align-right">Total</td>
+                      <td colspan="4" class="align-right total-cell">Total</td>
                       <td id="total_words" data-total={{$total}}>{{format_money($total)}}</td>
                       <td class="remove"></td>
                   </tr>

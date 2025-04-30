@@ -60,7 +60,7 @@
         @endforelse
     </tbody>
     <tfoot>
-        <tr>
+        <tr class="total-cell">
           <td colspan="3" class="align-right">Total</td>
           <td>{{format_currency($principal)}}</td>
           <td></td>

@@ -161,7 +161,7 @@
                         @endforelse
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <tr class="total-cell">
                             <td colspan="6" class="align-right"><strong>Total</strong></td>
                             <td id="total1">{{format_currency($salary)}}</td>
                             <td id="total2">{{format_currency($rent)}}</td>

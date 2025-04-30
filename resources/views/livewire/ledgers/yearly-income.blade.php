@@ -71,7 +71,7 @@
                         @endforelse
                     </tbody>
                     <tfoot>
-                    <tr>
+                    <tr class="total-cell">
                         <td colspan="1" style="text-align:right">Grand Total</td>
                         <td class="total_words" data-total={{$total}}>{{format_currency($amount)}}</td>
                         <td class="total_words" data-total={{$total}}>{{format_currency($total)}}</td>

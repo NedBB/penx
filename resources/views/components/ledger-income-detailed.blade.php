@@ -70,7 +70,7 @@
                     <td> {{format_currency($row['totalincome'])}} </td>
                 </tr>
             @endforeach
-            <tr>
+            <tr class="total-cell">
                 {{-- <td></td> --}}
                 <td></td>
                 <td style="text-align: right; font-weight: bold">
@@ -93,7 +93,7 @@
         @endforelse
     </tbody>
     <tfoot>
-    <tr>
+    <tr class="total-cell">
         <td colspan="6" style="text-align:right">GRAND TOTAL</td>
         <td id="total_works" data-total={{$total}}>
             {{format_money($total)}}
