@@ -172,15 +172,17 @@
                         
                         
                         /> --}}
-                        <div x-data="{ amount: '{{ $amount ?? '' }}' }">
+                        {{-- <div x-data="{ amount: '{{ $amount ?? '' }}' }"> --}}
+                        <div x-data="{ amount: $wire.entangle('amount') }">
                             <input 
                             id="amountInput"
                                 type="text" 
                                 x-model="amount" 
-                                @input.debounce="
+                                {{-- @input.debounce="
                                     amount = $event.target.value;
                                     $wire.set('amount', amount);
-                                "
+                                " --}}
+                                 @input.debounce.500ms="$wire.set('amount', amount)"
                                 placeholder="Enter Amount"
                             >
                         </div>
@@ -371,8 +373,12 @@
                         @error('net_pay') <span class="error">{{ $message }}</span> @enderror 
                     </div>
                 </div>
-            
             <div class="col-12 text-center">
+                @if ($edit)
+                <button wire:click='saveNewRecord' class="btn btn-danger me-sm-3 me-1">Save as New Record</button>
+
+                @endif
+           
                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
             </div>
     </form>

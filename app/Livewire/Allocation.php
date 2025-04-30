@@ -136,6 +136,50 @@ class Allocation extends Component
         }
     }
 
+    public function saveNewRecord(AllocationService $allocationService){
+
+        $validate =  $this->validate([
+            "head_id"       => ['required'],
+            "subhead_id"       => ['required'],
+            "amount"    => ['required'],
+            "advance_allocation"       => ['required'],
+            "pvno"          => ['required'],
+            "location_id"            => ['required'],
+            "legal"            => ['required'],
+            "almanac" => ["required"],
+            "audit_fees" => ["required"],
+            "nlc"            => ['required'],
+            "date_record"    => ['required'],
+            "arrears"            => ['required'],
+            "badges"            => ['required'],
+            "gross_pay"            => ['required'],
+            "net_pay"            => ['required'],
+            "allocation_field"            => ['required'],
+            "constitution"            => ['required'],
+            "northern_dues"            => ['required'],
+            "audit_fees"            => ['required'],
+            "month_1"            => ['required'],
+            "month_2"            => ['required'],
+            "year_1"            => ['required'],
+            "year_2"            => ['required'],
+            "divisionpercent" => ['required']
+        ]);
+
+        $response = $allocationService->createRecord($validate);
+        if($response){
+            $this->edit = false;
+            $this->dispatch('refreshAllocationRecords');
+            $this->reset(['amount','head_id','subhead_id','date_record',
+            'net_pay','gross_pay','pvno','constitution','nlc','audit_fees','advance_allocation','arrears',
+            'almanac','badges','legal','northern_dues','divisionpercent','applypercent','month_1','month_2','year_1','year_2','location_id'
+        ]);
+            request()->session()->flash('success','Record has successfully been created',array('timeout' => 3000));
+        }
+        else{
+            request()->session()->flash('failed','Record creation failed',array('timeout' => 3000));
+        }
+    }
+
     public function getFormattedAmountProperty()
     {
         return number_format((float) $this->amount, 2, '.', '');
