@@ -70,6 +70,7 @@ class Allocation extends Component
 
     protected $listeners = [
         'refreshAllocationRecords' => 'searchs',
+        'refreshRecords' => 'searchrecords',
         'amountUpdated' => 'handleKeypress',
     ];
 
@@ -138,6 +139,8 @@ class Allocation extends Component
 
     public function saveNewRecord(AllocationService $allocationService){
 
+        $this->edit = true;
+
         $validate =  $this->validate([
             "head_id"       => ['required'],
             "subhead_id"       => ['required'],
@@ -164,10 +167,11 @@ class Allocation extends Component
             "year_2"            => ['required'],
             "divisionpercent" => ['required']
         ]);
+
         $response = $allocationService->createRecord($validate);
      
         if($response){
-            $this->dispatch('refreshAllocationRecords');
+            $this->dispatch('refreshRecords');
             request()->session()->flash('success','Record has successfully been created',array('timeout' => 3000));
         }
         else{
@@ -269,6 +273,7 @@ class Allocation extends Component
 
     public function save(AllocationService $allocationService)
     {
+
         $validate =  $this->validate([
             "head_id"       => ['required'],
             "subhead_id"       => ['required'],
@@ -401,7 +406,10 @@ class Allocation extends Component
             "divisionpercent" => ['required']
         ]);
 
-  
+        if($this->edit){
+            $this->save($allocationService);
+        }
+
         $response = $allocationService->updateRecord($this->id,$validate);
 
         if($response){
