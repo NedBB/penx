@@ -487,14 +487,14 @@ let timeout;
     function printData(){
         
         
-        $(function() {
-            $('.print').on('click', function(e) {
-                e.preventDefault()
+        // $(function() {
+        //     $('.print').on('click', function(e) {
+        //         e.preventDefault()
                 $("#printable").print("#printable");
-            });
+            // });
     
            // $('.inWord').html(numberToEnglishKobo(data));
-        });
+        // });
     }
 
     function printTableTpl(newH1, newTable,currentDate, colspan, record = '', page, pvno =null) {
