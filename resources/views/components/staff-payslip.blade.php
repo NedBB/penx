@@ -227,7 +227,7 @@
         </div>
         <div class="modal-footer">
             <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-            <button class="btn btn-primary edit-national text-white print" id="slip">Print</button>
+            <button type="button" onclick="printData()" class="btn btn-primary edit-national text-white print" id="slip">Print</button>
         </div>
         </div>
       </div>
