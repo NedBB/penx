@@ -72,8 +72,11 @@ div.card-datatable [class*="col-md-"] {
   line-height: 1;
 }
 
-tr.total-cell td {
-  font-weight: bold;
+
+
+tr.total-cell td,.print-view .table tr.total-cell td{
+  font-weight: 900;
+  font-size: 12px !important;
 }
 
 .print-view, .print-view .table th{
