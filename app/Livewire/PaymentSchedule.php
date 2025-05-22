@@ -54,8 +54,16 @@ class PaymentSchedule extends Component
 
             usort($unsortedMerge, function($a, $b) {
                 //dd($a[0]['pvno']);
-                $a_arr = explode('/', $a[0]['pvno']);
-                $b_arr = explode('/', $b[0]['pvno']);
+
+                $a_pvno = $a[0]['pvno'] ?? '';
+                $b_pvno = $b[0]['pvno'] ?? '';
+
+                //old working code
+                // $a_arr = explode('/', $a[0]['pvno']);
+                // $b_arr = explode('/', $b[0]['pvno']);
+
+                $a_arr = explode('/', $a_pvno);
+                $b_arr = explode('/', $b_pvno);
     
 
                 /*$my1 = $a_arr[1].$a_arr[2];
@@ -68,15 +76,27 @@ class PaymentSchedule extends Component
                 return ($my1 < $my2) ? -1 : 1;*/
                 //return strcmp(strrev($a[0]['pvno']), strrev($b[0]['pvno']));
 
-                if(!isset($a_arr[2])){ 
-                    return strcmp($a_arr[1].$a_arr[0], $b_arr[1].$b_arr[0]);
-                }
-                if(!isset($b_arr[2])){ 
-                    return strcmp($a_arr[1].$a_arr[0], $b_arr[1].$b_arr[0]);
-                }
+                //old working code
+                // if(!isset($a_arr[2])){ 
+                //     return strcmp($a_arr[1].$a_arr[0], $b_arr[1].$b_arr[0]);
+                // }
+                // if(!isset($b_arr[2])){ 
+                //     return strcmp($a_arr[1].$a_arr[0], $b_arr[1].$b_arr[0]);
+                // }
 
-                return strcmp($a_arr[2].$a_arr[1].$a_arr[0], $b_arr[2].$b_arr[1].$b_arr[0]);
+                
+                //old working code
+                //return strcmp($a_arr[2].$a_arr[1].$a_arr[0], $b_arr[2].$b_arr[1].$b_arr[0]);
 
+                if (count($a_arr) < 2 || count($b_arr) < 2) {
+                    return strcmp($a_pvno, $b_pvno);
+                }
+                // Proceed with comparison if format is correct
+                $a_key = isset($a_arr[2]) ? ($a_arr[2] . $a_arr[1] . $a_arr[0]) : ($a_arr[1] . $a_arr[0]);
+                $b_key = isset($b_arr[2]) ? ($b_arr[2] . $b_arr[1] . $b_arr[0]) : ($b_arr[1] . $b_arr[0]);
+
+                return strcmp($a_key, $b_key);
+            
             });
 
             $collectdata = collect($unsortedMerge)->keyBy(function($item) {
