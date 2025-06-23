@@ -114,7 +114,7 @@ class Allocation extends Component
             $this->allocation_field = 0;
         }
         else{
-            $this->allocation_field = 55;
+            $this->allocation_field = 0;
         }
     }
 
@@ -137,9 +137,11 @@ class Allocation extends Component
         }
     }
 
-    public function saveNewRecord(AllocationService $allocationService){
+    public function addEditAsNew(){
+        $this->edit = false;
+    }
 
-        $this->edit = true;
+    public function saveNewRecord(AllocationService $allocationService){
 
         $validate =  $this->validate([
             "head_id"       => ['required'],
@@ -168,6 +170,7 @@ class Allocation extends Component
             "divisionpercent" => ['required']
         ]);
 
+       
         $response = $allocationService->createRecord($validate);
      
         if($response){
@@ -406,20 +409,21 @@ class Allocation extends Component
             "divisionpercent" => ['required']
         ]);
 
-        if($this->edit){
-            $this->save($allocationService);
-        }
-
-        $response = $allocationService->updateRecord($this->id,$validate);
-
-        if($response){
-            $this->dispatch('refreshAllocationRecords');
-            request()->session()->flash('success','Record has successfully been updated',array('timeout' => 3000));
+        if($this->edit == false){
+           $this->saveNewRecord($allocationService);
         }
         else{
-            request()->session()->flash('failed','Record update failed',array('timeout' => 3000));
+
+            $response = $allocationService->updateRecord($this->id,$validate);
+
+            if($response){
+                $this->dispatch('refreshAllocationRecords');
+                request()->session()->flash('success','Record has successfully been updated',array('timeout' => 3000));
+            }
+            else{
+                request()->session()->flash('failed','Record update failed',array('timeout' => 3000));
+            }
         }
-       
     }
 
     public function searchs(AllocationService $allocationsService){

@@ -61,7 +61,7 @@ class AllocationService {
     }
 
     public function createRecord($data){
-        
+
         return Allocation::create([
             'head_id' => $data['head_id'],
             'subhead_id' => $data['subhead_id'],

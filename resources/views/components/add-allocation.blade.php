@@ -375,7 +375,7 @@
                 </div>
             <div class="col-12 text-center">
                 @if ($edit)
-                <button wire:click='saveNewRecord' id="addNew" class="btn btn-danger me-sm-3 me-1 float-start">Save as New Record</button>
+                <button wire:click='addEditAsNew' id="addNew" class="btn btn-danger me-sm-3 me-1 float-start">Save as New Record</button>
 
                 @endif
            
