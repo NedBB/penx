@@ -24,6 +24,7 @@ class Staff extends Component
     public $utility;
     public $entertainment;
     public $accountno;
+    public $status;
     public $perpage = 5;
     public $surname;
     public $firstname;
@@ -105,7 +106,8 @@ class Staff extends Component
             "partofnhf" => ['nullable'],
             "pensionpin" => ['nullable'],
             "taxpin" => ['nullable'],
-            "nhfpin" => ['nullable']
+            "nhfpin" => ['nullable'],
+            "status" => ['nullable']
         ]);
 
         $validate['conposs_id'] = $conposses->getConpossWithStep($validate['step'], $validate['gradelevel_id']);

@@ -25,6 +25,7 @@ class NationalofficeService {
     }
 
     public function create($data){
+        $data['active'] = true;
         return Nationalofficer::create($data);
     }
 
@@ -49,6 +50,7 @@ class NationalofficeService {
         $officer->dutystation_id = $data['dutystation_id'];
         $officer->title_id = $data['title_id'];
         $officer->uniqueid = $data['uniqueid'];
+        $officer->active = ($data['status'] == "true")? true: false;
 
         return $officer->save();
     }

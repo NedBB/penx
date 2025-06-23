@@ -173,6 +173,20 @@
                   @error('bank_id') <span class="error">{{ $message }}</span> @enderror 
               </div>
             </div>
+
+            @if ($edit == true)
+              <div class="col-12 col-md-6">
+              <label class="form-label">Status</label>
+              <select class="form-control" wire:model='status' name="status">
+                <option value="">-- Select Status--</option>
+                <option value="true">Enable</option>
+                <option value="false">Disable</option>
+              </select> 
+              <div>
+                  @error('status') <span class="error">{{ $message }}</span> @enderror 
+              </div>
+            </div>
+            @endif
             
             <div class="col-12 text-center">
               <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>

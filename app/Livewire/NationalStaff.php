@@ -20,6 +20,7 @@ class NationalStaff extends Component
 
     public $officer;
     public $utility;
+    public $status;
     public $entertainment;
     public $accountno;
     public $perpage = 5;
@@ -62,7 +63,6 @@ class NationalStaff extends Component
 
     public function update(NationalofficeService $service){
 
-       
         $validate =  $this->validate([
             
             "paymentmethod_id"    => ['required'],
@@ -78,6 +78,7 @@ class NationalStaff extends Component
             "surname"    => ['required'],
             "firstname"    => ['required'],
             "middlename"    => ['required'],
+            "status"    => ['required'],
         ]);
 
         $response = $service->update($this->id,$validate);
