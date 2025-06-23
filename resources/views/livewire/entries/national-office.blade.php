@@ -74,7 +74,7 @@
                             {{($list->active) ? "Active" : "Disabled"}}
                           </td>
                           <td class="text-capitalize">
-                            {{$list->dutystation->name}}
+                            {{is_null($list->dutystation)? N/A : $list->dutystation->name}}
                           </td>
                           <td class="text-capitalize">
                             {{$list->accountno}}
