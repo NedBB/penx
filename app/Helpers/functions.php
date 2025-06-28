@@ -146,6 +146,134 @@ if(! function_exists('format_currency')){
 		return $cur.$money;
 	}
 }
+
+if(! function_exists('numberToWords')){
+    function numberToWords($num) {
+        $ones = array(
+            0 => 'Zero',
+            1 => 'One',
+            2 => 'Two',
+            3 => 'Three',
+            4 => 'Four',
+            5 => 'Five',
+            6 => 'Six',
+            7 => 'Seven',
+            8 => 'Eight',
+            9 => 'Nine',
+            10 => 'Ten',
+            11 => 'Eleven',
+            12 => 'Twelve',
+            13 => 'Thirteen',
+            14 => 'Fourteen',
+            15 => 'Fifteen',
+            16 => 'Sixteen',
+            17 => 'Seventeen',
+            18 => 'Eighteen',
+            19 => 'Nineteen'
+        );
+            
+        $tens = array(
+            2 => 'Twenty',
+            3 => 'Thirty',
+            4 => 'Forty',
+            5 => 'Fifty',
+            6 => 'Sixty',
+            7 => 'Seventy',
+            8 => 'Eighty',
+            9 => 'Ninety'
+        );
+    
+        $hundreds = array(
+            'Hundred',
+            'Thousand',
+            'Million',
+            'Billion',
+            'Trillion',
+            'Quadrillion'
+        );
+    
+        $num = number_format((float)$num, 2, '.', '');
+    list($whole, $fraction) = explode('.', $num);
+    
+    $result = [];
+    
+    // Convert whole number part
+    if ($whole > 0) {
+        $result[] = convertWholeNumber($whole, $ones, $tens);
+    } else {
+        $result[] = $ones['0'];
+    }
+    
+    // Convert fraction part (cents)
+    if ($fraction > 0) {
+        $result[] = 'naira and';
+        $result[] = convertTwoDigits($fraction, $ones, $tens);
+        $result[] = 'kobo';
+    }
+    
+    return implode(' ', $result);
+    }
+}
+
+if(! function_exists('convertWholeNumber')){
+    function convertWholeNumber($num, $ones, $tens) {
+        $groups = ['', 'Thousand', 'Million', 'Billion'];
+        $result = [];
+        $num = str_pad($num, ceil(strlen($num)/3)*3, '0', STR_PAD_LEFT);
+        $chunks = str_split($num, 3);
+        
+        foreach ($chunks as $i => $chunk) {
+            if ($chunk != '000') {
+                $result[] = convertThreeDigits($chunk, $ones, $tens);
+                $result[] = $groups[count($chunks)-1-$i];
+            }
+        }
+        
+        return implode(' ', array_filter($result));
+}
+
+}
+
+if(! function_exists('convertThreeDigits')){
+    function convertThreeDigits($num, $ones, $tens) {
+        $words = array();
+        if ($num >= 100) {
+            $words[] = $ones[floor($num / 100)] . ' Hundred';
+            $num %= 100;
+        }
+        if ($num > 0) {
+            $words[] = convertTwoDigits($num, $ones, $tens);
+        }
+        return implode(' ', $words);
+    }
+}
+
+if(! function_exists('convertTwoDigits')){
+    function convertTwoDigits($num, $ones, $tens) {
+        if ($num < 20) {
+            return $ones[$num];
+        }
+        $words = array($tens[floor($num / 10)]);
+        if ($num % 10 > 0) {
+            $words[] = $ones[$num % 10];
+        }
+        return implode('-', $words);
+    }
+}
+
+function helper($num, $ones, $teens, $tens) {
+    if ($num < 10) {
+        return $ones[$num];
+    } elseif ($num < 20) {
+        return $teens[$num - 10];
+    } elseif ($num < 100) {
+        return $tens[floor($num / 10)] . ($num % 10 != 0 ? ' ' . $ones[$num % 10] : '');
+    } else {
+        return $ones[floor($num / 100)] . ' hundred' . ($num % 100 != 0 ? ' and ' . helper($num % 100, $ones, $teens, $tens) : '');
+    }
+}
+
+
 if(! function_exists('convertNumberToWords')){
     function convertNumberToWords($number) {
         $number = (float)str_replace(',', '', $number);
@@ -172,7 +300,7 @@ if(! function_exists('convertNumberToWords')){
         $decimal = (int)$decimal;
     
         $word = convertWholeNumberToWords($whole, $words, $units);
-        $word .= ' and ' . convertWholeNumberToWords($decimal, $words, $units) . ' Cents';
+        $word .= ' Naira, ' . convertWholeNumberToWords($decimal, $words, $units) . ' Kobo';
         
         return $word;
     }

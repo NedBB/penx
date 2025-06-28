@@ -476,7 +476,9 @@ let timeout;
         if(arrKobo[1]){
             koboWord = numberToEnglish(arrKobo[1])+' kobo';
         }
-        return '<span style="text-transform:capitalize">'+ numberToEnglish(Number(arrKobo[0].replace(/[^0-9\.-]+/g,""))) + ' Naira,' + ' ' + koboWord +' only</span>';
+        let = result '<span style="text-transform:capitalize">'+ numberToEnglish(Number(arrKobo[0].replace(/[^0-9\.-]+/g,""))) + ' Naira,' + ' ' + koboWord +' only</span>';
+        document.getElementById('inWord').innerHTML = result;
+
     }
 
     function isModalLoaded() {

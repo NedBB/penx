@@ -57,7 +57,7 @@ class StaffPayroll extends Component{
 
     public function payslip($id,PayrollService $payrollService){
         $detail = $payrollService->getPersonPayroll($id,'staffprofile', $this->month, $this->year);
-        $this->show = true;
+        
         // $this->detail = [
         //     'basicsalary' => $detail->basicsalary,
         //     'fullname' => $detail->profile->fullname(),
@@ -65,8 +65,15 @@ class StaffPayroll extends Component{
         //     'year' => $detail->year,
         //     'uniqueid' => $detail->profile->uniqueid
         // ];
+        $words = $this->convertToWords($detail->netpay);
         $this->detail = $detail;
+        $this->detail['words'] = $words;
+        $this->show = true;
       
+    }
+
+    function convertToWords($number) {
+        return numberToWords($number);
     }
 
     public function data(){

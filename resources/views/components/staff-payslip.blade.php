@@ -1,7 +1,7 @@
 
      
    @if (!is_null($detail))
-   <div class="modal fade" id="editUser" wire:ignore.self tabindex="-1" aria-hidden="true">
+   <div class="modal fade" id="payslip" wire:ignore.self tabindex="-1" aria-hidden="true" onload="numbertoEnglishKobo({{$detail->netpay}})">
     <div class="modal-dialog modal-lg modal-simple modal-edit-user">
         <div class="p-2" style="background: #337ab7; color: #fff">
             <h4 class="modal-title text-center text-white ">Slip Preview</h4>
@@ -117,8 +117,8 @@
                                 <td>{{format_money($detail->netpay)}}</td></tr>
                         </table>
         
-                        <div class="text-center">
-                             <span class="inWord"></span>
+                        <div class="text-center mt-3">
+                             <span id="inWord" class="inWord">{{$detail->words}}</span>
                         </div>
                     </div>
                     
@@ -217,8 +217,8 @@
                                 <td>{{format_money($detail->netpay)}}</td></tr>
                         </table>
     
-                        <div class="text-center">
-                             <span class="inWord"></span>
+                        <div class="text-center mt-3">
+                             <span id="inWord" class="inWord amount-in-words">{{$detail->words}}</span>
                         </div>
                     </div>
         

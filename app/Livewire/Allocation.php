@@ -42,7 +42,7 @@ class Allocation extends Component
     public $id;
     public $arrears = 0;
     public $nlc = 0;
-    public $allocation_field = 0;
+    public $allocation_field = 55;
     public $divisionpercent;
     public $applypercent = false;
     public $legal = 0;
@@ -113,9 +113,9 @@ class Allocation extends Component
         if($this->head_id == 1 && $this->subhead_id == 72){
             $this->allocation_field = 0;
         }
-        else{
-            $this->allocation_field = 0;
-        }
+        // else{
+        //     $this->allocation_field = 0;
+        // }
     }
 
     public function getPercent($value){
@@ -169,7 +169,6 @@ class Allocation extends Component
             "year_2"            => ['required'],
             "divisionpercent" => ['required']
         ]);
-
        
         $response = $allocationService->createRecord($validate);
      
@@ -272,7 +271,6 @@ class Allocation extends Component
         $this->applypercent = true;
     }
 
-    
 
     public function save(AllocationService $allocationService)
     {

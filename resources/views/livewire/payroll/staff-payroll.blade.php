@@ -59,7 +59,7 @@
                 </form>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="table-responsive text-nowrap"> 
                   <div class="dt-buttons">
                     <a href="#" onclick="extractContentForPrinting(4,'staff-payroll')"  id="print" class="dt-button buttons-collection dropdown-toggle btn btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">    
@@ -130,7 +130,7 @@
                             </td>
                                  <td>{{++$count}}</td>
                               <td>
-                                  <a href="#" wire:click.prevent='payslip({{$record->id}})' class="text-underline-dotted" data-bs-toggle="modal" data-bs-target="#editUser">{{$record->profile->fullname()}}</a>
+                                  <a href="#" wire:ignore wire:click='payslip({{$record->id}})' class="text-underline-dotted" data-bs-toggle="modal" data-bs-target="#payslip">{{$record->profile->fullname()}}</a>
                               </td>
                               <td>{{$record->profile->gradelevel->gradelevelname->name.''.$record->profile->gradelevel->level}}</td>
                               <td>{{$record->profile->step}}</td>
